@@ -1,0 +1,117 @@
+---
+import '../../styles/fpt.css';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('insights')).sort(
+	(a, b) => a.data.order - b.data.order
+);
+
+const navItems = [
+	{ label: 'About', href: '/#about' },
+	{ label: 'Practices', href: '/#practices' },
+	{ label: 'Results', href: '/#results' },
+	{ label: 'Clients', href: '/#clients' },
+	{ label: 'Insights', href: '/insights' },
+	{ label: 'Contact', href: '/#contact' },
+];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Insights . FP Talent</title>
+		<meta
+			name="description"
+			content="Hiring insights from FirstPrinciples Talent: technical recruiting, psychometric screening, and building software teams that last."
+		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
+		<link rel="canonical" href="https://www.fptalent.io/insights" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
+		/>
+	</head>
+	<body>
+		<header class="site-top">
+			<a class="logo-lockup" href="/" aria-label="FP Talent home">
+				<span class="logo">FPT<span class="logo-cursor" aria-hidden="true"></span></span>
+				<span class="logo-tag">People who ship.</span>
+			</a>
+			<nav class="top-nav practice-nav" aria-label="Primary">
+				{navItems.map(item => <a href={item.href}>{item.label}</a>)}
+			</nav>
+			<div class="header-right">
+				<a class="btn-demo" href="/#contact">Book a demo</a>
+			</div>
+		</header>
+
+		<main class="practice-page">
+			<section class="practice-hero container">
+				<h1 class="display practice-h1">Insights<span class="dot">.</span></h1>
+				<p class="practice-intro">
+					How we think about technical hiring: screening, searches, and building
+					software teams that last.
+				</p>
+			</section>
+
+			<section class="container insight-list">
+				{
+					posts.map(post => (
+						<a class="insight-row" href={`/insights/${post.slug}`}>
+							<p class="insight-meta">
+								{post.data.category} · {post.data.readingTime}
+							</p>
+							<h2 class="insight-title display">{post.data.title}</h2>
+							<p class="insight-desc">{post.data.description}</p>
+						</a>
+					))
+				}
+			</section>
+
+			<section class="practice-cta-band">
+				<div class="container footer-cta">
+					<h2 class="footer-cta-line display">Let's build your team.</h2>
+					<a class="arrow-cta" href="/#contact">
+						<span class="arrow-box" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4">
+								<path d="M4 12h15M13 5l7 7-7 7" stroke-linecap="square"></path>
+							</svg>
+						</span>
+						Book a demo
+					</a>
+				</div>
+			</section>
+		</main>
+
+		<footer class="legal-footer">
+			<div class="container footer-bottom">
+				<span>© 2026 FirstPrinciples Talent. All rights reserved.</span>
+				<span class="footer-legal">
+					<a href="/terms">Terms</a>
+					<a href="/privacy">Privacy policy</a>
+				</span>
+			</div>
+		</footer>
+
+		<script>
+			// Agentation visual-feedback toolbar — dev only, never ships in the production bundle
+			if (import.meta.env.DEV) {
+				Promise.all([
+					import('react'),
+					import('react-dom/client'),
+					import('agentation'),
+				]).then(([React, ReactDOM, { Agentation }]) => {
+					const mount = document.createElement('div');
+					mount.id = 'agentation-root';
+					document.body.appendChild(mount);
+					ReactDOM.createRoot(mount).render(
+						React.createElement(Agentation, { endpoint: 'http://localhost:4747' })
+					);
+				});
+			}
+		</script>
+	</body>
+</html>
