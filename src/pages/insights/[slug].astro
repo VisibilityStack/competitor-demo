@@ -19,11 +19,15 @@ const navItems = [
 	{ label: 'Contact', href: '/#contact' },
 ];
 
+const fmtDate = (d: Date) =>
+	d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
 const articleSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'Article',
 	headline: post.data.title,
 	description: post.data.description,
+	datePublished: post.data.date.toISOString().slice(0, 10),
 	author: { '@type': 'Organization', name: 'FirstPrinciples Talent', url: 'https://www.fptalent.io' },
 	publisher: { '@type': 'Organization', name: 'FirstPrinciples Talent', url: 'https://www.fptalent.io' },
 	mainEntityOfPage: `https://www.fptalent.io/insights/${post.slug}`,
@@ -63,7 +67,7 @@ const articleSchema = {
 		<main class="practice-page">
 			<article class="container article">
 				<p class="legal-updated">
-					{post.data.category} · {post.data.readingTime}
+					{post.data.category} · {fmtDate(post.data.date)} · {post.data.readingTime}
 				</p>
 				<h1 class="display article-title">{post.data.title}</h1>
 				<div class="prose">

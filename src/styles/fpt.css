@@ -1260,6 +1260,46 @@ body.loaded .hero-title .word {
 
 /* ---------- insights (blog) ---------- */
 
+.cat-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding-top: 6px;
+}
+
+.cat-filter {
+	font-family: var(--font-display);
+	font-size: 15px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	background: transparent;
+	border: 1px solid var(--fpt-ink);
+	color: var(--fpt-ink);
+	padding: 9px 14px 7px;
+	cursor: pointer;
+	transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.cat-filter:hover {
+	background: var(--fpt-pale);
+}
+
+.cat-filter.active {
+	background: var(--fpt-red-dark);
+	border-color: var(--fpt-red-dark);
+	color: #fff;
+}
+
+.cat-count {
+	font-size: 12px;
+	color: var(--fpt-red);
+	margin-left: 2px;
+}
+
+.cat-filter.active .cat-count {
+	color: rgba(255, 255, 255, 0.8);
+}
+
 .insight-list {
 	padding-top: clamp(20px, 4vh, 40px);
 	border-bottom: 1px solid var(--fpt-line);

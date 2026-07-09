@@ -3,8 +3,16 @@ import '../../styles/fpt.css';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('insights')).sort(
-	(a, b) => a.data.order - b.data.order
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+const fmtDate = (d: Date) =>
+	d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
+	name: cat,
+	count: posts.filter(p => p.data.category === cat).length,
+}));
 
 const navItems = [
 	{ label: 'About', href: '/#about' },
@@ -57,12 +65,29 @@ const navItems = [
 				</p>
 			</section>
 
-			<section class="container insight-list">
+			<section class="container cat-filters" aria-label="Filter by category">
+				<button class="cat-filter active" data-cat="all">
+					All <span class="cat-count">{posts.length}</span>
+				</button>
+				{
+					categories.map(c => (
+						<button class="cat-filter" data-cat={c.name}>
+							{c.name} <span class="cat-count">{c.count}</span>
+						</button>
+					))
+				}
+			</section>
+
+			<section class="container insight-list" id="insight-list">
 				{
 					posts.map(post => (
-						<a class="insight-row" href={`/insights/${post.slug}`}>
+						<a
+							class="insight-row"
+							href={`/insights/${post.slug}`}
+							data-category={post.data.category}
+						>
 							<p class="insight-meta">
-								{post.data.category} · {post.data.readingTime}
+								{post.data.category} · {fmtDate(post.data.date)} · {post.data.readingTime}
 							</p>
 							<h2 class="insight-title display">{post.data.title}</h2>
 							<p class="insight-desc">{post.data.description}</p>
@@ -95,6 +120,26 @@ const navItems = [
 				</span>
 			</div>
 		</footer>
+
+		<script>
+			// ---------- category filter ----------
+			const filterButtons = Array.from(
+				document.querySelectorAll<HTMLButtonElement>('.cat-filter')
+			);
+			const rows = Array.from(
+				document.querySelectorAll<HTMLElement>('.insight-row')
+			);
+			filterButtons.forEach(btn =>
+				btn.addEventListener('click', () => {
+					const cat = btn.dataset.cat;
+					filterButtons.forEach(b => b.classList.toggle('active', b === btn));
+					rows.forEach(row => {
+						row.style.display =
+							cat === 'all' || row.dataset.category === cat ? '' : 'none';
+					});
+				})
+			);
+		</script>
 
 		<script>
 			// Agentation visual-feedback toolbar — dev only, never ships in the production bundle

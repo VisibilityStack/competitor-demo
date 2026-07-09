@@ -151,9 +151,254 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"insights": {
+"beyond-talent-marketplaces.md": {
+	id: "beyond-talent-marketplaces.md";
+  slug: "beyond-talent-marketplaces";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"boutique-vs-staffing-firm.md": {
+	id: "boutique-vs-staffing-firm.md";
+  slug: "boutique-vs-staffing-firm";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"closing-senior-engineers.md": {
+	id: "closing-senior-engineers.md";
+  slug: "closing-senior-engineers";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"confidential-cto-search.md": {
+	id: "confidential-cto-search.md";
+  slug: "confidential-cto-search";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"cost-of-a-mis-hire.md": {
+	id: "cost-of-a-mis-hire.md";
+  slug: "cost-of-a-mis-hire";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"data-scientist-vs-ml-engineer.md": {
+	id: "data-scientist-vs-ml-engineer.md";
+  slug: "data-scientist-vs-ml-engineer";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"engineering-hiring-process.md": {
+	id: "engineering-hiring-process.md";
+  slug: "engineering-hiring-process";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"exec-search-partner-cto.md": {
+	id: "exec-search-partner-cto.md";
+  slug: "exec-search-partner-cto";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"exec-search-vs-startup-search.md": {
+	id: "exec-search-vs-startup-search.md";
+  slug: "exec-search-vs-startup-search";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"founding-engineer-search.md": {
+	id: "founding-engineer-search.md";
+  slug: "founding-engineer-search";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"hiring-ml-engineers-comp.md": {
+	id: "hiring-ml-engineers-comp.md";
+  slug: "hiring-ml-engineers-comp";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"hiring-your-first-pm.md": {
+	id: "hiring-your-first-pm.md";
+  slug: "hiring-your-first-pm";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"inhouse-recruiter-vs-agency.md": {
+	id: "inhouse-recruiter-vs-agency.md";
+  slug: "inhouse-recruiter-vs-agency";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"jd-senior-engineers.md": {
+	id: "jd-senior-engineers.md";
+  slug: "jd-senior-engineers";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"nontechnical-founder-hiring-engineers.md": {
+	id: "nontechnical-founder-hiring-engineers.md";
+  slug: "nontechnical-founder-hiring-engineers";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"pm-interview-loop.md": {
+	id: "pm-interview-loop.md";
+  slug: "pm-interview-loop";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
 "psychometric-screening-mis-hires.md": {
 	id: "psychometric-screening-mis-hires.md";
   slug: "psychometric-screening-mis-hires";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"questions-for-recruiting-agency.md": {
+	id: "questions-for-recruiting-agency.md";
+  slug: "questions-for-recruiting-agency";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"recruiting-fee-structures.md": {
+	id: "recruiting-fee-structures.md";
+  slug: "recruiting-fee-structures";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"replacement-guarantees.md": {
+	id: "replacement-guarantees.md";
+  slug: "replacement-guarantees";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"retained-search-cto-cost.md": {
+	id: "retained-search-cto-cost.md";
+  slug: "retained-search-cto-cost";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"retained-vs-contingency.md": {
+	id: "retained-vs-contingency.md";
+  slug: "retained-vs-contingency";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"rpo-vs-recruiting-agency.md": {
+	id: "rpo-vs-recruiting-agency.md";
+  slug: "rpo-vs-recruiting-agency";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"screening-included-not-addon.md": {
+	id: "screening-included-not-addon.md";
+  slug: "screening-included-not-addon";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"senior-engineers-series-a.md": {
+	id: "senior-engineers-series-a.md";
+  slug: "senior-engineers-series-a";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"shortlist-technical-recruiting-agency.md": {
+	id: "shortlist-technical-recruiting-agency.md";
+  slug: "shortlist-technical-recruiting-agency";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"sourcing-engineers-who-never-apply.md": {
+	id: "sourcing-engineers-who-never-apply.md";
+  slug: "sourcing-engineers-who-never-apply";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"stage-fit-hiring.md": {
+	id: "stage-fit-hiring.md";
+  slug: "stage-fit-hiring";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"structured-vs-unstructured-interviews.md": {
+	id: "structured-vs-unstructured-interviews.md";
+  slug: "structured-vs-unstructured-interviews";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"technical-recruiter-vs-resume-forwarder.md": {
+	id: "technical-recruiter-vs-resume-forwarder.md";
+  slug: "technical-recruiter-vs-resume-forwarder";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"time-to-hire-benchmarks.md": {
+	id: "time-to-hire-benchmarks.md";
+  slug: "time-to-hire-benchmarks";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"vp-engineering-hire-or-promote.md": {
+	id: "vp-engineering-hire-or-promote.md";
+  slug: "vp-engineering-hire-or-promote";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"what-recruiting-agencies-charge.md": {
+	id: "what-recruiting-agencies-charge.md";
+  slug: "what-recruiting-agencies-charge";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"when-to-hire-head-of-data.md": {
+	id: "when-to-hire-head-of-data.md";
+  slug: "when-to-hire-head-of-data";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"where-senior-engineers-get-found.md": {
+	id: "where-senior-engineers-get-found.md";
+  slug: "where-senior-engineers-get-found";
+  body: string;
+  collection: "insights";
+  data: InferEntrySchema<"insights">
+} & { render(): Render[".md"] };
+"why-engineering-hires-fail.md": {
+	id: "why-engineering-hires-fail.md";
+  slug: "why-engineering-hires-fail";
   body: string;
   collection: "insights";
   data: InferEntrySchema<"insights">

@@ -7,7 +7,7 @@ const insights = defineCollection({
 		category: z.string(),
 		description: z.string(),
 		readingTime: z.string(),
-		order: z.number().default(0),
+		date: z.coerce.date(),
 	}),
 });
 

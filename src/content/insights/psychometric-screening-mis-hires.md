@@ -3,7 +3,7 @@ title: Why psychometric screening cuts mis-hires
 category: Hiring science
 description: Resumes and interviews measure polish. Psychometrics measure fit. Here is why we include it in every search, at no extra cost.
 readingTime: 4 min read
-order: 1
+date: 2026-01-20
 ---
 
 Most hiring processes measure the wrong thing. A resume shows where someone has been. An interview shows how well they perform in interviews. Neither tells you how a person actually works: how they handle ambiguity, how they respond to feedback, what pace feels natural to them, and what kind of team brings out their best.
