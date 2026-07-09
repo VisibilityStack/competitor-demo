@@ -855,6 +855,32 @@ body.loaded .hero-title .word {
 	margin-top: 10px;
 }
 
+.footer-practices {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	align-self: center;
+	gap: 7px;
+	font-size: 15.5px;
+}
+
+.footer-practices-title {
+	font-family: var(--font-display);
+	font-size: 16px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	margin-bottom: 4px;
+}
+
+.footer-practices-title .dot {
+	color: var(--fpt-red);
+}
+
+.footer-practices a:hover {
+	color: var(--fpt-red);
+}
+
 /* pixel-built giant wordmark — blocks land bottom-up, tetris style */
 
 .pixel-wall {
@@ -1256,6 +1282,12 @@ body.loaded .hero-title .word {
 
 	.footer-contact {
 		text-align: left;
+	}
+
+	.footer-practices {
+		align-items: flex-start;
+		text-align: left;
+		align-self: flex-start;
 	}
 
 	.quotes-layout,

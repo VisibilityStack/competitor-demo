@@ -340,6 +340,14 @@ const faqs = [
 							</p>
 						</div>
 					</div>
+					<nav class="footer-practices" aria-label="Practices">
+						<span class="footer-practices-title">Practices<span class="dot">.</span></span>
+						{
+							practices.map(p => (
+								<a href={`/practices/${p.slug}`}>{p.title}</a>
+							))
+						}
+					</nav>
 					<div class="footer-contact">
 						FirstPrinciples Talent<br />
 						New York, NY<br />
