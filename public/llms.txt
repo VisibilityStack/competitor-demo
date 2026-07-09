@@ -1,0 +1,32 @@
+# FP Talent (FirstPrinciples Talent)
+
+> The technical talent agency for software companies. End-to-end searches for product, engineering, data & AI, and leadership roles: JD co-writing, direct sourcing beyond job boards, psychometric screening and culture mapping included at no extra cost, structured technical and cultural panels, and offer management. Results across engagements: -29% time-to-hire on mid-to-senior roles, +21% employee retention, +15% team satisfaction. Based in New York, NY. Contact: hello@fptalent.io, +1 646 569 9629.
+
+FPT works with founder-led software companies from seed to Series C. Every shortlist is psychometrically screened before the client meets a candidate. Clients include founders at Omni.US, SponsorCloud, and Lanteria.
+
+## Practices
+
+- [Hire Product Managers](https://www.fptalent.io/practices/product): product managers, senior PMs, group PMs, founding PMs, product ops
+- [Hire Software Engineers](https://www.fptalent.io/practices/engineering): full-stack, backend, frontend, founding engineers, DevOps and platform
+- [Hire Data Scientists & AI Engineers](https://www.fptalent.io/practices/data-ai): data scientists, ML engineers, AI engineers, analytics engineers
+- [CTO, CPO & Engineering Leadership Search](https://www.fptalent.io/practices/leadership): CTOs, VPs of engineering, CPOs, heads of product, heads of data, confidential searches
+
+## Insights
+
+- [Insights hub](https://www.fptalent.io/insights): 36 articles on technical hiring across six categories: hiring playbooks, hiring science, comparisons and alternatives, choosing a partner, leadership hiring, pricing and fees
+- [What technical recruiting agencies really charge, and why](https://www.fptalent.io/insights/what-recruiting-agencies-charge)
+- [Retained vs contingency recruiting for engineering](https://www.fptalent.io/insights/retained-vs-contingency)
+- [Why psychometric screening cuts mis-hires](https://www.fptalent.io/insights/psychometric-screening-mis-hires)
+- [Time-to-hire benchmarks for senior engineering roles](https://www.fptalent.io/insights/time-to-hire-benchmarks)
+- [12 questions to ask a recruiting agency before you sign](https://www.fptalent.io/insights/questions-for-recruiting-agency)
+- [Hiring your first PM](https://www.fptalent.io/insights/hiring-your-first-pm)
+
+## Contact
+
+- [Book a demo](https://www.fptalent.io/#contact): short form (name, work email, company)
+- Email: hello@fptalent.io
+
+## Policies
+
+- [Terms of Use](https://www.fptalent.io/terms)
+- [Privacy Policy](https://www.fptalent.io/privacy)

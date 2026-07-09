@@ -855,31 +855,6 @@ body.loaded .hero-title .word {
 	margin-top: 10px;
 }
 
-.footer-practices {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
-	margin-top: 10px;
-	gap: 7px;
-	font-size: 15.5px;
-}
-
-.footer-practices-title {
-	font-family: var(--font-display);
-	font-size: 16px;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	margin-bottom: 4px;
-}
-
-.footer-practices-title .dot {
-	color: var(--fpt-red);
-}
-
-.footer-practices a:hover {
-	color: var(--fpt-red);
-}
 
 /* pixel-built giant wordmark — blocks land bottom-up, tetris style */
 
@@ -1342,6 +1317,41 @@ body.loaded .hero-title .word {
 	color: rgba(255, 255, 255, 0.85);
 }
 
+.pagination {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-top: clamp(28px, 4vh, 44px);
+}
+
+.page-btn {
+	font-family: var(--font-display);
+	font-size: 17px;
+	letter-spacing: 0.04em;
+	min-width: 42px;
+	height: 42px;
+	background: transparent;
+	border: 1px solid var(--fpt-ink);
+	color: var(--fpt-ink);
+	cursor: pointer;
+	transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.page-btn:hover:not(:disabled) {
+	background: var(--fpt-pale);
+}
+
+.page-btn.active {
+	background: var(--fpt-red-dark);
+	border-color: var(--fpt-red-dark);
+	color: #fff;
+}
+
+.page-btn:disabled {
+	opacity: 0.3;
+	cursor: default;
+}
+
 /* article page */
 
 .article {
@@ -1411,11 +1421,6 @@ body.loaded .hero-title .word {
 		text-align: left;
 	}
 
-	.footer-practices {
-		align-items: flex-start;
-		text-align: left;
-		align-self: flex-start;
-	}
 
 	.quotes-layout,
 	.results-grid {

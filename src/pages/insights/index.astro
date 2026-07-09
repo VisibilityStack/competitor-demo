@@ -96,6 +96,8 @@ const navItems = [
 				}
 			</section>
 
+			<nav class="pagination container" id="pagination" aria-label="Pages"></nav>
+
 			<section class="practice-cta-band">
 				<div class="container footer-cta">
 					<h2 class="footer-cta-line display">Let's build your team.</h2>
@@ -122,23 +124,59 @@ const navItems = [
 		</footer>
 
 		<script>
-			// ---------- category filter ----------
+			// ---------- category filter + pagination ----------
+			const PER_PAGE = 9;
 			const filterButtons = Array.from(
 				document.querySelectorAll<HTMLButtonElement>('.cat-filter')
 			);
-			const rows = Array.from(
-				document.querySelectorAll<HTMLElement>('.insight-row')
-			);
+			const rows = Array.from(document.querySelectorAll<HTMLElement>('.insight-row'));
+			const pagination = document.getElementById('pagination');
+			let currentCat = 'all';
+			let currentPage = 1;
+
+			function render(scroll = false) {
+				const visible = rows.filter(
+					r => currentCat === 'all' || r.dataset.category === currentCat
+				);
+				const pages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
+				if (currentPage > pages) currentPage = pages;
+				const start = (currentPage - 1) * PER_PAGE;
+				const slice = visible.slice(start, start + PER_PAGE);
+				rows.forEach(r => (r.style.display = slice.includes(r) ? '' : 'none'));
+
+				if (pagination) {
+					pagination.innerHTML = '';
+					if (pages > 1) {
+						const mk = (label: string, page: number, opts: { active?: boolean; disabled?: boolean } = {}) => {
+							const b = document.createElement('button');
+							b.className = 'page-btn' + (opts.active ? ' active' : '');
+							b.textContent = label;
+							b.disabled = !!opts.disabled;
+							b.addEventListener('click', () => {
+								currentPage = page;
+								render(true);
+							});
+							pagination.appendChild(b);
+						};
+						mk('←', currentPage - 1, { disabled: currentPage === 1 });
+						for (let p = 1; p <= pages; p++) mk(String(p), p, { active: p === currentPage });
+						mk('→', currentPage + 1, { disabled: currentPage === pages });
+					}
+				}
+				if (scroll)
+					document.getElementById('insight-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+
 			filterButtons.forEach(btn =>
 				btn.addEventListener('click', () => {
-					const cat = btn.dataset.cat;
+					currentCat = btn.dataset.cat || 'all';
+					currentPage = 1;
 					filterButtons.forEach(b => b.classList.toggle('active', b === btn));
-					rows.forEach(row => {
-						row.style.display =
-							cat === 'all' || row.dataset.category === cat ? '' : 'none';
-					});
+					render();
 				})
 			);
+
+			render();
 		</script>
 
 		<script>

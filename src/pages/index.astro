@@ -87,6 +87,31 @@ pixelCells.forEach(cell => {
 	cell.delay = (7 - cell.row) * 190 + ((cell.col * 7 + cell.row * 3) % 5) * 70;
 });
 
+const orgSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'FirstPrinciples Talent',
+	alternateName: 'FPT',
+	url: 'https://www.fptalent.io',
+	logo: 'https://www.fptalent.io/favicon-fpt.svg',
+	description:
+		'The technical talent agency for software companies. End-to-end searches for product, engineering, data & AI, and leadership roles with psychometric screening included.',
+	email: 'hello@fptalent.io',
+	telephone: '+1-646-569-9629',
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: 'New York',
+		addressRegion: 'NY',
+		addressCountry: 'US',
+	},
+	contactPoint: {
+		'@type': 'ContactPoint',
+		contactType: 'sales',
+		email: 'hello@fptalent.io',
+		telephone: '+1-646-569-9629',
+	},
+};
+
 const faqs = [
 	{
 		q: 'How fast can we meet candidates?',
@@ -123,6 +148,8 @@ const faqs = [
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
 		/>
+		<link rel="sitemap" href="/sitemap.xml" />
+		<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 	</head>
 	<body>
 		<div class="progress-bar" id="progress"></div>
@@ -341,14 +368,6 @@ const faqs = [
 							</p>
 						</div>
 					</div>
-					<nav class="footer-practices" aria-label="Practices">
-						<span class="footer-practices-title">Practices<span class="dot">.</span></span>
-						{
-							practices.map(p => (
-								<a href={`/practices/${p.slug}`}>{p.title}</a>
-							))
-						}
-					</nav>
 					<div class="footer-contact">
 						FirstPrinciples Talent<br />
 						New York, NY<br />
