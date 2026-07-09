@@ -1,92 +1,643 @@
 ---
-import { Container, FeatureCard } from '@components/odyssey-theme';
+import '../styles/fpt.css';
+import claudeMark from '../assets/brands/claude.svg?raw';
+import teslaMark from '../assets/brands/tesla-word.svg?raw';
+import figmaIcon from '../assets/brands/figma-icon.svg?raw';
 
-import Layout from '../layouts/Page.astro';
-import HomeHeroSection from '../components/sections/heros/HomeHeroSection.astro';
+const navItems = [
+	{ label: 'About', href: '#about' },
+	{ label: 'Practices', href: '#practices' },
+	{ label: 'Results', href: '#results' },
+	{ label: 'Clients', href: '#clients' },
+	{ label: 'FAQ', href: '#faq' },
+	{ label: 'Contact', href: '#contact' },
+];
+
+const practices = [
+	{
+		title: 'Product',
+		sub: 'Product Managers · Senior PMs · Group PMs',
+	},
+	{
+		title: 'Engineering',
+		sub: 'Full-Stack · Backend · Frontend Engineers',
+	},
+	{
+		title: 'Data & AI',
+		sub: 'Data Scientists · ML & AI Engineers',
+	},
+	{
+		title: 'Leadership',
+		sub: 'CPOs · VPs of Engineering · CTOs · Heads of Data',
+	},
+];
+
+const stats = [
+	{ sign: '−', target: 29, caption: 'Time-to-hire, mid to senior roles' },
+	{ sign: '+', target: 21, caption: 'Employee retention' },
+	{ sign: '+', target: 15, caption: 'Team satisfaction through senior recruitment' },
+];
+
+const featuredQuote = {
+	text: 'FirstPrinciples Talent found us an exceptional Senior Full Stack Developer. Swift onboarding, immediate impact on our roadmap.',
+	who: 'Alex Berman',
+	role: 'Co-founder, Omni.US',
+	initials: 'AB',
+};
+
+const quotes = [
+	{
+		text: 'FPT led our Principal Engineer search. Rigorous screening, outstanding candidate.',
+		who: 'TJ Lokboj',
+		role: 'Co-founder, SponsorCloud',
+		initials: 'TL',
+	},
+	{
+		text: 'Their process secured an exceptional Project Manager. The perfect fit for our team.',
+		who: 'Andrew Swiller',
+		role: 'CEO, Lanteria',
+		initials: 'AS',
+	},
+];
+
+// 5x7 bitmap letterforms for the pixel-built footer wordmark
+const PX_LETTERS = {
+	F: ['XXXXX', 'X....', 'X....', 'XXXX.', 'X....', 'X....', 'X....'],
+	P: ['XXXX.', 'X...X', 'X...X', 'XXXX.', 'X....', 'X....', 'X....'],
+	T: ['XXXXX', '..X..', '..X..', '..X..', '..X..', '..X..', '..X..'],
+};
+
+const pixelCells = [];
+let pxOffset = 1;
+for (const ch of ['F', 'P', 'T']) {
+	PX_LETTERS[ch].forEach((rowStr, r) => {
+		rowStr.split('').forEach((cell, i) => {
+			if (cell === 'X') pixelCells.push({ col: pxOffset + i, row: r + 1 });
+		});
+	});
+	pxOffset += 6;
+}
+// bottom rows fill first, rising like water; deterministic jitter per cell
+pixelCells.forEach(cell => {
+	cell.delay = (7 - cell.row) * 190 + ((cell.col * 7 + cell.row * 3) % 5) * 70;
+});
+
+const faqs = [
+	{
+		q: 'How fast can we meet candidates?',
+		a: 'Fast. We scope the JD on a discovery call and you meet a screened shortlist within days, not months.',
+	},
+	{
+		q: 'What does it cost?',
+		a: 'A success fee on placement, scoped on the discovery call. Psychometric screening and culture mapping are always included at no extra cost.',
+	},
+	{
+		q: "What if a hire doesn't work out?",
+		a: 'We stand behind every placement. If a hire does not stick in the early months, we rerun the search. Retention is the metric we optimize for.',
+	},
+	{
+		q: 'How are you different from a classic agency?',
+		a: 'Classic agencies forward resumes. We run one hiring system end to end and only present people who clear it.',
+	},
+];
 ---
 
-<Layout>
-	<HomeHeroSection />
-	<Container>
-		<section class="feature-card__section">
-			<h2>Landing Pages</h2>
-			<p>
-				Use one of our landing pages to jumpstart your website or
-				ad campaign.
-			</p>
-			<div class="feature-card__grid">
-				<FeatureCard href="/landing-pages/landing-1" title="Landing Page 1" imgSrc="/assets/images/home/screenshots/landing-1">
-				</FeatureCard>
-				<FeatureCard href="/landing-pages/landing-2" title="Landing Page 2" imgSrc="/assets/images/home/screenshots/landing-2">
-				</FeatureCard>
-			</div>
-		</section>
-	</Container>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>FP Talent . People who ship.</title>
+		<meta
+			name="description"
+			content="The technical talent agency for founder-led software companies. Product, engineering, data & AI, and leadership hiring from first principles."
+		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
+		/>
+	</head>
+	<body>
+		<div class="progress-bar" id="progress"></div>
 
-	<Container>
-		<section class="feature-card__section">
-			<h2>Company Pages</h2>
-			<p>
-				Use one of our prebuilt company pages for your about page, contact page,
-				legal pages, blog posts, etc.
-			</p>
-			<div class="feature-card__grid">
-				<FeatureCard href="/company/about" title="About Page" imgSrc="/assets/images/home/screenshots/about">
-				</FeatureCard>
-				<FeatureCard href="/company/contact" title="Contact Page" imgSrc="/assets/images/home/screenshots/contact">
-				</FeatureCard>
-				<FeatureCard href="/blog/" title="Blog Page" imgSrc="/assets/images/home/screenshots/blog">
-				</FeatureCard>
-				<FeatureCard
-					href="/blog/posts/remote-work-mental-health"
-					title="Blog Post"
-          imgSrc="/assets/images/home/screenshots/blog-post"
-				>
-				</FeatureCard>
-				<FeatureCard
-					href="/company/legal"
-					imgSrc="/assets/images/home/screenshots/legal"
-					title="Legal Page"
-				>
-				</FeatureCard>
-			</div>
-		</section>
-	</Container>
+		<header class="site-top">
+			<a class="logo-lockup" href="#top" aria-label="FP Talent home">
+				<span class="logo">FPT<span class="logo-cursor" aria-hidden="true"></span></span>
+				<span class="logo-tag">People who ship.</span>
+			</a>
 
-	<Container>
-		<section class="feature-card__section">
-			<h2>Theme Pages</h2>
-			<p>Learn more about how to set up and use the Odyssey Theme.</p>
-			<div class="feature-card__grid">
-				<FeatureCard
-					href="/theme/get-started"
-					imgSrc="/assets/images/home/screenshots/get-started"
-					title="Get Started"
-				>
-				</FeatureCard>
-				<FeatureCard
-					href="/theme/style-guide"
-					imgSrc="/assets/images/home/screenshots/style-guide"
-					title="Style Guide"
-				>
-				</FeatureCard>
-			</div>
-		</section>
-	</Container>
-</Layout>
+			<nav class="top-nav" aria-label="Primary">
+				{navItems.map(item => <a href={item.href}>{item.label}</a>)}
+			</nav>
 
-<style>
-	.feature-card__section {
-		margin: var(--section-margin) auto;
-	}
-	.feature-card__grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: var(--theme-grid-gap);
-	}
-	@media (max-width: 768px) {
-		.feature-card__grid {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>
+			<div class="header-right">
+				<a class="btn-demo" href="#contact">Book a demo</a>
+			</div>
+		</header>
+
+		<main id="top">
+			<section class="hero">
+				<h1 class="hero-title display">
+					<span class="line">
+						<span class="word" style="--enter-delay: 80ms">People</span>
+						<span class="word" style="--enter-delay: 220ms">who</span>
+						<span class="word" style="--enter-delay: 360ms">ship</span>
+					</span>
+					<span class="line">
+						<span class="word" style="--enter-delay: 540ms">the</span>
+						<span class="word" style="--enter-delay: 680ms">next</span>
+						<span class="brand-slot" id="brand-slot" aria-label="Claude, Tesla, Figma">
+							<span class="brand-mark brand-claude" set:html={claudeMark} />
+							<span class="brand-mark brand-tesla" set:html={teslaMark} />
+							<span class="brand-mark brand-figma">
+								<Fragment set:html={figmaIcon} />
+								<span class="figma-word">Figma</span>
+							</span>
+							<span class="type-cursor" id="type-cursor" aria-hidden="true"></span>
+						</span>
+					</span>
+				</h1>
+
+				<nav class="hero-nav" aria-label="Sections">
+					{navItems.map(item => <a href={item.href}>{item.label}</a>)}
+				</nav>
+			</section>
+
+			<section id="about" class="section">
+				<div class="container center" data-reveal>
+					<h2 class="about-head display">
+						FPT: The technical talent agency for software companies.
+					</h2>
+					<p class="about-copy">
+						We work alongside founders to build product, engineering, and data teams
+						meant to last. Search, psychometrics, and rigorous interviews coexist in
+						one hiring system designed to create real fit between companies and
+						people.
+					</p>
+					<div
+						class="swipe-cta"
+						id="swipe-cta"
+						data-action="#contact"
+						role="button"
+						tabindex="0"
+						aria-label="Swipe right or press Enter to book a demo"
+					>
+						<span class="swipe-thumb" id="swipe-thumb" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4">
+								<path d="M4 12h15M13 5l7 7-7 7" stroke-linecap="square"></path>
+							</svg>
+						</span>
+						<span class="swipe-label">Swipe to book a demo</span>
+					</div>
+				</div>
+			</section>
+
+			<section id="practices" class="section">
+				<p class="section-label" data-reveal>Practices</p>
+				<div class="practice-rows">
+					{
+						practices.map(p => (
+							<a class="practice-row" href="#contact">
+								<h3 class="practice-title display">{p.title}</h3>
+								<p class="practice-sub">{p.sub}</p>
+							</a>
+						))
+					}
+				</div>
+			</section>
+
+			<section id="results" class="section">
+				<div class="container">
+					<p class="section-label" data-reveal>Results</p>
+					<div class="results-grid">
+						{
+							stats.map(s => (
+								<div data-reveal>
+									<div
+										class="stat-value"
+										data-sign={s.sign}
+										data-target={s.target}
+									>
+										{s.sign}{s.target}%
+									</div>
+									<div class="stat-caption">{s.caption}</div>
+								</div>
+							))
+						}
+					</div>
+					<p class="results-line" data-reveal>
+						Hiring, measured like a product<span class="dot">.</span>
+					</p>
+				</div>
+			</section>
+
+			<section id="clients" class="section">
+				<div class="container">
+					<div data-reveal>
+						<h2 class="clients-head display">People we work with</h2>
+						<p class="clients-intro">
+							We work with founders who want to build teams with meaning and
+							coherence. Together, we turn hiring into a system that grows with your
+							product and your stage.
+						</p>
+					</div>
+					<div class="quotes-layout" data-reveal>
+						<figure class="quote-featured">
+							<blockquote>“{featuredQuote.text}”</blockquote>
+							<figcaption>
+								<span class="quote-avatar" aria-hidden="true">{featuredQuote.initials}</span>
+								<div>
+									<div class="quote-who">{featuredQuote.who}</div>
+									<div class="quote-role">{featuredQuote.role}</div>
+								</div>
+							</figcaption>
+						</figure>
+						<div class="quote-stack">
+							{
+								quotes.map(q => (
+									<figure class="quote-card">
+										<blockquote>“{q.text}”</blockquote>
+										<figcaption>
+											<span class="quote-avatar" aria-hidden="true">{q.initials}</span>
+											<div>
+												<div class="quote-who">{q.who}</div>
+												<div class="quote-role">{q.role}</div>
+											</div>
+										</figcaption>
+									</figure>
+								))
+							}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="faq" class="section">
+				<div class="container">
+					<p class="section-label" data-reveal>FAQ</p>
+					<div class="faq-list" data-reveal>
+						{
+							faqs.map(f => (
+								<details class="faq-item">
+									<summary>{f.q}</summary>
+									<p>{f.a}</p>
+								</details>
+							))
+						}
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer id="contact" class="site-footer">
+			<div class="container">
+				<div class="footer-top">
+					<div class="footer-cta-col">
+						<h2 class="footer-cta-line display">Let's build your team.</h2>
+						<form id="demo-form" class="demo-form" novalidate>
+							<div class="form-grid">
+								<input
+									type="text"
+									name="firstName"
+									placeholder="First name"
+									required
+									autocomplete="given-name"
+								/>
+								<input
+									type="text"
+									name="lastName"
+									placeholder="Last name"
+									required
+									autocomplete="family-name"
+								/>
+								<input
+									type="email"
+									name="email"
+									placeholder="Work email"
+									required
+									autocomplete="email"
+								/>
+								<input
+									type="text"
+									name="company"
+									placeholder="Company"
+									required
+									autocomplete="organization"
+								/>
+							</div>
+							<button type="submit" class="form-submit">Book a demo</button>
+							<p class="form-error" id="form-error" role="alert"></p>
+						</form>
+						<div class="form-thanks" id="form-thanks" hidden aria-live="polite">
+							<p class="thanks-line display">
+								Thank you<span class="logo-cursor" aria-hidden="true"></span>
+							</p>
+						</div>
+					</div>
+					<div class="footer-contact">
+						FirstPrinciples Talent<br />
+						New York, NY<br />
+						<a href="tel:+16465699629">+1 646 569 9629</a><br />
+						<a href="mailto:hello@fptalent.co">hello@fptalent.co</a>
+					</div>
+				</div>
+
+				<div class="pixel-wall" id="pixel-wall" role="img" aria-label="FPT" data-reveal>
+					{
+						pixelCells.map(c => (
+							<span
+								class="px"
+								style={`grid-column:${c.col};grid-row:${c.row};--d:${c.delay}ms;--fall:${c.row + 2}`}
+							/>
+						))
+					}
+					<button
+						class="px px-cursor"
+						style="grid-column:19;grid-row:7;--d:1900ms"
+						aria-label="Replay the logo animation"
+						title="Replay"
+					></button>
+				</div>
+
+				<div class="footer-bottom">
+					<span>© 2026 FirstPrinciples Talent. All rights reserved.</span>
+					<span class="footer-legal">
+						<a href="#">Terms</a>
+						<a href="#">Privacy policy</a>
+					</span>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			// Agentation visual-feedback toolbar — dev only, never ships in the production bundle
+			if (import.meta.env.DEV) {
+				Promise.all([
+					import('react'),
+					import('react-dom/client'),
+					import('agentation'),
+				]).then(([React, ReactDOM, { Agentation }]) => {
+					const mount = document.createElement('div');
+					mount.id = 'agentation-root';
+					document.body.appendChild(mount);
+					ReactDOM.createRoot(mount).render(
+						React.createElement(Agentation, { endpoint: 'http://localhost:4747' })
+					);
+				});
+			}
+		</script>
+
+		<script>
+			// ---------- scroll: progress bar + docked header ----------
+			const progress = document.getElementById('progress');
+			const hero = document.querySelector('.hero') as HTMLElement;
+			function onScroll() {
+				const max = document.documentElement.scrollHeight - window.innerHeight;
+				if (progress)
+					progress.style.width = `${Math.min(100, (window.scrollY / Math.max(1, max)) * 100)}%`;
+				if (hero)
+					document.body.classList.toggle('docked', window.scrollY > hero.offsetHeight - 90);
+				if (window.scrollY < 120)
+					document.querySelectorAll('.nav-active').forEach(a => a.classList.remove('nav-active'));
+			}
+			addEventListener('scroll', onScroll, { passive: true });
+			onScroll();
+
+			// ---------- staggered hero entrance ----------
+			requestAnimationFrame(() => document.body.classList.add('loaded'));
+
+			// ---------- typewriter brand loop ----------
+			// The slot is given a fixed width (widest mark) so the headline never
+			// reflows; the caret is moved along the typed edge on each frame.
+			const slot = document.getElementById('brand-slot');
+			const caret = document.getElementById('type-cursor');
+			const marks = slot ? Array.from(slot.querySelectorAll<HTMLElement>('.brand-mark')) : [];
+			const wait = (ms: number) => new Promise(res => setTimeout(res, ms));
+			const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			function tween(dur: number, step: (p: number) => void) {
+				return new Promise<void>(res => {
+					const t0 = performance.now();
+					function frame(t: number) {
+						const p = Math.min(1, (t - t0) / dur);
+						step(p);
+						if (p < 1) requestAnimationFrame(frame);
+						else res();
+					}
+					requestAnimationFrame(frame);
+				});
+			}
+
+			async function typewriter() {
+				if (!slot || !caret || !marks.length) return;
+				try {
+					await (document as any).fonts.ready;
+				} catch {}
+				// marks are width:max-content, so offsetWidth is their true width
+				// even while the slot itself is narrower
+				slot.style.width = `${Math.max(...marks.map(m => m.offsetWidth))}px`;
+
+				if (reduceMotion) {
+					marks[0].classList.add('active');
+					marks[0].style.clipPath = 'inset(0 0 0 0)';
+					caret.style.left = `${marks[0].offsetWidth}px`;
+					return;
+				}
+
+				await wait(1100);
+				let i = 0;
+				for (;;) {
+					const mark = marks[i];
+					const w = mark.offsetWidth;
+					mark.classList.add('active');
+					caret.classList.add('typing');
+					await tween(620, p => {
+						mark.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
+						caret.style.left = `${p * w}px`;
+					});
+					caret.classList.remove('typing');
+					await wait(2100);
+					caret.classList.add('typing');
+					await tween(400, p => {
+						mark.style.clipPath = `inset(0 ${p * 100}% 0 0)`;
+						caret.style.left = `${(1 - p) * w}px`;
+					});
+					caret.classList.remove('typing');
+					mark.classList.remove('active');
+					await wait(280);
+					i = (i + 1) % marks.length;
+				}
+			}
+			typewriter().catch(e => console.error('typewriter failed:', e));
+
+			// ---------- swipe-to-book CTAs ----------
+			function initSwipe(swipeEl: HTMLElement) {
+				const thumbEl = swipeEl.querySelector<HTMLElement>('.swipe-thumb');
+				if (!thumbEl) return;
+				const action = swipeEl.dataset.action || '#contact';
+				const go = () => {
+					if (action.startsWith('#')) {
+						document.querySelector(action)?.scrollIntoView({ behavior: 'smooth' });
+						setTimeout(
+							() =>
+								document
+									.querySelector<HTMLInputElement>('#demo-form input')
+									?.focus({ preventScroll: true }),
+							900
+						);
+					} else {
+						window.location.href = action;
+					}
+				};
+				let dragging = false;
+				let startX = 0;
+				let x = 0;
+				let maxX = 0;
+				const setX = (v: number) => {
+					x = Math.max(0, Math.min(v, maxX));
+					thumbEl.style.transform = `translateX(${x}px)`;
+				};
+				thumbEl.addEventListener('pointerdown', e => {
+					dragging = true;
+					maxX = swipeEl.clientWidth - thumbEl.offsetWidth - 8;
+					startX = e.clientX - x;
+					swipeEl.classList.add('dragging');
+					thumbEl.setPointerCapture(e.pointerId);
+				});
+				thumbEl.addEventListener('pointermove', e => {
+					if (dragging) setX(e.clientX - startX);
+				});
+				const endDrag = () => {
+					if (!dragging) return;
+					dragging = false;
+					swipeEl.classList.remove('dragging');
+					if (maxX > 0 && x >= maxX * 0.85) {
+						swipeEl.classList.add('done');
+						setX(maxX);
+						setTimeout(go, 220);
+						setTimeout(() => {
+							swipeEl.classList.remove('done');
+							thumbEl.style.transition = 'transform 300ms ease';
+							setX(0);
+							setTimeout(() => (thumbEl.style.transition = ''), 320);
+						}, 2400);
+					} else {
+						thumbEl.style.transition = 'transform 300ms cubic-bezier(0.2, 0.7, 0.3, 1)';
+						setX(0);
+						setTimeout(() => (thumbEl.style.transition = ''), 320);
+					}
+				};
+				thumbEl.addEventListener('pointerup', endDrag);
+				thumbEl.addEventListener('pointercancel', endDrag);
+				swipeEl.addEventListener('keydown', e => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						go();
+					}
+				});
+			}
+			document.querySelectorAll<HTMLElement>('.swipe-cta').forEach(initSwipe);
+
+			// ---------- book-a-demo form: hold the lead locally, show thanks ----------
+			const demoForm = document.getElementById('demo-form') as HTMLFormElement | null;
+			const formThanks = document.getElementById('form-thanks');
+			const formError = document.getElementById('form-error');
+			demoForm?.addEventListener('submit', e => {
+				e.preventDefault();
+				const data = Object.fromEntries(new FormData(demoForm).entries()) as Record<
+					string,
+					string
+				>;
+				const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email || '');
+				if (
+					!data.firstName?.trim() ||
+					!data.lastName?.trim() ||
+					!emailOk ||
+					!data.company?.trim()
+				) {
+					if (formError)
+						formError.textContent = 'Please fill in every field with a valid work email.';
+					return;
+				}
+				try {
+					const leads = JSON.parse(localStorage.getItem('fpt_demo_leads') || '[]');
+					leads.push({ ...data, at: new Date().toISOString() });
+					localStorage.setItem('fpt_demo_leads', JSON.stringify(leads));
+				} catch {}
+				demoForm.hidden = true;
+				if (formThanks) formThanks.hidden = false;
+			});
+
+			// ---------- scrollspy: highlight the section you're in ----------
+			const spyLinks = Array.from(
+				document.querySelectorAll<HTMLAnchorElement>('.hero-nav a, .top-nav a')
+			);
+			const setActiveNav = (id: string) =>
+				spyLinks.forEach(a =>
+					a.classList.toggle('nav-active', a.getAttribute('href') === `#${id}`)
+				);
+			const spy = new IntersectionObserver(
+				entries =>
+					entries.forEach(e => {
+						if (e.isIntersecting) setActiveNav((e.target as HTMLElement).id);
+					}),
+				{ rootMargin: '-45% 0px -50% 0px' }
+			);
+			['about', 'practices', 'results', 'clients', 'faq', 'contact'].forEach(id => {
+				const el = document.getElementById(id);
+				if (el) spy.observe(el);
+			});
+
+			// ---------- pixel wall: tap the cursor block to replay ----------
+			const wall = document.getElementById('pixel-wall');
+			const wallCursor = wall?.querySelector('.px-cursor');
+			wallCursor?.addEventListener('click', () => {
+				// switching between two identical keyframe names restarts the animation
+				wall?.classList.toggle('alt');
+			});
+
+			// ---------- reveal on scroll ----------
+			const io = new IntersectionObserver(
+				entries =>
+					entries.forEach(e => {
+						if (e.isIntersecting) {
+							e.target.classList.add('in-view');
+							io.unobserve(e.target);
+						}
+					}),
+				{ threshold: 0.15 }
+			);
+			document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+			// ---------- stat count-up ----------
+			const statIO = new IntersectionObserver(
+				entries =>
+					entries.forEach(e => {
+						if (!e.isIntersecting) return;
+						statIO.unobserve(e.target);
+						const el = e.target as HTMLElement;
+						el.classList.add('counted');
+						const target = Number(el.dataset.target || 0);
+						const sign = el.dataset.sign || '';
+						const start = performance.now();
+						const dur = 1600;
+						function step(t: number) {
+							const p = Math.min(1, (t - start) / dur);
+							const eased = 1 - Math.pow(1 - p, 3);
+							el.textContent = `${sign}${Math.round(target * eased)}%`;
+							if (p < 1) requestAnimationFrame(step);
+						}
+						requestAnimationFrame(step);
+					}),
+				{ threshold: 0.6 }
+			);
+			document.querySelectorAll<HTMLElement>('.stat-value').forEach(el => {
+				// hold at 0 until in view so the count-up is actually seen
+				if (!reduceMotion) el.textContent = `${el.dataset.sign || ''}0%`;
+				statIO.observe(el);
+			});
+		</script>
+	</body>
+</html>

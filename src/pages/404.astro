@@ -1,41 +1,62 @@
----
-import { Button, Container, TextCardSection } from '@components/odyssey-theme';
-import Layout from '../layouts/Page.astro';
-
-const seo = {
-	title: 'Get Started using the Astro Odyssey Theme',
-	description: 'Get started on how to setup and use this Astro theme.',
-};
+﻿---
+import '../styles/fpt.css';
 ---
 
-<Layout {seo}>
-	<Container>
-		<TextCardSection>
-			<h1>404</h1>
-			<h2>Page Not Found 👀</h2>
-			<div class="cta-buttons__container">
-				<Button href="/">Return Home</Button>
-			</div>
-		</TextCardSection>
-	</Container>
-</Layout>
-
-<style>
-	.cta-buttons__container {
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.cta-buttons__container :global(a) {
-		margin-right: 1rem;
-		margin-bottom: 1rem;
-	}
-	.code-buttons__container {
-		margin: 1rem auto;
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.code-buttons__container > a {
-		margin-right: 1rem;
-		margin-bottom: 1rem;
-	}
-</style>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>404 . FP Talent</title>
+		<meta name="robots" content="noindex" />
+		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
+		/>
+		<style>
+			.nf {
+				min-height: 100svh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				background: #111;
+				color: #fff;
+				text-align: center;
+				padding: 24px;
+			}
+			.nf-code {
+				font-size: clamp(100px, 22vw, 280px);
+			}
+			.nf-code .dot {
+				color: #e02020;
+			}
+			.nf-line {
+				font-family: var(--font-display);
+				font-size: clamp(20px, 3vw, 34px);
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+			}
+			.nf a {
+				margin-top: 26px;
+				font-family: var(--font-display);
+				font-size: 18px;
+				letter-spacing: 0.12em;
+				background: #e02020;
+				color: #fff;
+				padding: 12px 20px 10px;
+				text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nf">
+			<h1 class="display nf-code">404<span class="dot">.</span></h1>
+			<p class="nf-line">Nothing ships here.</p>
+			<a href="/">Back to the homepage</a>
+		</div>
+	</body>
+</html>
