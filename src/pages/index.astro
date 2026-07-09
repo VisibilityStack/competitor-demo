@@ -16,18 +16,22 @@ const navItems = [
 const practices = [
 	{
 		title: 'Product',
+		slug: 'product',
 		sub: 'Product Managers · Senior PMs · Group PMs',
 	},
 	{
 		title: 'Engineering',
+		slug: 'engineering',
 		sub: 'Full-Stack · Backend · Frontend Engineers',
 	},
 	{
 		title: 'Data & AI',
+		slug: 'data-ai',
 		sub: 'Data Scientists · ML & AI Engineers',
 	},
 	{
 		title: 'Leadership',
+		slug: 'leadership',
 		sub: 'CPOs · VPs of Engineering · CTOs · Heads of Data',
 	},
 ];
@@ -199,7 +203,7 @@ const faqs = [
 				<div class="practice-rows">
 					{
 						practices.map(p => (
-							<a class="practice-row" href="#contact">
+							<a class="practice-row" href={`/practices/${p.slug}`}>
 								<h3 class="practice-title display">{p.title}</h3>
 								<p class="practice-sub">{p.sub}</p>
 							</a>

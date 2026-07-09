@@ -1,0 +1,347 @@
+---
+import '../../styles/fpt.css';
+
+export function getStaticPaths() {
+	const practices = [
+		{
+			slug: 'product',
+			name: 'Product',
+			metaTitle: 'Hire Product Managers',
+			intent: 'Hire product managers who ship.',
+			intro:
+				'From your first PM to a full product org, we place product people who turn roadmaps into releases. Screened for real fit.',
+			roles: ['Product Managers', 'Senior PMs', 'Group PMs', 'Founding PMs', 'Product Ops'],
+			why: [
+				{
+					t: 'First-PM specialists',
+					c: 'The hardest product hire is the first one. We scope the role against your stage, not a template JD.',
+				},
+				{
+					t: 'Fit is measured',
+					c: 'Psychometric and culture mapping on every shortlist, included free. Product sense is tested, not assumed.',
+				},
+				{
+					t: 'Founder-speed',
+					c: 'You meet a screened shortlist in days. The −29% time-to-hire stat is the system working.',
+				},
+			],
+			faqs: [
+				{
+					q: 'Can you find our first product manager?',
+					a: 'Yes, first-PM searches are our specialty. We help you decide what the role even is before we search: builder PM, growth PM, or a head of product in waiting.',
+				},
+				{
+					q: 'Do you place fractional or full-time PMs?',
+					a: 'Full-time placements are our core. For interim needs we can scope the search for a contract-to-hire arrangement.',
+				},
+				{
+					q: 'How do you test product sense?',
+					a: 'Structured case rounds with your stakeholders plus psychometric screening. Candidates reach you only after clearing both.',
+				},
+			],
+			cta: "Let's build your product team.",
+		},
+		{
+			slug: 'engineering',
+			name: 'Engineering',
+			metaTitle: 'Hire Software Engineers',
+			intent: 'Hire engineers who ship.',
+			intro:
+				'Full-stack, backend, and frontend engineers for software companies that measure output in releases. Sourced from our network, screened to a shortlist worth your calendar.',
+			roles: ['Full-Stack Engineers', 'Backend Engineers', 'Frontend Engineers', 'Founding Engineers', 'DevOps & Platform'],
+			why: [
+				{
+					t: 'People who ship',
+					c: 'We look for engineers with shipped products behind them, and we reach them directly.',
+				},
+				{
+					t: 'Panels that respect engineers',
+					c: 'Technical rounds designed with your stakeholders. High signal, no whiteboard hazing.',
+				},
+				{
+					t: 'Retention built in',
+					c: 'Culture mapping on every candidate. Our +21% retention number exists because fit is the whole system.',
+				},
+			],
+			faqs: [
+				{
+					q: 'Which stacks do you cover?',
+					a: 'The modern web and cloud mainstream: TypeScript, Python, Go, React, Node, and the infrastructure around them. If your stack is unusual, we tell you up front whether we can search it well.',
+				},
+				{
+					q: 'Do you place founding engineers?',
+					a: 'Yes. Founding-engineer searches get the same treatment as leadership searches: equity-literate candidates, stage-fit screening, and founder references.',
+				},
+				{
+					q: 'How technical is your screening?',
+					a: 'We run structured technical interviews before you ever see a candidate, then coordinate your own panel rounds. You interview three great people instead of thirty resumes.',
+				},
+			],
+			cta: "Let's build your engineering team.",
+		},
+		{
+			slug: 'data-ai',
+			name: 'Data & AI',
+			metaTitle: 'Hire Data Scientists & AI Engineers',
+			intent: 'Hire data and AI people who ship.',
+			intro:
+				'Data scientists and ML engineers who get models into production, not just notebooks. Screened for engineering rigor as much as research depth.',
+			roles: ['Data Scientists', 'ML Engineers', 'AI Engineers', 'Analytics Engineers', 'Data Platform'],
+			why: [
+				{
+					t: 'Production over papers',
+					c: 'We screen for shipped ML systems and data products, not citation counts.',
+				},
+				{
+					t: 'Rare-skill sourcing',
+					c: 'The best data and AI people are never on job boards. Our network search finds the ones quietly shipping.',
+				},
+				{
+					t: 'Stage-fit screening',
+					c: 'A seed-stage data hire and an enterprise one are different jobs. We scope which one you actually need.',
+				},
+			],
+			faqs: [
+				{
+					q: 'Can you hire for applied AI product roles?',
+					a: 'Yes, including AI engineers building on foundation models, retrieval systems, and agentic products, where engineering judgment matters more than research pedigree.',
+				},
+				{
+					q: 'Do candidates get technical screening?',
+					a: 'Every shortlist has passed structured technical rounds plus psychometric screening before you meet them.',
+				},
+				{
+					q: 'We are not sure if we need a data scientist or an ML engineer. Can you help?',
+					a: 'That is exactly what the discovery call and JD co-writing step solve. We scope the role from your actual problems before searching.',
+				},
+			],
+			cta: "Let's build your data team.",
+		},
+		{
+			slug: 'leadership',
+			name: 'Leadership',
+			metaTitle: 'CTO, CPO & Engineering Leadership Search',
+			intent: 'Hire leaders who raise the bar.',
+			intro:
+				'CPOs, VPs of Engineering, CTOs, and Heads of Data for companies where the next leader changes the trajectory.',
+			roles: ['CTOs', 'VPs of Engineering', 'CPOs', 'Heads of Product', 'Heads of Data & AI'],
+			why: [
+				{
+					t: 'The senior layer is our strength',
+					c: 'Our +15% team-satisfaction stat comes from senior searches. Leaders set the bar for everyone under them.',
+				},
+				{
+					t: 'Confidential by default',
+					c: 'Leadership searches run discreetly, on both sides. References and track records are verified before shortlists.',
+				},
+				{
+					t: 'Stakeholder-aligned panels',
+					c: 'We design the interview panel with your board or founders so the decision holds after the hire.',
+				},
+			],
+			faqs: [
+				{
+					q: 'Do you run confidential replacement searches?',
+					a: 'Yes. Confidential searches are common at the leadership level and we run them with strict discretion on both sides.',
+				},
+				{
+					q: 'How long does a leadership search take?',
+					a: 'Meaningfully faster than a classic retained firm. You meet a screened shortlist in weeks, not quarters, without skipping references or psychometrics.',
+				},
+				{
+					q: 'Can you assess leaders for a specific stage transition?',
+					a: 'Yes. Scaling from 10 to 50 engineers is a different job than 100 to 500. Stage fit is a core screening dimension in every leadership search.',
+				},
+			],
+			cta: "Let's find your next leader.",
+		},
+	];
+	return practices.map(p => ({ params: { slug: p.slug }, props: { p } }));
+}
+
+const { p } = Astro.props;
+
+const navItems = [
+	{ label: 'About', href: '/#about' },
+	{ label: 'Practices', href: '/#practices' },
+	{ label: 'Results', href: '/#results' },
+	{ label: 'Clients', href: '/#clients' },
+	{ label: 'FAQ', href: '/#faq' },
+	{ label: 'Contact', href: '/#contact' },
+];
+
+const steps = [
+	{ no: '01', t: 'JD co-writing', c: 'We co-write the JD until it describes the person you actually need.' },
+	{ no: '02', t: 'Sourcing', c: 'We reach out directly to proven people in our network and beyond, instead of waiting for applications.' },
+	{ no: '03', t: 'Psychometric screen', c: 'Tests and culture mapping, included free. Fit is measured, not guessed.' },
+	{ no: '04', t: 'Panels', c: 'Technical and cultural rounds with your stakeholders. High signal only.' },
+	{ no: '05', t: 'Signed offer', c: 'We handle the offer and the close. You get a signed acceptance and a start date.' },
+];
+
+const stats = [
+	{ v: '−29%', c: 'Time-to-hire' },
+	{ v: '+21%', c: 'Retention' },
+	{ v: '+15%', c: 'Team satisfaction' },
+];
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: p.faqs.map(f => ({
+		'@type': 'Question',
+		name: f.q,
+		acceptedAnswer: { '@type': 'Answer', text: f.a },
+	})),
+};
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{p.metaTitle} . FP Talent</title>
+		<meta
+			name="description"
+			content={`${p.intent} ${p.intro}`}
+		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
+		<link rel="canonical" href={`https://www.fptalent.io/practices/${p.slug}`} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+	</head>
+	<body>
+		<header class="site-top">
+			<a class="logo-lockup" href="/" aria-label="FP Talent home">
+				<span class="logo">FPT<span class="logo-cursor" aria-hidden="true"></span></span>
+				<span class="logo-tag">People who ship.</span>
+			</a>
+			<nav class="top-nav practice-nav" aria-label="Primary">
+				{navItems.map(item => <a href={item.href}>{item.label}</a>)}
+			</nav>
+			<div class="header-right">
+				<a class="btn-demo" href="/#contact">Book a demo</a>
+			</div>
+		</header>
+
+		<main class="practice-page">
+			<section class="practice-hero container">
+				<p class="legal-updated">Practice</p>
+				<h1 class="display practice-h1">{p.name}<span class="dot">.</span></h1>
+				<p class="practice-intent display">{p.intent}</p>
+				<p class="practice-intro">{p.intro}</p>
+			</section>
+
+			<section class="container practice-block">
+				<h2 class="practice-sub-head display">Roles we place</h2>
+				<div class="role-chips">
+					{p.roles.map(r => <span class="role-chip">{r}</span>)}
+				</div>
+			</section>
+
+			<section class="container practice-block">
+				<h2 class="practice-sub-head display">How the search runs</h2>
+				<div class="mini-steps">
+					{
+						steps.map(s => (
+							<div class="mini-step">
+								<span class="mini-no">{s.no}</span>
+								<div>
+									<h3 class="mini-title display">{s.t}</h3>
+									<p class="mini-copy">{s.c}</p>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="container practice-block">
+				<h2 class="practice-sub-head display">Why FPT</h2>
+				<div class="why-grid">
+					{
+						p.why.map(w => (
+							<div class="why-card">
+								<h3 class="why-title display">{w.t}</h3>
+								<p class="why-copy">{w.c}</p>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="container practice-block">
+				<div class="mini-stats">
+					{
+						stats.map(s => (
+							<div class="mini-stat">
+								<span class="mini-stat-v display">{s.v}</span>
+								<span class="mini-stat-c">{s.c}</span>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="container practice-block">
+				<h2 class="practice-sub-head display">Questions founders ask</h2>
+				<div class="faq-list practice-faq">
+					{
+						p.faqs.map(f => (
+							<details class="faq-item">
+								<summary>{f.q}</summary>
+								<p>{f.a}</p>
+							</details>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="practice-cta-band">
+				<div class="container footer-cta">
+					<h2 class="footer-cta-line display">{p.cta}</h2>
+					<a class="arrow-cta" href="/#contact">
+						<span class="arrow-box" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4">
+								<path d="M4 12h15M13 5l7 7-7 7" stroke-linecap="square"></path>
+							</svg>
+						</span>
+						Book a demo
+					</a>
+				</div>
+			</section>
+		</main>
+
+		<footer class="legal-footer">
+			<div class="container footer-bottom">
+				<span>© 2026 FirstPrinciples Talent. All rights reserved.</span>
+				<span class="footer-legal">
+					<a href="/terms">Terms</a>
+					<a href="/privacy">Privacy policy</a>
+				</span>
+			</div>
+		</footer>
+
+		<script>
+			// Agentation visual-feedback toolbar — dev only, never ships in the production bundle
+			if (import.meta.env.DEV) {
+				Promise.all([
+					import('react'),
+					import('react-dom/client'),
+					import('agentation'),
+				]).then(([React, ReactDOM, { Agentation }]) => {
+					const mount = document.createElement('div');
+					mount.id = 'agentation-root';
+					document.body.appendChild(mount);
+					ReactDOM.createRoot(mount).render(
+						React.createElement(Agentation, { endpoint: 'http://localhost:4747' })
+					);
+				});
+			}
+		</script>
+	</body>
+</html>

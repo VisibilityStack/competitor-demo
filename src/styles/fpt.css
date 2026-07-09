@@ -1060,6 +1060,178 @@ body.loaded .hero-title .word {
 	margin-top: 0;
 }
 
+/* ---------- practice pages ---------- */
+
+.practice-nav {
+	display: flex !important;
+	background: var(--fpt-red-dark);
+	color: #fff;
+	padding: 4px 10px;
+}
+
+.practice-page {
+	padding-top: 120px;
+}
+
+.practice-hero {
+	padding-bottom: clamp(30px, 5vh, 60px);
+}
+
+.practice-h1 {
+	font-size: clamp(64px, 10vw, 150px);
+}
+
+.practice-h1 .dot {
+	color: var(--fpt-red);
+}
+
+.practice-intent {
+	font-size: clamp(26px, 3.2vw, 44px);
+	letter-spacing: 0.04em;
+	margin: 10px 0 0;
+}
+
+.practice-intro {
+	max-width: 62ch;
+	font-size: clamp(18px, 1.8vw, 22px);
+	line-height: 1.6;
+	margin: 1.2rem 0 0;
+}
+
+.practice-block {
+	padding: clamp(34px, 6vh, 64px) 0 0;
+}
+
+.practice-sub-head {
+	font-size: clamp(26px, 3vw, 40px);
+	letter-spacing: 0.05em;
+	margin-bottom: 1.4rem;
+}
+
+.role-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.role-chip {
+	font-family: var(--font-display);
+	font-size: 17px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	border: 1px solid var(--fpt-ink);
+	padding: 10px 16px 8px;
+	transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.role-chip:hover {
+	background: var(--fpt-red-dark);
+	border-color: var(--fpt-red-dark);
+	color: #fff;
+}
+
+.mini-steps {
+	border-bottom: 1px solid var(--fpt-line);
+}
+
+.mini-step {
+	display: grid;
+	grid-template-columns: 64px 1fr;
+	gap: 20px;
+	align-items: baseline;
+	border-top: 1px solid var(--fpt-line);
+	padding: 18px 4px;
+}
+
+.mini-no {
+	font-family: var(--font-display);
+	font-size: 24px;
+	color: var(--fpt-red);
+}
+
+.mini-title {
+	font-size: clamp(22px, 2.4vw, 32px);
+}
+
+.mini-copy {
+	margin: 4px 0 0;
+	font-size: 16.5px;
+	max-width: 60ch;
+}
+
+.why-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 18px;
+}
+
+.why-card {
+	background: var(--fpt-ink);
+	color: #fff;
+	padding: clamp(20px, 2.4vw, 32px);
+}
+
+.why-title {
+	font-size: clamp(20px, 2vw, 26px);
+	letter-spacing: 0.05em;
+	margin-bottom: 10px;
+}
+
+.why-copy {
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.mini-stats {
+	display: flex;
+	gap: clamp(30px, 6vw, 90px);
+	justify-content: center;
+	border-top: 1px solid var(--fpt-line);
+	border-bottom: 1px solid var(--fpt-line);
+	padding: clamp(20px, 3.4vh, 36px) 0;
+}
+
+.mini-stat {
+	text-align: center;
+}
+
+.mini-stat-v {
+	display: block;
+	font-size: clamp(40px, 5vw, 64px);
+	line-height: 1;
+}
+
+.mini-stat-c {
+	font-family: var(--font-display);
+	font-size: 13px;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: rgba(17, 17, 17, 0.6);
+}
+
+.practice-faq {
+	max-width: none;
+}
+
+.practice-cta-band {
+	background: var(--fpt-ink);
+	color: #fff;
+	margin-top: clamp(50px, 8vh, 90px);
+	padding: clamp(40px, 7vh, 80px) 0;
+}
+
+@media (max-width: 900px) {
+	.why-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.practice-nav {
+		display: none !important;
+	}
+}
+
 /* ---------- reveal on scroll ---------- */
 
 [data-reveal] {
