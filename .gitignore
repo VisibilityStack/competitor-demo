@@ -23,3 +23,5 @@ icon.d.ts
 *.cache
 # astro generated preferences
 .astro/settings.json
+.vercel
+.env*
