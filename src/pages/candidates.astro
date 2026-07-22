@@ -10,7 +10,7 @@ const searches = [
 		role: 'Staff Backend Engineer',
 		meta: 'Series A logistics platform',
 		loc: 'NYC hybrid',
-		comp: '$200–235k',
+		comp: '$200–235k + equity',
 		status: 'Interviewing now',
 		hot: true,
 	},
@@ -26,7 +26,7 @@ const searches = [
 		role: 'Staff ML Engineer',
 		meta: 'Series B healthtech',
 		loc: 'NYC',
-		comp: '$235–270k',
+		comp: '$235–270k + equity',
 		status: 'Shortlist forming',
 		hot: false,
 	},
@@ -34,7 +34,7 @@ const searches = [
 		role: 'VP of Engineering',
 		meta: 'Series B security company',
 		loc: 'NYC hybrid',
-		comp: '$260–300k',
+		comp: '$260–300k + equity',
 		status: 'Taking intros',
 		hot: false,
 	},
@@ -42,7 +42,7 @@ const searches = [
 		role: 'Analytics Engineer',
 		meta: 'Series A fintech infrastructure',
 		loc: 'Remote (US)',
-		comp: '$150–175k',
+		comp: '$150–175k + equity',
 		status: 'Interviewing now',
 		hot: true,
 	},
@@ -52,7 +52,7 @@ const steps = [
 	{
 		no: '01',
 		title: 'One call, one profile',
-		copy: 'A 45-minute conversation plus a psychometric profile you complete once, in about 25 minutes. No portals, no logins.',
+		copy: 'One 45-minute call. One 25-minute psychometric profile, done once. No portals, no logins.',
 	},
 	{
 		no: '02',
@@ -80,8 +80,32 @@ const answers = [
 		a: 'Never. Fees come from the hiring company, after you start.',
 	},
 	{
-		q: 'Not looking right now?',
+		q: "What if I'm not looking right now?",
 		a: 'Send your profile anyway. The best searches move fastest through people we already know.',
+	},
+];
+
+const roleIcons: Record<string, string> = {
+	code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+	case: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+	cpu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>',
+};
+
+const reviews = [
+	{
+		icon: 'code',
+		text: 'I expected to be spammed with roles. Instead I heard nothing for five weeks, then one email about one company. That company is where I work now.',
+		who: 'Staff Engineer, placed November 2025 · Series A infrastructure company',
+	},
+	{
+		icon: 'case',
+		text: 'Mark named the company in his first email, and the range was already on the listing. No chasing, no mystery.',
+		who: 'Senior Product Manager, placed March 2026 · Series B fintech infrastructure',
+	},
+	{
+		icon: 'cpu',
+		text: 'The psychometric profile sounded like homework. It took 25 minutes, and every interview after felt strangely well matched.',
+		who: 'ML Engineer, placed January 2026 · Seed applied-AI company',
 	},
 ];
 
@@ -94,10 +118,10 @@ const mailRole = (s: { role: string; meta: string }) =>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Candidates . FP Talent</title>
+		<title>Open roles with comp listed · FP Talent</title>
 		<meta
 			name="description"
-			content="Open searches and how we work with candidates. Product, engineering, data and AI, and leadership roles at founder-led software companies, seed to Series B."
+			content="Open searches with comp on every card. Engineering, product, and data roles at founder-led startups, seed to Series B. Free for candidates. Email Mark directly."
 		/>
 		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
@@ -116,14 +140,23 @@ const mailRole = (s: { role: string; meta: string }) =>
 	<body>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
-				<a class="dx-logo" href="/">FPT<span class="dx-logo-block"></span></a>
+				<a class="dx-logo badge" href="/">FPT</a>
 				<div class="dx-nav-links">
 					<a href="#searches">Open searches</a>
 					<a href="/#practices">Practices</a>
 					<a href="/insights">Insights</a>
 					<a href="/#why">Why FPT</a>
 				</div>
-				<div class="dx-nav-right">
+				<details class="dx-nav-mob">
+				<summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+				<div class="dx-nav-mob-panel">
+						<a href="#searches">Open searches</a>
+						<a href="/#practices">Practices</a>
+						<a href="/insights">Insights</a>
+						<a href="/#why">Why FPT</a>
+					</div>
+			</details>
+			<div class="dx-nav-right">
 					<a class="dx-btn teal" href={mailIntro}>Send your profile</a>
 				</div>
 			</div>
@@ -132,11 +165,11 @@ const mailRole = (s: { role: string; meta: string }) =>
 		<header class="dxc-hero">
 			<div class="dx-container dxc-hero-grid">
 				<div>
-					<h1 data-dxa>Good roles,<br /><span class="accent">handled properly.</span></h1>
+					<h1 data-dxa>The roles are real.<br /><span class="accent">So is the comp.</span></h1>
 					<p class="dxc-sub" data-dxa>
-						We run retained searches for founder-led software companies, seed to
-						Series B. Every listing below is funded, live, and interviewing. No
-						ghost roles.
+						Founder-led software companies, seed to Series B, pay us to fill the
+						roles below. Each one is funded, live, and interviewing. Nobody sees
+						your name until you say yes.
 					</p>
 					<div class="dx-cta-row" data-dxa>
 						<a class="dx-btn teal" href={mailIntro}>Send your profile</a>
@@ -146,12 +179,34 @@ const mailRole = (s: { role: string; meta: string }) =>
 				<div class="dxc-collage">
 					<div class="dx-bubble cb1">
 						<div class="dx-avatar b1"><img src="/img/p-se.jpg" alt="Software engineer" /></div>
-						<div class="dx-float g1"><span class="ic">✓</span>See real comp up front</div>
+						<div class="dx-float g1"><span class="ic t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>We name the company first</div>
 					</div>
 					<div class="dx-bubble cb2">
 						<div class="dx-avatar b2"><img src="/img/p-ml.jpg" alt="ML engineer" /></div>
-						<div class="dx-float g2"><span class="ic">✓</span>Free for candidates, always</div>
+						<div class="dx-float g2"><span class="ic t5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>Free for candidates, always</div>
 					</div>
+				</div>
+			</div>
+
+			<div class="dx-toast tst1" role="button" tabindex="0" aria-label="Dismiss notification">
+				<span class="tdot green"></span>
+				<div>
+					<strong>Offer signed</strong>
+					<span>Staff Backend Engineer · last week</span>
+				</div>
+			</div>
+			<div class="dx-toast tst2" role="button" tabindex="0" aria-label="Dismiss notification">
+				<span class="tdot teal"></span>
+				<div>
+					<strong>New search opened</strong>
+					<span>Series B healthtech · today</span>
+				</div>
+			</div>
+			<div class="dx-toast tst3" role="button" tabindex="0" aria-label="Dismiss notification">
+				<span class="tdot amber"></span>
+				<div>
+					<strong>Interview booked</strong>
+					<span>Founding Product Manager · yesterday</span>
 				</div>
 			</div>
 		</header>
@@ -159,18 +214,18 @@ const mailRole = (s: { role: string; meta: string }) =>
 		<section id="searches" class="dx-sec">
 			<div class="dx-container">
 				<h2 class="dx-sec-head" data-dxa>Open searches</h2>
-				<p class="dx-sec-sub" data-dxa>
-					Click a role to ask about it. Listings rotate as searches close, and if
-					nothing fits, send your profile anyway. Most placements start before a
-					search is ever listed.
+				<p class="dx-sec-sub wide" data-dxa>
+					Click a role to email Mark. Nothing fit? <a class="dx-inline-link" href={mailIntro}>Send your profile anyway.</a>
 				</p>
 				<div class="dx-search-list">
 					{
 						searches.map(s => (
-							<a class="dx-search-card" href={mailRole(s)} data-dxa>
-								<span class="role">{s.role}</span>
-								<span class="meta">
-									{s.meta} · {s.loc}
+							<a class="dx-search-card stacked" href={mailRole(s)} data-dxa>
+								<span class="rolewrap">
+									<span class="role">{s.role}</span>
+									<span class="meta">
+										{s.meta} · {s.loc}
+									</span>
 								</span>
 								<span class="comp">{s.comp}</span>
 								<span class={`dx-pill ${s.hot ? 'hot' : 'cool'}`}>{s.status}</span>
@@ -183,19 +238,19 @@ const mailRole = (s: { role: string; meta: string }) =>
 
 		<section class="dx-numbers">
 			<div class="dx-container">
-				<h2 data-dxa>What working with us looks like</h2>
+				<h2 data-dxa>What you can expect</h2>
 				<div class="dx-tiles">
 					<div class="dx-tile" data-dxa>
 						<span class="v" data-count="9" data-suffix=" days">9 days</span>
-						<span class="c">median from first call to first founder interview</span>
+						<span class="c">from your first call to a founder interview</span>
 					</div>
 					<div class="dx-tile" data-dxa>
 						<span class="v" data-count="82" data-suffix="%">82%</span>
-						<span class="c">of placed candidates still in seat at 12 months</span>
+						<span class="c">of people we place are still there a year later</span>
 					</div>
 					<div class="dx-tile" data-dxa>
 						<span class="v">$0</span>
-						<span class="c">what any of this costs you. The hiring company pays.</span>
+						<span class="c">you never pay us. The hiring company does.</span>
 					</div>
 				</div>
 			</div>
@@ -219,26 +274,41 @@ const mailRole = (s: { role: string; meta: string }) =>
 		</section>
 
 		<section class="dx-quote-wrap" style="background:#fff">
-			<div class="dx-container dx-quote" data-dxa>
-				<img class="dx-quote-avatar" src="/img/p-quote.jpg" alt="Placed staff engineer" loading="lazy" />
-				<blockquote>
-					“I expected to be spammed with roles. Instead I heard nothing for five
-					weeks, then one email about one company. That company is where I work
-					now.”
-				</blockquote>
-				<p class="who">Placed: Staff Engineer · Series A infrastructure company</p>
+			<div class="dx-container" data-dxa>
+				<div class="dx-carousel" id="dx-carousel">
+					<div class="dx-car-track" id="dx-car-track">
+						{
+							reviews.map(r => (
+								<div class="dx-car-slide">
+									<div class="dx-quote">
+										<span class="dx-quote-icon" aria-hidden="true" set:html={roleIcons[r.icon]} />
+										<blockquote>“{r.text}”</blockquote>
+										<p class="who">{r.who}</p>
+									</div>
+								</div>
+							))
+						}
+					</div>
+					<div class="dx-dots" id="dx-dots">
+						{
+							reviews.map((_, i) => (
+								<button class={i === 0 ? 'on' : ''} data-i={i} aria-label={`Review ${i + 1}`} />
+							))
+						}
+					</div>
+				</div>
 			</div>
 		</section>
 
 		<section class="dx-sec grey">
 			<div class="dx-container">
 				<h2 class="dx-sec-head" data-dxa>Straight answers</h2>
-				<div class="dx-answers">
+				<div class="dx-steps two">
 					{
 						answers.map(x => (
-							<div class="dx-answer" data-dxa>
-								<span class="q">{x.q}</span>
-								<span class="a">{x.a}</span>
+							<div class="dx-step" data-dxa>
+								<div class="t">{x.q}</div>
+								<div class="c">{x.a}</div>
 							</div>
 						))
 					}
@@ -248,11 +318,12 @@ const mailRole = (s: { role: string; meta: string }) =>
 
 		<section class="dx-sec">
 			<div class="dx-container">
-				<div class="dx-cta-card" data-dxa>
-					<h2>Introduce yourself.</h2>
-					<p>One email is enough. Attach a resume or just a LinkedIn link.</p>
-					<a class="dx-btn teal" href={mailIntro}>mark@fptalent.io</a>
-					<p class="dx-cta-note">A human reads every profile. Usually Mark.</p>
+				<div class="dx-cta-card slim" data-dxa>
+					<div>
+						<h2>Introduce yourself.</h2>
+						<p>One email is enough. Attach a resume or just a LinkedIn link. You'll hear back within two business days, even if it's a no.</p>
+					</div>
+					<a class="dx-btn teal" href={mailIntro}>Email mark@fptalent.io</a>
 				</div>
 			</div>
 		</section>

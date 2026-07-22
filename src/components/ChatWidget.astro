@@ -11,6 +11,7 @@
 			stroke-linecap="round"
 			stroke-linejoin="round"></path>
 	</svg>
+	<span class="fpt-chat-badge" id="fpt-chat-badge">1</span>
 </button>
 
 <div class="fpt-chat-panel" id="fpt-chat-panel" hidden>
@@ -57,6 +58,36 @@
 	.fpt-chat-launch svg {
 		width: 26px;
 		height: 26px;
+	}
+
+	.fpt-chat-badge {
+		position: absolute;
+		top: -4px;
+		right: -4px;
+		min-width: 21px;
+		height: 21px;
+		border-radius: 999px;
+		background: #e0685f;
+		color: #fff;
+		font-size: 12.5px;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid #fff;
+		animation: fpt-badge-pulse 3s ease-in-out infinite;
+	}
+
+	@keyframes fpt-badge-pulse {
+		50% {
+			transform: scale(1.18);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.fpt-chat-badge {
+			animation: none;
+		}
 	}
 
 	.fpt-chat-launch:hover {
@@ -422,6 +453,7 @@
 	}
 
 	launch?.addEventListener('click', () => {
+		document.getElementById('fpt-chat-badge')?.remove();
 		if (panel) panel.hidden = !panel.hidden;
 		if (!panel?.hidden && !started) {
 			started = true;

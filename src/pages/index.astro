@@ -51,7 +51,7 @@ const minis = [
 	{
 		role: 'Staff Backend Engineer',
 		meta: 'Series A logistics platform · NYC hybrid',
-		comp: '$200–235k',
+		comp: '$200–235k + equity',
 		status: 'Interviewing now',
 		hot: true,
 	},
@@ -67,23 +67,26 @@ const minis = [
 const reviews = [
 	{
 		text: 'I expected to be spammed with roles. Instead I heard nothing for five weeks, then one email about one company. That company is where I work now.',
-		who: 'Placed: Staff Engineer · Series A infrastructure company',
-		img: '/img/p-quote.jpg',
-		initials: '',
+		who: 'Staff Engineer, placed November 2025 · Series A infrastructure company',
+		icon: 'code',
 	},
 	{
 		text: "We'd been interviewing for four months with nothing to show for it. FPT sent three people in two weeks and honestly any of them could have done the job. The one we hired is still here a year later.",
 		who: 'Founder & CEO · Seed-stage developer-tools startup',
-		img: '',
-		initials: 'CEO',
+		icon: 'case',
 	},
 	{
 		text: 'They talked us out of a candidate we liked. That is when I started trusting them. The person we hired instead has been quietly excellent.',
 		who: 'CTO · Healthcare software company',
-		img: '',
-		initials: 'CTO',
+		icon: 'cpu',
 	},
 ];
+
+const roleIcons: Record<string, string> = {
+	code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+	case: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+	cpu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>',
+};
 
 const orgSchema = {
 	'@context': 'https://schema.org',
@@ -136,14 +139,23 @@ const orgSchema = {
 	<body>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
-				<a class="dx-logo" href="/">FPT<span class="dx-logo-block"></span></a>
+				<a class="dx-logo badge" href="/">FPT</a>
 				<div class="dx-nav-links">
 					<a href="/candidates#searches">Open searches</a>
 					<a href="#practices">Practices</a>
 					<a href="/insights">Insights</a>
 					<a href="#why">Why FPT</a>
 				</div>
-				<div class="dx-nav-right">
+				<details class="dx-nav-mob">
+				<summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+				<div class="dx-nav-mob-panel">
+						<a href="#practices">Practices</a>
+						<a href="/insights">Insights</a>
+						<a href="#why">Why FPT</a>
+						<a href="/candidates">For candidates</a>
+					</div>
+			</details>
+			<div class="dx-nav-right">
 					<a class="quiet" href="/candidates">For candidates</a>
 					<a class="dx-btn teal" href="#contact">Book a consultation</a>
 				</div>
@@ -181,15 +193,15 @@ const orgSchema = {
 				<div class="dx-collage">
 					<div class="dx-bubble bb1">
 						<div class="dx-avatar a1"><img src="/img/p-se.jpg" alt="Software engineer" /></div>
-						<div class="dx-float f1"><span class="ic">✓</span>Match with screened talent</div>
+						<div class="dx-float f1"><span class="ic t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>Match with screened talent</div>
 					</div>
 					<div class="dx-bubble bb2">
 						<div class="dx-avatar a2"><img src="/img/p-pm.jpg" alt="Product manager" /></div>
-						<div class="dx-float f2"><span class="ic">✓</span>Connect directly with founders</div>
+						<div class="dx-float f2"><span class="ic t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Connect directly with founders</div>
 					</div>
 					<div class="dx-bubble bb3">
 						<div class="dx-avatar a3"><img src="/img/p-ml.jpg" alt="ML engineer" /></div>
-						<div class="dx-float f3"><span class="ic">✓</span>First interview in 9 days</div>
+						<div class="dx-float f3"><span class="ic t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>First interview in 9 days</div>
 					</div>
 				</div>
 			</div>
@@ -217,18 +229,6 @@ const orgSchema = {
 				</div>
 			</div>
 		</section>
-
-		<div class="dx-promo-wrap">
-			<div class="dx-container">
-				<div class="dx-promo" data-dxa>
-					<div>
-						<h2>Ask <span class="accent">Mark AI</span> about any open search.</h2>
-						<p>Practice, stage, comp. Answers in one click, a human follows up.</p>
-					</div>
-					<button class="dx-btn teal" id="dx-chat-open" type="button">Chat now</button>
-				</div>
-			</div>
-		</div>
 
 		<section class="dx-numbers" id="why">
 			<div class="dx-container">
@@ -367,11 +367,7 @@ const orgSchema = {
 							reviews.map(r => (
 								<div class="dx-car-slide">
 									<div class="dx-quote">
-										{r.img ? (
-											<img class="dx-quote-avatar" src={r.img} alt="" loading="lazy" />
-										) : (
-											<span class="dx-quote-initials">{r.initials}</span>
-										)}
+										<span class="dx-quote-icon" aria-hidden="true" set:html={roleIcons[r.icon]} />
 										<blockquote>“{r.text}”</blockquote>
 										<p class="who">{r.who}</p>
 									</div>
@@ -421,7 +417,7 @@ const orgSchema = {
 							<h3>Company</h3>
 							<a href="#why">Why FPT</a>
 							<a href="/insights">Insights</a>
-							<a href="mailto:mark@fptalent.io">mark@fptalent.io</a>
+							<a href="mailto:mark@fptalent.io?subject=Hello%20FPT">Contact us</a>
 						</div>
 						<div>
 							<h3>Candidates</h3>
@@ -462,30 +458,6 @@ const orgSchema = {
 				if (thanks) thanks.hidden = false;
 			});
 
-			// promo card -> open the shared Mark AI widget
-			document.getElementById('dx-chat-open')?.addEventListener('click', () => {
-				(document.getElementById('fpt-chat-launch') as HTMLButtonElement | null)?.click();
-			});
-
-			// reviews carousel: auto-advance + dots
-			const track = document.getElementById('dx-car-track');
-			const dots = Array.from(
-				document.querySelectorAll<HTMLButtonElement>('#dx-dots button')
-			);
-			let slide = 0;
-			const show = (i: number) => {
-				slide = (i + dots.length) % dots.length;
-				if (track) track.style.transform = `translateX(-${slide * 100}%)`;
-				dots.forEach((d, j) => d.classList.toggle('on', j === slide));
-			};
-			let timer = setInterval(() => show(slide + 1), 5500);
-			dots.forEach(d =>
-				d.addEventListener('click', () => {
-					clearInterval(timer);
-					show(Number(d.dataset.i));
-					timer = setInterval(() => show(slide + 1), 5500);
-				})
-			);
 		</script>
 
 		<DxMotion />

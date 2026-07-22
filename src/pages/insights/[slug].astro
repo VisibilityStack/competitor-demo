@@ -44,7 +44,7 @@ const articleSchema = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{post.data.title} . FP Talent</title>
+		<title>{post.data.title} · FP Talent</title>
 		<meta name="description" content={post.data.description} />
 		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
@@ -64,14 +64,23 @@ const articleSchema = {
 	<body>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
-				<a class="dx-logo" href="/">FPT<span class="dx-logo-block"></span></a>
+				<a class="dx-logo badge" href="/">FPT</a>
 				<div class="dx-nav-links">
 					<a href="/candidates#searches">Open searches</a>
 					<a href="/#practices">Practices</a>
 					<a href="/insights">Insights</a>
 					<a href="/#why">Why FPT</a>
 				</div>
-				<div class="dx-nav-right">
+				<details class="dx-nav-mob">
+				<summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+				<div class="dx-nav-mob-panel">
+						<a href="/candidates#searches">Open searches</a>
+						<a href="/#practices">Practices</a>
+						<a href="/insights">Insights</a>
+						<a href="/#why">Why FPT</a>
+					</div>
+			</details>
+			<div class="dx-nav-right">
 					<a class="quiet" href="/candidates">For candidates</a>
 					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
 				</div>

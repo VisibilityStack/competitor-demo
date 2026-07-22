@@ -1,8 +1,10 @@
 ---
-// Scroll-reveal + count-up driver for the dx (Dice-anatomy) pages.
+// Scroll-reveal, count-up, match-ping, and nav-stuck driver for dx pages.
 ---
 
 <script>
+	const noMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 	const els = Array.from(document.querySelectorAll<HTMLElement>('[data-dxa]'));
 	els.forEach(el => {
 		const parent = el.parentElement;
@@ -11,46 +13,74 @@
 		const i = sibs.indexOf(el);
 		if (i > 0) el.style.transitionDelay = `${Math.min(i, 6) * 90}ms`;
 	});
+	// reveals replay on every entrance: add in view, reset once fully out
 	const io = new IntersectionObserver(
 		entries =>
 			entries.forEach(e => {
 				if (e.isIntersecting) {
 					e.target.classList.add('dxa-in');
-					io.unobserve(e.target);
+				} else {
+					e.target.classList.remove('dxa-in');
 				}
 			}),
-		{ threshold: 0.15 }
+		{ threshold: 0.15, rootMargin: '0px 0px -14% 0px' }
 	);
 	els.forEach(el => io.observe(el));
 
-	const cio = new IntersectionObserver(
-		entries =>
-			entries.forEach(e => {
-				if (!e.isIntersecting) return;
-				const el = e.target as HTMLElement;
-				cio.unobserve(el);
-				const target = Number(el.dataset.count || 0);
-				const pre = el.dataset.prefix || '';
-				const suf = el.dataset.suffix || '';
-				const start = performance.now();
-				const dur = 1100;
-				const tick = (now: number) => {
-					const p = Math.min(1, (now - start) / dur);
-					const eased = 1 - Math.pow(1 - p, 3);
-					el.textContent = pre + Math.round(target * eased) + suf;
-					if (p < 1) requestAnimationFrame(tick);
-				};
-				requestAnimationFrame(tick);
-			}),
-		{ threshold: 0.5 }
-	);
-	document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+	// count-up: fires once per full entrance, resets silently only when fully
+	// off-screen (IntersectionObserver reports both threshold crossings and
+	// isIntersecting flips, so guard against 1px-entry and mid-view re-fires)
+	if (!noMotion) {
+		const rafs = new WeakMap<Element, number>();
+		const started = new WeakSet<Element>();
+		const cio = new IntersectionObserver(
+			entries =>
+				entries.forEach(e => {
+					const el = e.target as HTMLElement;
+					const pre = el.dataset.prefix || '';
+					const suf = el.dataset.suffix || '';
+					const target = Number(el.dataset.count || 0);
+					if (!e.isIntersecting) {
+						if (started.has(el)) {
+							started.delete(el);
+							const r = rafs.get(el);
+							if (r) cancelAnimationFrame(r);
+							el.textContent = pre + '0' + suf;
+							el.closest('.dx-tiles')
+								?.querySelector('.v:not([data-count])')
+								?.classList.remove('dx-zero-pop');
+						}
+						return;
+					}
+					if (e.intersectionRatio < 0.4 || started.has(el)) return;
+					started.add(el);
+					const start = performance.now();
+					const dur = 1500;
+					const tick = (now: number) => {
+						const p = Math.min(1, (now - start) / dur);
+						const eased = 1 - Math.pow(1 - p, 3);
+						el.textContent = pre + Math.round(target * eased) + suf;
+						if (p < 1) {
+							rafs.set(el, requestAnimationFrame(tick));
+						} else {
+							// the static "$0" tile lands as the punchline
+							el.closest('.dx-tiles')
+								?.querySelector('.v:not([data-count])')
+								?.classList.add('dx-zero-pop');
+						}
+					};
+					rafs.set(el, requestAnimationFrame(tick));
+				}),
+			{ threshold: [0, 0.4] }
+		);
+		document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+	}
 
 	// match ping: one avatar at a time emits a live ring
 	const avatars = Array.from(
 		document.querySelectorAll('.dx-collage .dx-avatar, .dxc-collage .dx-avatar')
 	);
-	if (avatars.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	if (avatars.length && !noMotion) {
 		let p = 0;
 		setInterval(() => {
 			const el = avatars[p % avatars.length];
@@ -58,5 +88,120 @@
 			el.classList.add('ping');
 			setTimeout(() => el.classList.remove('ping'), 1700);
 		}, 4200);
+	}
+
+	// reviews carousel (any page with #dx-car-track): auto-advance + dots
+	const track = document.getElementById('dx-car-track');
+	const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('#dx-dots button'));
+	if (track && dots.length) {
+		let slide = 0;
+		const show = (i: number) => {
+			slide = (i + dots.length) % dots.length;
+			track.style.transform = `translateX(-${slide * 100}%)`;
+			dots.forEach((d, j) => d.classList.toggle('on', j === slide));
+		};
+		let timer = setInterval(() => show(slide + 1), 5500);
+		dots.forEach(d =>
+			d.addEventListener('click', () => {
+				clearInterval(timer);
+				show(Number(d.dataset.i));
+				timer = setInterval(() => show(slide + 1), 5500);
+			})
+		);
+	}
+
+	// layout mode (?layout): drag notifications to place them, positions shown
+	// and saved to localStorage so the final spots can be read and hard-coded
+	if (new URLSearchParams(location.search).has('layout')) {
+		document.body.classList.add('dx-layout');
+		const tag = document.createElement('div');
+		tag.className = 'dx-pos-tag';
+		tag.textContent = 'Layout mode: drag a notification to place it';
+		document.body.appendChild(tag);
+		const store: Record<string, { top: string; right: string }> = JSON.parse(
+			localStorage.getItem('fpt_toast_pos') || '{}'
+		);
+		Object.entries(store).forEach(([k, v]) => {
+			const el = document.querySelector<HTMLElement>('.dx-toast.' + k);
+			if (el) {
+				el.style.top = v.top + '%';
+				el.style.right = v.right + '%';
+				el.style.left = 'auto';
+				el.style.bottom = 'auto';
+			}
+		});
+		document.querySelectorAll<HTMLElement>('.dx-toast').forEach(t => {
+			const hero = t.parentElement as HTMLElement;
+			let sx = 0, sy = 0, ox = 0, oy = 0, moved = false;
+			t.addEventListener('pointerdown', e => {
+				sx = e.clientX;
+				sy = e.clientY;
+				const r = t.getBoundingClientRect();
+				const hr = hero.getBoundingClientRect();
+				ox = r.left - hr.left;
+				oy = r.top - hr.top;
+				moved = false;
+				t.setPointerCapture(e.pointerId);
+				const move = (ev: PointerEvent) => {
+					const dx = ev.clientX - sx;
+					const dy = ev.clientY - sy;
+					if (Math.abs(dx) + Math.abs(dy) > 6) moved = true;
+					t.style.animation = 'none';
+					t.style.left = ox + dx + 'px';
+					t.style.top = oy + dy + 'px';
+					t.style.right = 'auto';
+					t.style.bottom = 'auto';
+					const hr2 = hero.getBoundingClientRect();
+					const topPct = (((oy + dy) / hr2.height) * 100).toFixed(1);
+					const rightPct = (((hr2.width - (ox + dx) - t.offsetWidth) / hr2.width) * 100).toFixed(1);
+					const key = t.classList[1];
+					tag.textContent = `${key} → top ${topPct}% · right ${rightPct}%`;
+					store[key] = { top: topPct, right: rightPct };
+					localStorage.setItem('fpt_toast_pos', JSON.stringify(store));
+				};
+				const up = () => {
+					t.removeEventListener('pointermove', move);
+					t.removeEventListener('pointerup', up);
+				};
+				t.addEventListener('pointermove', move);
+				t.addEventListener('pointerup', up);
+			});
+			t.addEventListener(
+				'click',
+				e => {
+					if (moved) {
+						e.stopImmediatePropagation();
+						moved = false;
+					}
+				},
+				true
+			);
+		});
+	}
+
+	// notification toasts dismiss on click or keyboard
+	document.querySelectorAll<HTMLElement>('.dx-toast').forEach(t => {
+		const dismiss = () => {
+			t.classList.add('out');
+			setTimeout(() => t.remove(), 400);
+		};
+		t.addEventListener('click', dismiss);
+		t.addEventListener('keydown', e => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				dismiss();
+			}
+		});
+	});
+
+	// sticky nav: soft shadow once the page scrolls under it
+	const nav = document.querySelector('.dx-nav');
+	if (nav) {
+		const sentinel = document.createElement('div');
+		sentinel.style.cssText = 'position:absolute;top:0;width:1px;height:1px;';
+		document.body.prepend(sentinel);
+		new IntersectionObserver(([e]) =>
+			nav.classList.toggle('stuck', !e.isIntersecting)
+		).observe(sentinel);
 	}
 </script>
