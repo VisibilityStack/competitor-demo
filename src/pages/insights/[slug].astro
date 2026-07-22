@@ -2,6 +2,7 @@
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import '../../styles/fpt.css';
+import ChatWidget from '../../components/ChatWidget.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -124,5 +125,6 @@ const articleSchema = {
 				});
 			}
 		</script>
+		<ChatWidget />
 	</body>
 </html>

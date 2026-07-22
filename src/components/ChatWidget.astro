@@ -1,0 +1,368 @@
+---
+// "Mark" — scripted concierge chatbot. Qualify (practice → stage) then
+// capture an email, Dice-style 3-step flow. Leads land in the same
+// localStorage bucket as the footer form.
+---
+
+<button class="fpt-chat-launch" id="fpt-chat-launch" aria-label="Chat with FPT">
+	<span class="fpt-chat-cursor" aria-hidden="true"></span>
+</button>
+
+<div class="fpt-chat-panel" id="fpt-chat-panel" hidden>
+	<div class="fpt-chat-head">
+		<div>
+			<span class="fpt-chat-name">Mark<span class="fpt-chat-cursor" aria-hidden="true"></span></span>
+			<span class="fpt-chat-sub">FPT · Talent partner</span>
+		</div>
+		<button class="fpt-chat-close" id="fpt-chat-close" aria-label="Close chat">×</button>
+	</div>
+	<div class="fpt-chat-body" id="fpt-chat-body" aria-live="polite"></div>
+	<div class="fpt-chat-composer" id="fpt-chat-composer" hidden>
+		<input
+			type="email"
+			id="fpt-chat-email"
+			placeholder="Work email"
+			autocomplete="email"
+			aria-label="Work email"
+		/>
+		<button id="fpt-chat-send">Send</button>
+	</div>
+</div>
+
+<style is:global>
+	.fpt-chat-launch {
+		position: fixed;
+		right: 20px;
+		bottom: 20px;
+		width: 54px;
+		height: 54px;
+		background: var(--fpt-red);
+		border: 0;
+		cursor: pointer;
+		z-index: 70;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 160ms ease;
+	}
+
+	.fpt-chat-launch:hover {
+		background: var(--fpt-red-dark);
+	}
+
+	.fpt-chat-cursor {
+		display: inline-block;
+		width: 9px;
+		height: 22px;
+		background: #fff;
+		animation: fpt-blink 1.1s step-end infinite;
+	}
+
+	.fpt-chat-panel {
+		position: fixed;
+		right: 20px;
+		bottom: 86px;
+		width: min(360px, calc(100vw - 32px));
+		height: min(500px, 72vh);
+		background: #fff;
+		border: 1px solid var(--fpt-ink);
+		z-index: 70;
+		display: flex;
+		flex-direction: column;
+		font-family: var(--font-body);
+	}
+
+	.fpt-chat-head {
+		background: var(--fpt-red-dark);
+		color: #fff;
+		padding: 12px 14px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.fpt-chat-name {
+		font-family: var(--font-display);
+		font-size: 22px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		display: inline-flex;
+		align-items: baseline;
+	}
+
+	.fpt-chat-name .fpt-chat-cursor {
+		width: 7px;
+		height: 15px;
+		margin-left: 4px;
+	}
+
+	.fpt-chat-sub {
+		display: block;
+		font-size: 11.5px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.75);
+		font-family: var(--font-display);
+	}
+
+	.fpt-chat-close {
+		background: transparent;
+		border: 0;
+		color: #fff;
+		font-size: 26px;
+		line-height: 1;
+		cursor: pointer;
+		padding: 0 4px;
+	}
+
+	.fpt-chat-body {
+		flex: 1;
+		overflow-y: auto;
+		padding: 14px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.fpt-chat-msg {
+		max-width: 85%;
+		padding: 10px 12px;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	.fpt-chat-msg.bot {
+		background: #f5f5f5;
+		align-self: flex-start;
+	}
+
+	.fpt-chat-msg.user {
+		background: var(--fpt-red-dark);
+		color: #fff;
+		align-self: flex-end;
+	}
+
+	.fpt-chat-typing {
+		align-self: flex-start;
+		padding: 10px 12px;
+	}
+
+	.fpt-chat-typing .fpt-chat-cursor {
+		background: var(--fpt-red);
+		width: 8px;
+		height: 16px;
+	}
+
+	.fpt-chat-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		align-self: flex-start;
+	}
+
+	.fpt-chat-chip {
+		font-family: var(--font-display);
+		font-size: 13.5px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		background: transparent;
+		border: 1px solid var(--fpt-ink);
+		color: var(--fpt-ink);
+		padding: 8px 12px 6px;
+		cursor: pointer;
+		transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+	}
+
+	.fpt-chat-chip:hover {
+		background: var(--fpt-red-dark);
+		border-color: var(--fpt-red-dark);
+		color: #fff;
+	}
+
+	.fpt-chat-composer {
+		display: flex;
+		gap: 8px;
+		padding: 10px;
+		border-top: 1px solid var(--fpt-line);
+	}
+
+	.fpt-chat-composer input {
+		flex: 1;
+		border: 0;
+		border-bottom: 1px solid var(--fpt-line);
+		font-family: var(--font-body);
+		font-size: 15px;
+		padding: 8px 2px;
+		outline: none;
+	}
+
+	.fpt-chat-composer input:focus {
+		border-bottom-color: var(--fpt-red);
+	}
+
+	.fpt-chat-composer button {
+		font-family: var(--font-display);
+		font-size: 14px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		background: var(--fpt-red);
+		color: #fff;
+		border: 0;
+		padding: 8px 14px 6px;
+		cursor: pointer;
+	}
+
+	@media (max-width: 640px) {
+		.fpt-chat-panel {
+			right: 16px;
+			bottom: 80px;
+		}
+	}
+</style>
+
+<script>
+	const launch = document.getElementById('fpt-chat-launch');
+	const panel = document.getElementById('fpt-chat-panel');
+	const body = document.getElementById('fpt-chat-body');
+	const closeBtn = document.getElementById('fpt-chat-close');
+	const composer = document.getElementById('fpt-chat-composer');
+	const emailInput = document.getElementById('fpt-chat-email') as HTMLInputElement | null;
+	const sendBtn = document.getElementById('fpt-chat-send');
+
+	let started = false;
+	const lead: Record<string, string> = {};
+
+	const scroll = () => {
+		if (body) body.scrollTop = body.scrollHeight;
+	};
+
+	function addMsg(who: 'bot' | 'user', text: string) {
+		const el = document.createElement('div');
+		el.className = `fpt-chat-msg ${who}`;
+		el.textContent = text;
+		body?.appendChild(el);
+		scroll();
+	}
+
+	function botSay(text: string, after?: () => void) {
+		const typing = document.createElement('div');
+		typing.className = 'fpt-chat-typing';
+		typing.innerHTML = '<span class="fpt-chat-cursor"></span>';
+		body?.appendChild(typing);
+		scroll();
+		setTimeout(() => {
+			typing.remove();
+			addMsg('bot', text);
+			if (after) after();
+		}, 650);
+	}
+
+	function addChips(chips: { label: string; onPick: () => void }[]) {
+		const wrap = document.createElement('div');
+		wrap.className = 'fpt-chat-chips';
+		chips.forEach(chip => {
+			const b = document.createElement('button');
+			b.className = 'fpt-chat-chip';
+			b.textContent = chip.label;
+			b.addEventListener('click', () => {
+				wrap.remove();
+				addMsg('user', chip.label);
+				chip.onPick();
+			});
+			wrap.appendChild(b);
+		});
+		body?.appendChild(wrap);
+		scroll();
+	}
+
+	function askEmail() {
+		botSay('Fastest next step is a short consultation. Where should we reach you?', () => {
+			if (composer) composer.hidden = false;
+			emailInput?.focus();
+		});
+	}
+
+	function saveLead() {
+		try {
+			const leads = JSON.parse(localStorage.getItem('fpt_demo_leads') || '[]');
+			leads.push({ ...lead, source: 'chat', at: new Date().toISOString() });
+			localStorage.setItem('fpt_demo_leads', JSON.stringify(leads));
+		} catch {}
+	}
+
+	function askStage() {
+		botSay('What stage are you at?', () =>
+			addChips([
+				{ label: 'Pre-seed / Seed', onPick: () => stagePicked('Pre-seed / Seed') },
+				{ label: 'Series A–B', onPick: () => stagePicked('Series A–B') },
+				{ label: 'Later stage', onPick: () => stagePicked('Later stage') },
+			])
+		);
+	}
+
+	function stagePicked(stage: string) {
+		lead.stage = stage;
+		askEmail();
+	}
+
+	function practicePicked(practice: string) {
+		lead.practice = practice;
+		askStage();
+	}
+
+	function start() {
+		botSay('Mark here, from FPT. What are you hiring for?', () =>
+			addChips([
+				{ label: 'Product', onPick: () => practicePicked('Product') },
+				{ label: 'Engineering', onPick: () => practicePicked('Engineering') },
+				{ label: 'Data & AI', onPick: () => practicePicked('Data & AI') },
+				{ label: 'Leadership', onPick: () => practicePicked('Leadership') },
+				{ label: 'Just looking', onPick: browsing },
+			])
+		);
+	}
+
+	function browsing() {
+		botSay('All good. The Insights hub is the best place to poke around.', () =>
+			addChips([
+				{ label: 'Read Insights', onPick: () => (window.location.href = '/insights') },
+				{ label: 'How you work', onPick: how },
+			])
+		);
+	}
+
+	function how() {
+		botSay(
+			'One system, end to end: we co-write the JD, source directly, screen every candidate psychometrically, run the panels with you, and manage the offer.',
+			() => addChips([{ label: 'Book a consultation', onPick: askEmail }])
+		);
+	}
+
+	function submitEmail() {
+		const val = emailInput?.value.trim() || '';
+		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+			emailInput?.focus();
+			return;
+		}
+		lead.email = val;
+		addMsg('user', val);
+		if (composer) composer.hidden = true;
+		saveLead();
+		botSay('Done. Expect a note from mark@fptalent.io within a day.');
+	}
+
+	launch?.addEventListener('click', () => {
+		if (panel) panel.hidden = !panel.hidden;
+		if (!panel?.hidden && !started) {
+			started = true;
+			start();
+		}
+	});
+	closeBtn?.addEventListener('click', () => {
+		if (panel) panel.hidden = true;
+	});
+	sendBtn?.addEventListener('click', submitEmail);
+	emailInput?.addEventListener('keydown', e => {
+		if (e.key === 'Enter') submitEmail();
+	});
+</script>
