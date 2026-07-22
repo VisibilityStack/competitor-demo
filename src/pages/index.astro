@@ -67,23 +67,6 @@ const quotes = [
 	},
 ];
 
-// 5x7 bitmap letterforms for the pixel-built footer wordmark
-const PX_LETTERS = {
-	F: ['XXXXX', 'X....', 'X....', 'XXXX.', 'X....', 'X....', 'X....'],
-	P: ['XXXX.', 'X...X', 'X...X', 'XXXX.', 'X....', 'X....', 'X....'],
-	T: ['XXXXX', '..X..', '..X..', '..X..', '..X..', '..X..', '..X..'],
-};
-
-const pixelCells = [];
-let pxOffset = 1;
-for (const ch of ['F', 'P', 'T']) {
-	PX_LETTERS[ch].forEach((rowStr, r) => {
-		rowStr.split('').forEach((cell, i) => {
-			if (cell === 'X') pixelCells.push({ col: pxOffset + i, row: r + 1 });
-		});
-	});
-	pxOffset += 6;
-}
 const orgSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'Organization',
@@ -382,17 +365,6 @@ const faqs = [
 					</div>
 				</div>
 
-				<div class="pixel-wall" id="pixel-wall" role="img" aria-label="FPT" data-reveal>
-					{
-						pixelCells.map(c => (
-							<span
-								class="px"
-								style={`grid-column:${c.col};grid-row:${c.row}`}
-							/>
-						))
-					}
-					<span class="px px-cursor" style="grid-column:19;grid-row:7" aria-hidden="true"></span>
-				</div>
 
 				<div class="footer-bottom">
 					<span>© 2026 FirstPrinciples Talent. All rights reserved.</span>
