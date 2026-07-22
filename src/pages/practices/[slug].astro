@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import '../../styles/fpt.css';
 
 export function getStaticPaths() {
@@ -217,6 +218,7 @@ const faqSchema = {
 			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
 		/>
 		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+		<Analytics />
 	</head>
 	<body>
 		<header class="site-top">
