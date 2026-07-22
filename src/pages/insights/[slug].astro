@@ -1,5 +1,6 @@
 ---
 import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../../styles/fpt.css';
 import { getCollection } from 'astro:content';
 
@@ -54,6 +55,7 @@ const articleSchema = {
 		/>
 		<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 		<Analytics />
+		<SpeedInsights />
 	</head>
 	<body>
 		<header class="site-top">

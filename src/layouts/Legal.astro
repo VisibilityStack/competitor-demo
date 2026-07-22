@@ -1,5 +1,6 @@
 ---
 import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/fpt.css';
 
 const { title, updated = 'July 2026' } = Astro.props;
@@ -22,6 +23,7 @@ const { title, updated = 'July 2026' } = Astro.props;
 			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
 		/>
 		<Analytics />
+		<SpeedInsights />
 	</head>
 	<body>
 		<header class="site-top">
