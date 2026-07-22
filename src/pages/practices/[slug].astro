@@ -196,10 +196,10 @@ const faqSchema = {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{p.metaTitle} · FP Talent</title>
 		<meta name="description" content={`${p.intent} ${p.intro}`} />
-		<link rel="icon" href="/favicon.ico" sizes="32x32" />
-		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
-		<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="icon" href="/favicon.ico?v=2" sizes="32x32" />
+		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg?v=2" />
+		<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png?v=2" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
 		<link rel="canonical" href={`https://www.fptalent.io/practices/${p.slug}`} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -231,7 +231,7 @@ const faqSchema = {
 					</div>
 			</details>
 			<div class="dx-nav-right">
-					<a class="quiet" href="/candidates">For candidates</a>
+					<a class="dx-btn ghost" href="/candidates">For candidates</a>
 					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
 				</div>
 			</div>
@@ -244,7 +244,7 @@ const faqSchema = {
 				<p class="dxc-sub" data-dxa>{p.intro}</p>
 				<div class="dx-cta-row" data-dxa>
 					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
-					<a class="dx-btn outline-light" href="/candidates#searches">See open searches</a>
+					<a class="dx-btn outline-light" href="#process">See how the search runs</a>
 				</div>
 			</div>
 		</header>
@@ -258,7 +258,7 @@ const faqSchema = {
 			</div>
 		</section>
 
-		<section class="dx-sec grey">
+		<section id="process" class="dx-sec grey">
 			<div class="dx-container">
 				<h2 class="dx-sec-head" data-dxa>How the search runs</h2>
 				<div class="dx-steps five">
@@ -309,12 +309,15 @@ const faqSchema = {
 		</section>
 
 		<section class="dx-sec grey">
-			<div class="dx-container">
-				<h2 class="dx-sec-head" data-dxa>Questions founders ask</h2>
+			<div class="dx-container dx-faq-grid">
+				<div class="dx-faq-intro" data-dxa>
+					<h2 class="dx-sec-head">Questions founders ask</h2>
+					<p class="dx-sec-sub">The three we hear most, answered straight.</p>
+				</div>
 				<div class="dx-faq">
 					{
-						p.faqs.map(f => (
-							<details class="dx-faq-item" data-dxa>
+						p.faqs.map((f, i) => (
+							<details class="dx-faq-item" data-dxa open={i === 0}>
 								<summary>{f.q}</summary>
 								<p>{f.a}</p>
 							</details>
@@ -326,9 +329,11 @@ const faqSchema = {
 
 		<section class="dx-sec">
 			<div class="dx-container">
-				<div class="dx-cta-card" data-dxa>
-					<h2>{p.cta}</h2>
-					<p>A short call is enough to scope the search.</p>
+				<div class="dx-cta-card slim" data-dxa>
+					<div>
+						<h2>{p.cta}</h2>
+						<p>A short call is enough to scope the search.</p>
+					</div>
 					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
 				</div>
 			</div>

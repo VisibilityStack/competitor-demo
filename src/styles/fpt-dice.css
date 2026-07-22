@@ -159,9 +159,30 @@ a {
 	opacity: 0.85;
 }
 
+.dx-nav-right .quiet {
+	position: relative;
+	padding-bottom: 3px;
+}
+
+.dx-nav-right .quiet::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 2px;
+	background: var(--dx-teal);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 180ms ease;
+}
+
 .dx-nav-right .quiet:hover {
 	opacity: 1;
-	text-decoration: underline;
+}
+
+.dx-nav-right .quiet:hover::after {
+	transform: scaleX(1);
 }
 
 .dx-nav .dx-btn {
@@ -2703,4 +2724,90 @@ button.dx-cat {
 .dx-nav .dx-nav-inner {
 	width: calc(100% - 48px);
 	max-width: none;
+}
+
+/* practice FAQ: intro column + animated accordions */
+
+.dx-faq-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+	gap: clamp(28px, 4vw, 72px);
+	align-items: center;
+}
+
+.dx-faq-grid .dx-sec-sub {
+	margin-bottom: 0;
+}
+
+.dx-faq-grid .dx-faq {
+	max-width: none;
+}
+
+/* flip-up entrance, same physics as the answer cards */
+.dx-faq .dx-faq-item[data-dxa] {
+	opacity: 0;
+	transform: rotateX(48deg) translateY(56px);
+	transform-origin: center bottom;
+	transition: opacity 700ms ease, transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.dx-faq {
+	perspective: 900px;
+}
+
+/* answers ease in when a question opens */
+.dx-faq-item[open] p {
+	animation: dx-faq-open 320ms ease;
+}
+
+@keyframes dx-faq-open {
+	from {
+		opacity: 0;
+		transform: translateY(-6px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.dx-faq-item summary {
+	transition: color 140ms ease;
+}
+
+.dx-faq-item summary:hover {
+	color: var(--dx-teal-dark);
+}
+
+@media (max-width: 900px) {
+	.dx-faq-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dx-faq .dx-faq-item[data-dxa] {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+	.dx-faq-item[open] p {
+		animation: none;
+	}
+}
+
+/* ghost button: white fill, teal border and text; inverts to navy on hover */
+
+.dx-btn.ghost {
+	background: #fff;
+	border: 2px solid var(--dx-teal);
+	color: var(--dx-teal-dark);
+}
+
+.dx-btn.ghost:hover,
+.dx-btn.ghost:active {
+	background: var(--dx-navy);
+	border-color: var(--dx-navy);
+	color: #fff;
 }

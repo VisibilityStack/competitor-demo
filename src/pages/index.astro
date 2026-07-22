@@ -121,10 +121,10 @@ const orgSchema = {
 			name="description"
 			content="The technical talent agency for founder-led software companies. Product, engineering, data & AI, and leadership hiring, done properly."
 		/>
-		<link rel="icon" href="/favicon.ico" sizes="32x32" />
-		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
-		<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="icon" href="/favicon.ico?v=2" sizes="32x32" />
+		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg?v=2" />
+		<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png?v=2" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -156,7 +156,7 @@ const orgSchema = {
 					</div>
 			</details>
 			<div class="dx-nav-right">
-					<a class="quiet" href="/candidates">For candidates</a>
+					<a class="dx-btn ghost" href="/candidates">For candidates</a>
 					<a class="dx-btn teal" href="#contact">Book a consultation</a>
 				</div>
 			</div>
@@ -272,11 +272,13 @@ const orgSchema = {
 					<div class="dx-minis dx-overlap">
 						{
 							minis.map(m => (
-								<a class="dx-mini" href="/candidates#searches">
-									<span class={`dx-pill ${m.hot ? 'hot' : 'cool'}`}>{m.status}</span>
-									<span class="role">{m.role}</span>
-									<span class="meta">{m.meta}</span>
+								<a class="dx-search-card stacked" href="/candidates#searches" data-dxa>
+									<span class="rolewrap">
+										<span class="role">{m.role}</span>
+										<span class="meta">{m.meta}</span>
+									</span>
 									<span class="comp">{m.comp}</span>
+									<span class={`dx-pill ${m.hot ? 'hot' : 'cool'}`}>{m.status}</span>
 								</a>
 							))
 						}
