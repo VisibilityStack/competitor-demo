@@ -11,8 +11,8 @@
 <div class="fpt-chat-panel" id="fpt-chat-panel" hidden>
 	<div class="fpt-chat-head">
 		<div>
-			<span class="fpt-chat-name">Mark<span class="fpt-chat-cursor" aria-hidden="true"></span></span>
-			<span class="fpt-chat-sub">FPT · Talent partner</span>
+			<span class="fpt-chat-name">Mark AI<span class="fpt-chat-cursor" aria-hidden="true"></span></span>
+			<span class="fpt-chat-sub">Talent partner</span>
 		</div>
 		<button class="fpt-chat-close" id="fpt-chat-close" aria-label="Close chat">×</button>
 	</div>
@@ -56,6 +56,11 @@
 		height: 22px;
 		background: #fff;
 		animation: fpt-blink 1.1s step-end infinite;
+	}
+
+	.fpt-chat-panel[hidden],
+	.fpt-chat-composer[hidden] {
+		display: none !important;
 	}
 
 	.fpt-chat-panel {
@@ -191,7 +196,7 @@
 		border: 0;
 		border-bottom: 1px solid var(--fpt-line);
 		font-family: var(--font-body);
-		font-size: 15px;
+		font-size: 16px;
 		padding: 8px 2px;
 		outline: none;
 	}
@@ -276,6 +281,10 @@
 	}
 
 	function askEmail() {
+		if (lead.email) {
+			botSay('Already got your email. Mark will be in touch.');
+			return;
+		}
 		botSay('Fastest next step is a short consultation. Where should we reach you?', () => {
 			if (composer) composer.hidden = false;
 			emailInput?.focus();
@@ -311,7 +320,7 @@
 	}
 
 	function start() {
-		botSay('Mark here, from FPT. What are you hiring for?', () =>
+		botSay('Mark AI here, from FPT. What are you hiring for?', () =>
 			addChips([
 				{ label: 'Product', onPick: () => practicePicked('Product') },
 				{ label: 'Engineering', onPick: () => practicePicked('Engineering') },
@@ -327,20 +336,40 @@
 			addChips([
 				{ label: 'Read Insights', onPick: () => (window.location.href = '/insights') },
 				{ label: 'How you work', onPick: how },
+				{ label: "What's it cost", onPick: pricing },
 			])
 		);
 	}
 
-	function how() {
-		botSay(
-			'One system, end to end: we co-write the JD, source directly, screen every candidate psychometrically, run the panels with you, and manage the offer.',
-			() => addChips([{ label: 'Book a consultation', onPick: askEmail }])
-		);
+	const asked = new Set();
+
+	function followUps() {
+		const chips = [];
+		if (!asked.has('how')) chips.push({ label: 'How you work', onPick: how });
+		if (!asked.has('cost')) chips.push({ label: "What's it cost", onPick: pricing });
+		if (!lead.email) chips.push({ label: 'Book a consultation', onPick: askEmail });
+		chips.push({ label: "That's all", onPick: () => botSay('Talk soon.') });
+		addChips(chips);
 	}
 
+	function pricing() {
+		asked.add('cost');
+		botSay('Simple. A fee when we place someone. No retainers, no add-ons.', followUps);
+	}
+
+	function how() {
+		asked.add('how');
+		botSay('The whole search, end to end. We find the people, screen them, and stay on it until the offer is signed.', followUps);
+	}
+
+	let emailNagged = false;
 	function submitEmail() {
 		const val = emailInput?.value.trim() || '';
 		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+			if (!emailNagged) {
+				emailNagged = true;
+				botSay("That email doesn't look right. Mind checking it?");
+			}
 			emailInput?.focus();
 			return;
 		}
@@ -348,7 +377,7 @@
 		addMsg('user', val);
 		if (composer) composer.hidden = true;
 		saveLead();
-		botSay('Done. Expect a note from mark@fptalent.io within a day.');
+		botSay('Got it, thanks. Mark will be in touch.', followUps);
 	}
 
 	launch?.addEventListener('click', () => {
@@ -360,6 +389,9 @@
 	});
 	closeBtn?.addEventListener('click', () => {
 		if (panel) panel.hidden = true;
+	});
+	document.addEventListener('keydown', e => {
+		if (e.key === 'Escape' && panel && !panel.hidden) panel.hidden = true;
 	});
 	sendBtn?.addEventListener('click', submitEmail);
 	emailInput?.addEventListener('keydown', e => {
