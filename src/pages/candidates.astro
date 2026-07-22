@@ -1,0 +1,273 @@
+---
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
+import '../styles/fpt-dice.css';
+import ChatWidget from '../components/ChatWidget.astro';
+import DxMotion from '../components/DxMotion.astro';
+
+const searches = [
+	{
+		role: 'Staff Backend Engineer',
+		meta: 'Series A logistics platform',
+		loc: 'NYC hybrid',
+		comp: '$200–235k',
+		status: 'Interviewing now',
+		hot: true,
+	},
+	{
+		role: 'Founding Product Manager',
+		meta: 'Seed devtools startup',
+		loc: 'Remote (US)',
+		comp: '$170–200k + equity',
+		status: 'Taking intros',
+		hot: false,
+	},
+	{
+		role: 'Staff ML Engineer',
+		meta: 'Series B healthtech',
+		loc: 'NYC',
+		comp: '$235–270k',
+		status: 'Shortlist forming',
+		hot: false,
+	},
+	{
+		role: 'VP of Engineering',
+		meta: 'Series B security company',
+		loc: 'NYC hybrid',
+		comp: '$260–300k',
+		status: 'Taking intros',
+		hot: false,
+	},
+	{
+		role: 'Analytics Engineer',
+		meta: 'Series A fintech infrastructure',
+		loc: 'Remote (US)',
+		comp: '$150–175k',
+		status: 'Interviewing now',
+		hot: true,
+	},
+];
+
+const steps = [
+	{
+		no: '01',
+		title: 'One call, one profile',
+		copy: 'A 45-minute conversation plus a psychometric profile you complete once, in about 25 minutes. No portals, no logins.',
+	},
+	{
+		no: '02',
+		title: 'Matched quietly',
+		copy: 'You hear from us only when a live search fits. We tell you the company name before anything moves.',
+	},
+	{
+		no: '03',
+		title: 'Backed through the offer',
+		copy: 'Interview prep before every round, honest feedback after, and comp data when you negotiate.',
+	},
+];
+
+const answers = [
+	{
+		q: 'Will my current employer find out?',
+		a: 'No. Your profile goes nowhere without your OK, and we name the company first.',
+	},
+	{
+		q: 'What if you pass on me?',
+		a: 'We say so and say why. Usually within a week.',
+	},
+	{
+		q: 'Do I pay anything?',
+		a: 'Never. Fees come from the hiring company, after you start.',
+	},
+	{
+		q: 'Not looking right now?',
+		a: 'Send your profile anyway. The best searches move fastest through people we already know.',
+	},
+];
+
+const mailIntro = 'mailto:mark@fptalent.io?subject=Candidate%20intro';
+const mailRole = (s: { role: string; meta: string }) =>
+	`mailto:mark@fptalent.io?subject=${encodeURIComponent(`Re: ${s.role} (${s.meta})`)}`;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Candidates . FP Talent</title>
+		<meta
+			name="description"
+			content="Open searches and how we work with candidates. Product, engineering, data and AI, and leadership roles at founder-led software companies, seed to Series B."
+		/>
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
+		<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="canonical" href="https://www.fptalent.io/candidates" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+		/>
+		<Analytics />
+		<SpeedInsights />
+	</head>
+	<body>
+		<nav class="dx-nav">
+			<div class="dx-container dx-nav-inner">
+				<a class="dx-logo" href="/">FPT<span class="dx-logo-block"></span></a>
+				<div class="dx-nav-links">
+					<a href="#searches">Open searches</a>
+					<a href="/#practices">Practices</a>
+					<a href="/insights">Insights</a>
+					<a href="/#why">Why FPT</a>
+				</div>
+				<div class="dx-nav-right">
+					<a class="dx-btn teal" href={mailIntro}>Send your profile</a>
+				</div>
+			</div>
+		</nav>
+
+		<header class="dxc-hero">
+			<div class="dx-container dxc-hero-grid">
+				<div>
+					<h1 data-dxa>Good roles,<br /><span class="accent">handled properly.</span></h1>
+					<p class="dxc-sub" data-dxa>
+						We run retained searches for founder-led software companies, seed to
+						Series B. Every listing below is funded, live, and interviewing. No
+						ghost roles.
+					</p>
+					<div class="dx-cta-row" data-dxa>
+						<a class="dx-btn teal" href={mailIntro}>Send your profile</a>
+						<a class="dx-btn outline-light" href="#searches">See open searches</a>
+					</div>
+				</div>
+				<div class="dxc-collage">
+					<div class="dx-bubble cb1">
+						<div class="dx-avatar b1"><img src="/img/p-se.jpg" alt="Software engineer" /></div>
+						<div class="dx-float g1"><span class="ic">✓</span>See real comp up front</div>
+					</div>
+					<div class="dx-bubble cb2">
+						<div class="dx-avatar b2"><img src="/img/p-ml.jpg" alt="ML engineer" /></div>
+						<div class="dx-float g2"><span class="ic">✓</span>Free for candidates, always</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<section id="searches" class="dx-sec">
+			<div class="dx-container">
+				<h2 class="dx-sec-head" data-dxa>Open searches</h2>
+				<p class="dx-sec-sub" data-dxa>
+					Click a role to ask about it. Listings rotate as searches close, and if
+					nothing fits, send your profile anyway. Most placements start before a
+					search is ever listed.
+				</p>
+				<div class="dx-search-list">
+					{
+						searches.map(s => (
+							<a class="dx-search-card" href={mailRole(s)} data-dxa>
+								<span class="role">{s.role}</span>
+								<span class="meta">
+									{s.meta} · {s.loc}
+								</span>
+								<span class="comp">{s.comp}</span>
+								<span class={`dx-pill ${s.hot ? 'hot' : 'cool'}`}>{s.status}</span>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="dx-numbers">
+			<div class="dx-container">
+				<h2 data-dxa>What working with us looks like</h2>
+				<div class="dx-tiles">
+					<div class="dx-tile" data-dxa>
+						<span class="v" data-count="9" data-suffix=" days">9 days</span>
+						<span class="c">median from first call to first founder interview</span>
+					</div>
+					<div class="dx-tile" data-dxa>
+						<span class="v" data-count="82" data-suffix="%">82%</span>
+						<span class="c">of placed candidates still in seat at 12 months</span>
+					</div>
+					<div class="dx-tile" data-dxa>
+						<span class="v">$0</span>
+						<span class="c">what any of this costs you. The hiring company pays.</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="dx-sec grey">
+			<div class="dx-container">
+				<h2 class="dx-sec-head" data-dxa>How it works</h2>
+				<div class="dx-steps">
+					{
+						steps.map(s => (
+							<div class="dx-step" data-dxa>
+								<div class="no">{s.no}</div>
+								<div class="t">{s.title}</div>
+								<div class="c">{s.copy}</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="dx-quote-wrap" style="background:#fff">
+			<div class="dx-container dx-quote" data-dxa>
+				<img class="dx-quote-avatar" src="/img/p-quote.jpg" alt="Placed staff engineer" loading="lazy" />
+				<blockquote>
+					“I expected to be spammed with roles. Instead I heard nothing for five
+					weeks, then one email about one company. That company is where I work
+					now.”
+				</blockquote>
+				<p class="who">Placed: Staff Engineer · Series A infrastructure company</p>
+			</div>
+		</section>
+
+		<section class="dx-sec grey">
+			<div class="dx-container">
+				<h2 class="dx-sec-head" data-dxa>Straight answers</h2>
+				<div class="dx-answers">
+					{
+						answers.map(x => (
+							<div class="dx-answer" data-dxa>
+								<span class="q">{x.q}</span>
+								<span class="a">{x.a}</span>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="dx-sec">
+			<div class="dx-container">
+				<div class="dx-cta-card" data-dxa>
+					<h2>Introduce yourself.</h2>
+					<p>One email is enough. Attach a resume or just a LinkedIn link.</p>
+					<a class="dx-btn teal" href={mailIntro}>mark@fptalent.io</a>
+					<p class="dx-cta-note">A human reads every profile. Usually Mark.</p>
+				</div>
+			</div>
+		</section>
+
+		<footer class="dx-subfooter">
+			<div class="dx-container dx-legal">
+				<span>© 2026 FP Talent. All rights reserved.</span>
+				<span>
+					<a href="/terms">Terms</a>
+					<a href="/privacy">Privacy policy</a>
+				</span>
+			</div>
+		</footer>
+
+		<DxMotion />
+		<ChatWidget />
+	</body>
+</html>

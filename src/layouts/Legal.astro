@@ -1,7 +1,7 @@
 ---
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import '../styles/fpt.css';
+import '../styles/fpt-dice.css';
 import ChatWidget from '../components/ChatWidget.astro';
 
 const { title, updated = 'July 2026' } = Astro.props;
@@ -21,32 +21,38 @@ const { title, updated = 'July 2026' } = Astro.props;
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
 		/>
 		<Analytics />
 		<SpeedInsights />
 	</head>
 	<body>
-		<header class="site-top">
-			<a class="logo-lockup" href="/" aria-label="FP Talent home">
-				<span class="logo">FPT<span class="logo-cursor" aria-hidden="true"></span></span>
-				<span class="logo-tag">People who ship.</span>
-			</a>
-			<div class="header-right">
-				<a class="btn-demo" href="/#contact">Book a consultation</a>
+		<nav class="dx-nav">
+			<div class="dx-container dx-nav-inner">
+				<a class="dx-logo" href="/">FPT<span class="dx-logo-block"></span></a>
+				<div class="dx-nav-links">
+					<a href="/candidates#searches">Open searches</a>
+					<a href="/#practices">Practices</a>
+					<a href="/insights">Insights</a>
+					<a href="/#why">Why FPT</a>
+				</div>
+				<div class="dx-nav-right">
+					<a class="quiet" href="/candidates">For candidates</a>
+					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
+				</div>
 			</div>
-		</header>
+		</nav>
 
-		<main class="legal container">
-			<p class="legal-updated">Last updated: {updated}</p>
-			<h1 class="display legal-title">{title}<span class="dot">.</span></h1>
+		<main class="dx-legal-main">
+			<p class="dx-legal-updated">Last updated: {updated}</p>
+			<h1>{title}</h1>
 			<slot />
 		</main>
 
-		<footer class="legal-footer">
-			<div class="container footer-bottom">
-				<span>© 2026 FirstPrinciples Talent. All rights reserved.</span>
-				<span class="footer-legal">
+		<footer class="dx-subfooter">
+			<div class="dx-container dx-legal">
+				<span>© 2026 FP Talent. All rights reserved.</span>
+				<span>
 					<a href="/terms">Terms</a>
 					<a href="/privacy">Privacy policy</a>
 				</span>

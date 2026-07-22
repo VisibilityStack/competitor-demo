@@ -1,0 +1,62 @@
+---
+// Scroll-reveal + count-up driver for the dx (Dice-anatomy) pages.
+---
+
+<script>
+	const els = Array.from(document.querySelectorAll<HTMLElement>('[data-dxa]'));
+	els.forEach(el => {
+		const parent = el.parentElement;
+		if (!parent) return;
+		const sibs = Array.from(parent.children).filter(c => c.hasAttribute('data-dxa'));
+		const i = sibs.indexOf(el);
+		if (i > 0) el.style.transitionDelay = `${Math.min(i, 6) * 90}ms`;
+	});
+	const io = new IntersectionObserver(
+		entries =>
+			entries.forEach(e => {
+				if (e.isIntersecting) {
+					e.target.classList.add('dxa-in');
+					io.unobserve(e.target);
+				}
+			}),
+		{ threshold: 0.15 }
+	);
+	els.forEach(el => io.observe(el));
+
+	const cio = new IntersectionObserver(
+		entries =>
+			entries.forEach(e => {
+				if (!e.isIntersecting) return;
+				const el = e.target as HTMLElement;
+				cio.unobserve(el);
+				const target = Number(el.dataset.count || 0);
+				const pre = el.dataset.prefix || '';
+				const suf = el.dataset.suffix || '';
+				const start = performance.now();
+				const dur = 1100;
+				const tick = (now: number) => {
+					const p = Math.min(1, (now - start) / dur);
+					const eased = 1 - Math.pow(1 - p, 3);
+					el.textContent = pre + Math.round(target * eased) + suf;
+					if (p < 1) requestAnimationFrame(tick);
+				};
+				requestAnimationFrame(tick);
+			}),
+		{ threshold: 0.5 }
+	);
+	document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+	// match ping: one avatar at a time emits a live ring
+	const avatars = Array.from(
+		document.querySelectorAll('.dx-collage .dx-avatar, .dxc-collage .dx-avatar')
+	);
+	if (avatars.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		let p = 0;
+		setInterval(() => {
+			const el = avatars[p % avatars.length];
+			p++;
+			el.classList.add('ping');
+			setTimeout(() => el.classList.remove('ping'), 1700);
+		}, 4200);
+	}
+</script>

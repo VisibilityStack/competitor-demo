@@ -1,8 +1,9 @@
 ---
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import '../../styles/fpt.css';
+import '../../styles/fpt-dice.css';
 import ChatWidget from '../../components/ChatWidget.astro';
+import DxMotion from '../../components/DxMotion.astro';
 
 export function getStaticPaths() {
 	const practices = [
@@ -164,16 +165,6 @@ export function getStaticPaths() {
 
 const { p } = Astro.props;
 
-const navItems = [
-	{ label: 'About', href: '/#about' },
-	{ label: 'Practices', href: '/#practices' },
-	{ label: 'Results', href: '/#results' },
-	{ label: 'Clients', href: '/#clients' },
-	{ label: 'FAQ', href: '/#faq' },
-	{ label: 'Insights', href: '/insights' },
-	{ label: 'Contact', href: '/#contact' },
-];
-
 const steps = [
 	{ no: '01', t: 'JD co-writing', c: 'We co-write the JD until it describes the person you actually need.' },
 	{ no: '02', t: 'Sourcing', c: 'We reach out directly to proven people in our network and beyond, instead of waiting for applications.' },
@@ -183,9 +174,9 @@ const steps = [
 ];
 
 const stats = [
-	{ v: '−29%', c: 'Time-to-hire' },
-	{ v: '+21%', c: 'Retention' },
-	{ v: '+15%', c: 'Team satisfaction' },
+	{ count: 29, prefix: '−', suffix: '%', v: '−29%', c: 'time-to-hire on mid to senior roles' },
+	{ count: 21, prefix: '+', suffix: '%', v: '+21%', c: 'employee retention after placement' },
+	{ count: 15, prefix: '+', suffix: '%', v: '+15%', c: 'team satisfaction through senior recruitment' },
 ];
 
 const faqSchema = {
@@ -204,10 +195,7 @@ const faqSchema = {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{p.metaTitle} . FP Talent</title>
-		<meta
-			name="description"
-			content={`${p.intent} ${p.intro}`}
-		/>
+		<meta name="description" content={`${p.intent} ${p.intro}`} />
 		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg" />
 		<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
@@ -217,140 +205,137 @@ const faqSchema = {
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=News+Cycle:wght@400;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
 		/>
 		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 		<Analytics />
 		<SpeedInsights />
 	</head>
 	<body>
-		<header class="site-top">
-			<a class="logo-lockup" href="/" aria-label="FP Talent home">
-				<span class="logo">FPT<span class="logo-cursor" aria-hidden="true"></span></span>
-				<span class="logo-tag">People who ship.</span>
-			</a>
-			<nav class="top-nav practice-nav" aria-label="Primary">
-				{navItems.map(item => <a href={item.href}>{item.label}</a>)}
-			</nav>
-			<div class="header-right">
-				<a class="btn-demo" href="/#contact">Book a consultation</a>
+		<nav class="dx-nav">
+			<div class="dx-container dx-nav-inner">
+				<a class="dx-logo" href="/">FPT<span class="dx-logo-block"></span></a>
+				<div class="dx-nav-links">
+					<a href="/candidates#searches">Open searches</a>
+					<a href="/#practices">Practices</a>
+					<a href="/insights">Insights</a>
+					<a href="/#why">Why FPT</a>
+				</div>
+				<div class="dx-nav-right">
+					<a class="quiet" href="/candidates">For candidates</a>
+					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
+				</div>
+			</div>
+		</nav>
+
+		<header class="dxc-hero dxp-hero">
+			<div class="dx-container">
+				<p class="dxp-kicker" data-dxa>{p.name} practice</p>
+				<h1 data-dxa>{p.intent.replace(/\.$/, '')}<span class="accent">.</span></h1>
+				<p class="dxc-sub" data-dxa>{p.intro}</p>
+				<div class="dx-cta-row" data-dxa>
+					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
+					<a class="dx-btn outline-light" href="/candidates#searches">See open searches</a>
+				</div>
 			</div>
 		</header>
 
-		<main class="practice-page">
-			<section class="practice-hero container">
-				<h1 class="display practice-h1">{p.name}<span class="dot">.</span></h1>
-				<p class="practice-intent display">{p.intent}</p>
-				<p class="practice-intro">{p.intro}</p>
-			</section>
-
-			<section class="container practice-block">
-				<h2 class="practice-sub-head display">Roles we place</h2>
-				<div class="role-chips">
-					{p.roles.map(r => <span class="role-chip">{r}</span>)}
+		<section class="dx-sec">
+			<div class="dx-container">
+				<h2 class="dx-sec-head" data-dxa>Roles we place</h2>
+				<div class="dx-cats" data-dxa>
+					{p.roles.map(r => <span class="dx-cat">{r}</span>)}
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class="container practice-block">
-				<h2 class="practice-sub-head display">How the search runs</h2>
-				<div class="mini-steps">
+		<section class="dx-sec grey">
+			<div class="dx-container">
+				<h2 class="dx-sec-head" data-dxa>How the search runs</h2>
+				<div class="dx-steps five">
 					{
 						steps.map(s => (
-							<div class="mini-step">
-								<span class="mini-no">{s.no}</span>
-								<div>
-									<h3 class="mini-title display">{s.t}</h3>
-									<p class="mini-copy">{s.c}</p>
-								</div>
+							<div class="dx-step" data-dxa>
+								<div class="no">{s.no}</div>
+								<div class="t">{s.t}</div>
+								<div class="c">{s.c}</div>
 							</div>
 						))
 					}
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class="container practice-block">
-				<h2 class="practice-sub-head display">Why FPT</h2>
-				<div class="why-grid">
+		<section class="dx-sec">
+			<div class="dx-container">
+				<h2 class="dx-sec-head" data-dxa>Why FPT</h2>
+				<div class="dx-steps">
 					{
 						p.why.map(w => (
-							<div class="why-card">
-								<h3 class="why-title display">{w.t}</h3>
-								<p class="why-copy">{w.c}</p>
+							<div class="dx-step" data-dxa>
+								<div class="t">{w.t}</div>
+								<div class="c">{w.c}</div>
 							</div>
 						))
 					}
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class="container practice-block">
-				<div class="mini-stats">
+		<section class="dx-numbers">
+			<div class="dx-container">
+				<div class="dx-tiles">
 					{
 						stats.map(s => (
-							<div class="mini-stat">
-								<span class="mini-stat-v display">{s.v}</span>
-								<span class="mini-stat-c">{s.c}</span>
+							<div class="dx-tile" data-dxa>
+								<span class="v" data-count={s.count} data-prefix={s.prefix} data-suffix={s.suffix}>
+									{s.v}
+								</span>
+								<span class="c">{s.c}</span>
 							</div>
 						))
 					}
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class="container practice-block">
-				<h2 class="practice-sub-head display">Questions founders ask</h2>
-				<div class="faq-list practice-faq">
+		<section class="dx-sec grey">
+			<div class="dx-container">
+				<h2 class="dx-sec-head" data-dxa>Questions founders ask</h2>
+				<div class="dx-faq">
 					{
 						p.faqs.map(f => (
-							<details class="faq-item">
+							<details class="dx-faq-item" data-dxa>
 								<summary>{f.q}</summary>
 								<p>{f.a}</p>
 							</details>
 						))
 					}
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class="practice-cta-band">
-				<div class="container footer-cta">
-					<h2 class="footer-cta-line display">{p.cta}</h2>
-					<a class="arrow-cta" href="/#contact">
-						<span class="arrow-box" aria-hidden="true">
-							<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4">
-								<path d="M4 12h15M13 5l7 7-7 7" stroke-linecap="square"></path>
-							</svg>
-						</span>
-						Book a consultation
-					</a>
+		<section class="dx-sec">
+			<div class="dx-container">
+				<div class="dx-cta-card" data-dxa>
+					<h2>{p.cta}</h2>
+					<p>A short call is enough to scope the search.</p>
+					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
 				</div>
-			</section>
-		</main>
+			</div>
+		</section>
 
-		<footer class="legal-footer">
-			<div class="container footer-bottom">
-				<span>© 2026 FirstPrinciples Talent. All rights reserved.</span>
-				<span class="footer-legal">
+		<footer class="dx-subfooter">
+			<div class="dx-container dx-legal">
+				<span>© 2026 FP Talent. All rights reserved.</span>
+				<span>
 					<a href="/terms">Terms</a>
 					<a href="/privacy">Privacy policy</a>
 				</span>
 			</div>
 		</footer>
 
-		<script>
-			// Agentation visual-feedback toolbar — dev only, never ships in the production bundle
-			if (import.meta.env.DEV) {
-				Promise.all([
-					import('react'),
-					import('react-dom/client'),
-					import('agentation'),
-				]).then(([React, ReactDOM, { Agentation }]) => {
-					const mount = document.createElement('div');
-					mount.id = 'agentation-root';
-					document.body.appendChild(mount);
-					ReactDOM.createRoot(mount).render(
-						React.createElement(Agentation, { endpoint: 'http://localhost:4747' })
-					);
-				});
-			}
-		</script>
+		<DxMotion />
 		<ChatWidget />
 	</body>
 </html>
