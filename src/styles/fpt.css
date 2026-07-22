@@ -305,16 +305,16 @@ body.loaded .hero-title .word {
 	height: 0.52em;
 }
 
-.brand-linear svg path {
-	fill: #5e6ad2;
+.brand-raycast svg path {
+	fill: #ff6363;
 }
 
-.brand-retool svg path {
-	fill: #3d3d3d;
+.brand-railway svg path {
+	fill: #111111;
 }
 
-.brand-supabase svg path {
-	fill: #3ecf8e;
+.brand-resend svg path {
+	fill: #111111;
 }
 
 .brand-word {

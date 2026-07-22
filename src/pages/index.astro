@@ -2,9 +2,9 @@
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/fpt.css';
-import linearIcon from '../assets/brands/linear.svg?raw';
-import retoolIcon from '../assets/brands/retool.svg?raw';
-import supabaseIcon from '../assets/brands/supabase.svg?raw';
+import raycastIcon from '../assets/brands/raycast.svg?raw';
+import railwayIcon from '../assets/brands/railway.svg?raw';
+import resendIcon from '../assets/brands/resend.svg?raw';
 
 const navItems = [
 	{ label: 'About', href: '#about' },
@@ -186,18 +186,18 @@ const faqs = [
 						<span class="word" style="--enter-delay: 540ms">behind</span>
 						<span class="word" style="--enter-delay: 620ms">teams</span>
 						<span class="word" style="--enter-delay: 700ms">like</span>
-						<span class="brand-slot" id="brand-slot" aria-label="Linear, Retool, Supabase">
-							<span class="brand-mark brand-lockup brand-linear">
-								<Fragment set:html={linearIcon} />
-								<span class="brand-word">Linear</span>
+						<span class="brand-slot" id="brand-slot" aria-label="Raycast, Railway, Resend">
+							<span class="brand-mark brand-lockup brand-raycast">
+								<Fragment set:html={raycastIcon} />
+								<span class="brand-word">Raycast</span>
 							</span>
-							<span class="brand-mark brand-lockup brand-retool">
-								<Fragment set:html={retoolIcon} />
-								<span class="brand-word">Retool</span>
+							<span class="brand-mark brand-lockup brand-railway">
+								<Fragment set:html={railwayIcon} />
+								<span class="brand-word">Railway</span>
 							</span>
-							<span class="brand-mark brand-lockup brand-supabase">
-								<Fragment set:html={supabaseIcon} />
-								<span class="brand-word">Supabase</span>
+							<span class="brand-mark brand-lockup brand-resend">
+								<Fragment set:html={resendIcon} />
+								<span class="brand-word">Resend</span>
 							</span>
 							<span class="type-cursor" id="type-cursor" aria-hidden="true"></span>
 						</span>
