@@ -2,9 +2,9 @@
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/fpt.css';
-import claudeMark from '../assets/brands/claude.svg?raw';
-import teslaMark from '../assets/brands/tesla-word.svg?raw';
-import figmaIcon from '../assets/brands/figma-icon.svg?raw';
+import linearIcon from '../assets/brands/linear.svg?raw';
+import retoolIcon from '../assets/brands/retool.svg?raw';
+import loomIcon from '../assets/brands/loom.svg?raw';
 
 const navItems = [
 	{ label: 'About', href: '#about' },
@@ -46,21 +46,21 @@ const stats = [
 ];
 
 const featuredQuote = {
-	text: 'FPT ran our senior platform-engineer search end to end. We met four candidates, hired one, and she was shipping in her first sprint. The fit screen called it exactly.',
+	text: "We'd been interviewing for four months with nothing to show for it. FPT sent three people in two weeks and honestly any of them could have done the job. The one we hired is still here a year later, which for us is the whole point.",
 	who: 'Founder & CEO',
-	role: 'Series A developer-tools startup',
+	role: 'Seed-stage developer-tools startup',
 	initials: 'CEO',
 };
 
 const quotes = [
 	{
-		text: 'After a quarter of job-board noise, they filled our senior PM role in five weeks. The shortlist reasoning alone was worth the fee.',
+		text: 'They pushed back on our JD before doing anything else and rewrote half of it. Annoying in the moment, right in hindsight. The role finally started attracting real candidates.',
 		who: 'Co-founder',
-		role: 'B2B SaaS, Series B',
+		role: 'B2B SaaS, Series A',
 		initials: 'CO',
 	},
 	{
-		text: 'Discreet, fast, and honest about who we should not hire. Our VP of Engineering came through their confidential search.',
+		text: 'They talked us out of a candidate we liked. That is when I started trusting them. The person we hired instead has been quietly excellent.',
 		who: 'CTO',
 		role: 'Healthcare software company',
 		initials: 'CTO',
@@ -186,12 +186,18 @@ const faqs = [
 						<span class="word" style="--enter-delay: 540ms">behind</span>
 						<span class="word" style="--enter-delay: 620ms">teams</span>
 						<span class="word" style="--enter-delay: 700ms">like</span>
-						<span class="brand-slot" id="brand-slot" aria-label="Claude, Tesla, Figma">
-							<span class="brand-mark brand-claude" set:html={claudeMark} />
-							<span class="brand-mark brand-tesla" set:html={teslaMark} />
-							<span class="brand-mark brand-figma">
-								<Fragment set:html={figmaIcon} />
-								<span class="figma-word">Figma</span>
+						<span class="brand-slot" id="brand-slot" aria-label="Linear, Retool, Loom">
+							<span class="brand-mark brand-lockup brand-linear">
+								<Fragment set:html={linearIcon} />
+								<span class="brand-word">Linear</span>
+							</span>
+							<span class="brand-mark brand-lockup brand-retool">
+								<Fragment set:html={retoolIcon} />
+								<span class="brand-word">Retool</span>
+							</span>
+							<span class="brand-mark brand-lockup brand-loom">
+								<Fragment set:html={loomIcon} />
+								<span class="brand-word">Loom</span>
 							</span>
 							<span class="type-cursor" id="type-cursor" aria-hidden="true"></span>
 						</span>

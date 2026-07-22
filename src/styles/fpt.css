@@ -297,19 +297,27 @@ body.loaded .hero-title .word {
 	display: block;
 }
 
-.brand-tesla svg {
-	height: 0.34em;
+.brand-lockup {
+	gap: 0.14em;
 }
 
-.brand-figma svg {
-	height: 0.7em;
+.brand-lockup svg {
+	height: 0.52em;
 }
 
-.brand-figma {
-	gap: 0.12em;
+.brand-linear svg path {
+	fill: #5e6ad2;
 }
 
-.figma-word {
+.brand-retool svg path {
+	fill: #3d3d3d;
+}
+
+.brand-loom svg path {
+	fill: #625df5;
+}
+
+.brand-word {
 	font-family: 'Segoe UI', -apple-system, Helvetica, Arial, sans-serif;
 	font-weight: 600;
 	font-size: 0.52em;
