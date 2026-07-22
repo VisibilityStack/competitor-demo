@@ -84,11 +84,6 @@ for (const ch of ['F', 'P', 'T']) {
 	});
 	pxOffset += 6;
 }
-// bottom rows fill first, rising like water; deterministic jitter per cell
-pixelCells.forEach(cell => {
-	cell.delay = (7 - cell.row) * 190 + ((cell.col * 7 + cell.row * 3) % 5) * 70;
-});
-
 const orgSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'Organization',
@@ -392,16 +387,11 @@ const faqs = [
 						pixelCells.map(c => (
 							<span
 								class="px"
-								style={`grid-column:${c.col};grid-row:${c.row};--d:${c.delay}ms;--fall:${c.row + 2}`}
+								style={`grid-column:${c.col};grid-row:${c.row}`}
 							/>
 						))
 					}
-					<button
-						class="px px-cursor"
-						style="grid-column:19;grid-row:7;--d:1900ms"
-						aria-label="Replay the logo animation"
-						title="Replay"
-					></button>
+					<span class="px px-cursor" style="grid-column:19;grid-row:7" aria-hidden="true"></span>
 				</div>
 
 				<div class="footer-bottom">
@@ -633,14 +623,6 @@ const faqs = [
 				if (el) spy.observe(el);
 			});
 
-			// ---------- pixel wall: tap the cursor block to replay ----------
-			const wall = document.getElementById('pixel-wall');
-			const wallCursor = wall?.querySelector('.px-cursor');
-			wallCursor?.addEventListener('click', () => {
-				// switching between two identical keyframe names restarts the animation
-				wall?.classList.toggle('alt');
-			});
-
 			// ---------- reveal on scroll ----------
 			const io = new IntersectionObserver(
 				entries =>
@@ -654,33 +636,40 @@ const faqs = [
 			);
 			document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 
-			// ---------- stat count-up ----------
+			// ---------- stat count-up: replays every time the section is entered ----------
 			const statIO = new IntersectionObserver(
 				entries =>
 					entries.forEach(e => {
-						if (!e.isIntersecting) return;
-						statIO.unobserve(e.target);
 						const el = e.target as HTMLElement;
-						el.classList.add('counted');
 						const target = Number(el.dataset.target || 0);
 						const sign = el.dataset.sign || '';
-						const start = performance.now();
-						const dur = 1600;
-						function step(t: number) {
-							const p = Math.min(1, (t - start) / dur);
-							const eased = 1 - Math.pow(1 - p, 3);
-							el.textContent = `${sign}${Math.round(target * eased)}%`;
-							if (p < 1) requestAnimationFrame(step);
+						const run = Number(el.dataset.run || 0) + 1;
+						el.dataset.run = String(run);
+						if (e.isIntersecting) {
+							el.classList.add('counted');
+							const start = performance.now();
+							const dur = 1600;
+							function step(t: number) {
+								if (el.dataset.run !== String(run)) return;
+								const p = Math.min(1, (t - start) / dur);
+								const eased = 1 - Math.pow(1 - p, 3);
+								el.textContent = `${sign}${Math.round(target * eased)}%`;
+								if (p < 1) requestAnimationFrame(step);
+							}
+							requestAnimationFrame(step);
+						} else {
+							el.classList.remove('counted');
+							el.textContent = `${sign}0%`;
 						}
-						requestAnimationFrame(step);
 					}),
 				{ threshold: 0.6 }
 			);
-			document.querySelectorAll<HTMLElement>('.stat-value').forEach(el => {
-				// hold at 0 until in view so the count-up is actually seen
-				if (!reduceMotion) el.textContent = `${el.dataset.sign || ''}0%`;
-				statIO.observe(el);
-			});
+			if (!reduceMotion) {
+				document.querySelectorAll<HTMLElement>('.stat-value').forEach(el => {
+					el.textContent = `${el.dataset.sign || ''}0%`;
+					statIO.observe(el);
+				});
+			}
 		</script>
 	</body>
 </html>
