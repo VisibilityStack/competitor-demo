@@ -26,4 +26,4 @@ Fee percentage, comp definition, payment timing, replacement guarantee, exclusiv
 
 ## Small shortlist, deep diligence
 
-Two or three agencies, one real role, the same questions to each. The differences that matter will be obvious within a week. If you want to run that test on us, book a demo and bring your hardest open role.
+Two or three agencies, one real role, the same questions to each. The differences that matter will be obvious within a week. If you want to run that test on us, book a consultation and bring your hardest open role.

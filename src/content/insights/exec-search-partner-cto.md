@@ -24,4 +24,4 @@ Ask the partner what a great CTO looks like at your stage versus two stages late
 
 Classic exec search runs on quarters. Great startup CTO candidates decide on weeks. A partner whose process cannot compress will lose you exactly the candidates the search exists to reach.
 
-If a CTO search is in front of you, book a demo. We will show you the market map approach on your role, and tell you honestly if your search needs a different species than us.
+If a CTO search is in front of you, book a consultation. We will show you the market map approach on your role, and tell you honestly if your search needs a different species than us.

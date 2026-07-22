@@ -24,4 +24,4 @@ The common path of "try a contractor, convert the good one" sounds prudent and q
 
 Scoped project, urgent gap, specialist for a quarter: marketplace, no hesitation. Core team, senior ownership, leadership: run a real search, with direct sourcing and fit screening, aimed at people who want to build one thing for years.
 
-If you have been trying to assemble a permanent team through contractor funnels and feel the churn, book a demo. We will show you what a staying-power search looks like for the same roles.
+If you have been trying to assemble a permanent team through contractor funnels and feel the churn, book a consultation. We will show you what a staying-power search looks like for the same roles.

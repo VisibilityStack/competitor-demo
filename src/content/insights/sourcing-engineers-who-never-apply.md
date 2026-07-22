@@ -24,4 +24,4 @@ When cold is the only path, specificity is the entire game. Name the technical p
 
 Non-searching candidates are not ready on your schedule. The reply that matters may come months later, when their project wraps or their company wobbles. Keep the relationship warm without pestering; a mapped market compounds across every future search you run.
 
-This mapped, direct approach is precisely how our sourcing step works. If your pipeline today is whoever happens to apply, book a demo and we will show you the map for your role.
+This mapped, direct approach is precisely how our sourcing step works. If your pipeline today is whoever happens to apply, book a consultation and we will show you the map for your role.

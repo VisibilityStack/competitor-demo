@@ -24,4 +24,4 @@ Momentum is a closing tool. Debrief same day, decide inside a week, and pre-clos
 
 When their current employer counters, the raise is rarely what wins them back; the doubt is. Candidates who articulated their reasons for leaving during your process hold firm. Make "why leave, why this, why now" an explicit conversation early, and revisit it in the closing call.
 
-We manage offers on every search through exactly this shape, and it is where searches are won. If your last two candidates signed elsewhere, book a demo. The fix is usually upstream of the number.
+We manage offers on every search through exactly this shape, and it is where searches are won. If your last two candidates signed elsewhere, book a consultation. The fix is usually upstream of the number.

@@ -24,4 +24,4 @@ The strongest JD section is the one that filters honestly: what is hard about th
 
 A salary band and an honest sentence about equity move response rates more than any other single line. Silence on comp reads as either below-market or disorganized, and senior candidates have no patience for finding out which.
 
-We co-write the JD at the start of every search until it describes the person you actually need, because everything downstream inherits its clarity. If your current JD has been open for months with thin response, book a demo and bring it along. The rewrite is usually the unlock.
+We co-write the JD at the start of every search until it describes the person you actually need, because everything downstream inherits its clarity. If your current JD has been open for months with thin response, book a consultation and bring it along. The rewrite is usually the unlock.

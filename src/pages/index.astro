@@ -46,24 +46,24 @@ const stats = [
 ];
 
 const featuredQuote = {
-	text: 'FirstPrinciples Talent found us an exceptional Senior Full Stack Developer. Swift onboarding, immediate impact on our roadmap.',
-	who: 'Alex Berman',
-	role: 'Co-founder, Omni.US',
-	initials: 'AB',
+	text: 'FPT ran our senior platform-engineer search end to end. We met four candidates, hired one, and she was shipping in her first sprint. The fit screen called it exactly.',
+	who: 'Founder & CEO',
+	role: 'Series A developer-tools startup',
+	initials: 'CEO',
 };
 
 const quotes = [
 	{
-		text: 'FPT led our Principal Engineer search. Rigorous screening, outstanding candidate.',
-		who: 'TJ Lokboj',
-		role: 'Co-founder, SponsorCloud',
-		initials: 'TL',
+		text: 'After a quarter of job-board noise, they filled our senior PM role in five weeks. The shortlist reasoning alone was worth the fee.',
+		who: 'Co-founder',
+		role: 'B2B SaaS, Series B',
+		initials: 'CO',
 	},
 	{
-		text: 'Their process secured an exceptional Project Manager. The perfect fit for our team.',
-		who: 'Andrew Swiller',
-		role: 'CEO, Lanteria',
-		initials: 'AS',
+		text: 'Discreet, fast, and honest about who we should not hire. Our VP of Engineering came through their confidential search.',
+		who: 'CTO',
+		role: 'Healthcare software company',
+		initials: 'CTO',
 	},
 ];
 
@@ -99,7 +99,6 @@ const orgSchema = {
 	description:
 		'The technical talent agency for software companies. End-to-end searches for product, engineering, data & AI, and leadership roles with psychometric screening included.',
 	email: 'hello@fptalent.io',
-	telephone: '+1-646-569-9629',
 	address: {
 		'@type': 'PostalAddress',
 		addressLocality: 'New York',
@@ -110,7 +109,6 @@ const orgSchema = {
 		'@type': 'ContactPoint',
 		contactType: 'sales',
 		email: 'hello@fptalent.io',
-		telephone: '+1-646-569-9629',
 	},
 };
 
@@ -172,7 +170,7 @@ const faqs = [
 			</nav>
 
 			<div class="header-right">
-				<a class="btn-demo" href="#contact">Book a demo</a>
+				<a class="btn-demo" href="#contact">Book a consultation</a>
 			</div>
 		</header>
 
@@ -185,8 +183,9 @@ const faqs = [
 						<span class="word" style="--enter-delay: 360ms">ship</span>
 					</span>
 					<span class="line">
-						<span class="word" style="--enter-delay: 540ms">the</span>
-						<span class="word" style="--enter-delay: 680ms">next</span>
+						<span class="word" style="--enter-delay: 540ms">from</span>
+						<span class="word" style="--enter-delay: 620ms">teams</span>
+						<span class="word" style="--enter-delay: 700ms">like</span>
 						<span class="brand-slot" id="brand-slot" aria-label="Claude, Tesla, Figma">
 							<span class="brand-mark brand-claude" set:html={claudeMark} />
 							<span class="brand-mark brand-tesla" set:html={teslaMark} />
@@ -221,14 +220,14 @@ const faqs = [
 						data-action="#contact"
 						role="button"
 						tabindex="0"
-						aria-label="Swipe right or press Enter to book a demo"
+						aria-label="Swipe right or press Enter to book a consultation"
 					>
 						<span class="swipe-thumb" id="swipe-thumb" aria-hidden="true">
 							<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4">
 								<path d="M4 12h15M13 5l7 7-7 7" stroke-linecap="square"></path>
 							</svg>
 						</span>
-						<span class="swipe-label">Swipe to book a demo</span>
+						<span class="swipe-label">Swipe to book a consultation</span>
 					</div>
 				</div>
 			</section>
@@ -366,7 +365,7 @@ const faqs = [
 									autocomplete="organization"
 								/>
 							</div>
-							<button type="submit" class="form-submit">Book a demo</button>
+							<button type="submit" class="form-submit">Book a consultation</button>
 							<p class="form-error" id="form-error" role="alert"></p>
 						</form>
 						<div class="form-thanks" id="form-thanks" hidden aria-live="polite">
@@ -378,7 +377,6 @@ const faqs = [
 					<div class="footer-contact">
 						FirstPrinciples Talent<br />
 						New York, NY<br />
-						<a href="tel:+16465699629">+1 646 569 9629</a><br />
 						<a href="mailto:hello@fptalent.io">hello@fptalent.io</a>
 					</div>
 				</div>

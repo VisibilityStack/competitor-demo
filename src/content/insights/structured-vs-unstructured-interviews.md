@@ -24,4 +24,4 @@ The objection is always that structure kills rapport. In practice the opposite h
 
 Even perfectly structured interviews measure skill under observation, not fit over months. That is why we pair structured panels with psychometric screening and culture mapping on every search: the interview measures the work, the screen measures the environment.
 
-If your loop still runs on vibes and veto power, book a demo. Adding structure is a two-week fix that upgrades every hire after it.
+If your loop still runs on vibes and veto power, book a consultation. Adding structure is a two-week fix that upgrades every hire after it.

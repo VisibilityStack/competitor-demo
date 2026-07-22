@@ -447,7 +447,7 @@ body.loaded .hero-title .word {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: min(252px, 76vw);
+	width: min(340px, 84vw);
 	height: 46px;
 	margin: 3rem auto 0;
 	border: 1px solid var(--fpt-line);

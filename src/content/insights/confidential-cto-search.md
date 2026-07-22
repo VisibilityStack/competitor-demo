@@ -24,4 +24,4 @@ Strong leadership candidates are comfortable with confidential processes; most h
 
 A confidential search is almost impossible to run internally; the moment your own people start interviewing, the secret is structural. An outside partner provides the buffer: outreach, screening, and scheduling all happen at arm's length. It is among the clearest cases for retained, mapped search done by someone whose name is not yours.
 
-If you are facing a transition that needs handling quietly, book a demo. Discretion, conveniently, is where we started this article.
+If you are facing a transition that needs handling quietly, book a consultation. Discretion, conveniently, is where we started this article.

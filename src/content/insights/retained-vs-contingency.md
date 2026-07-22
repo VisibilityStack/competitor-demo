@@ -30,4 +30,4 @@ Much of the startup market now runs on engaged search: a modest commitment that 
 
 A simple rule: the scarcer the skills and the higher the blast radius of a mis-hire, the further you move toward retained. Whatever model you pick, hold the agency to the same standards: direct sourcing, structured screening, and shortlists measured in quality, not volume.
 
-If you want help pressure-testing which model your open role needs, book a demo and bring the JD.
+If you want help pressure-testing which model your open role needs, book a consultation and bring the JD.

@@ -26,4 +26,4 @@ Cross into repeatable volume, a sales team scaling every quarter, support hiring
 
 ## Decide on your actual hiring plan
 
-Write down the next twelve months of hires. Fewer than ten, mostly senior or scarce: agency. Dozens, mostly repeating: RPO conversation worth having. If you want an honest read on your plan, book a demo. Selling you an embedded team we do not think you need is not our model.
+Write down the next twelve months of hires. Fewer than ten, mostly senior or scarce: agency. Dozens, mostly repeating: RPO conversation worth having. If you want an honest read on your plan, book a consultation. Selling you an embedded team we do not think you need is not our model.

@@ -24,4 +24,4 @@ The first head of data at a startup is a player-coach: hands-on enough to fix th
 
 Write the JD around ownership: metrics trust, data platform direction, the data hiring plan. Avoid the fantasy blend of "PhD researcher plus infra architect plus BI analyst"; that person is three people.
 
-If the signals above read uncomfortably familiar, book a demo. We will help you scope whether it is leadership time or foundation time.
+If the signals above read uncomfortably familiar, book a consultation. We will help you scope whether it is leadership time or foundation time.

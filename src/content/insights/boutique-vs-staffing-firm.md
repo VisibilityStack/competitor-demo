@@ -26,4 +26,4 @@ Depth also shows in assessment. Volume businesses screen for keyword match and a
 
 ## Match the tool to the job
 
-Contract volume and commodity roles: big firm, no shame in it. Senior, scarce, team-defining technical hires: the specialist wins on the only metrics that matter, shortlist quality and retention. If your roles are the second kind, book a demo and judge the depth yourself.
+Contract volume and commodity roles: big firm, no shame in it. Senior, scarce, team-defining technical hires: the specialist wins on the only metrics that matter, shortlist quality and retention. If your roles are the second kind, book a consultation and judge the depth yourself.

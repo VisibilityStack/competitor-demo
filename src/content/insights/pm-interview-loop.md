@@ -24,4 +24,4 @@ Define in advance what a strong answer contains: explicit assumptions, a clear d
 
 PM failure is usually a fit failure: pace, ownership appetite, founder compatibility. We pair every PM shortlist with psychometric screening and a culture map so the loop measures the job and the screen measures the environment. The two together predict; either alone guesses.
 
-If your PM loop still runs on borrowed case studies, book a demo. We will help you rebuild it around your product before the next candidate walks in.
+If your PM loop still runs on borrowed case studies, book a consultation. We will help you rebuild it around your product before the next candidate walks in.

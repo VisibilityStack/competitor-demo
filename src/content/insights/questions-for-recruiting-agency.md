@@ -24,4 +24,4 @@ Nine: what is the fee, on what definition of comp, due when? Ten: what does the 
 
 Specific numbers and named mechanisms are the tell of a real system; adjectives are the tell of a pitch deck. An agency that tracks retention will answer question six instantly. One that sells screening as an add-on has told you what they think screening is worth. And any hesitation on question twelve means the exit was never designed, which is precisely when you will need it.
 
-Ask us the same twelve. Book a demo and we will answer all of them on the first call, in writing, against your open role.
+Ask us the same twelve. Book a consultation and we will answer all of them on the first call, in writing, against your open role.

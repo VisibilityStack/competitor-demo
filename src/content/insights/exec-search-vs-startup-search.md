@@ -24,4 +24,4 @@ Startup-native searches compress the calendar, pre-book panels, and close with c
 
 Keep the map, the deep references, and the measured assessment; compress everything between them. That is the model we run: exec-search rigor, including psychometric screening on leadership shortlists, on a startup calendar of weeks.
 
-If you are choosing between a marquee firm's quarter and a fast agency's gut feel for your VP Eng, book a demo. We built the middle on purpose.
+If you are choosing between a marquee firm's quarter and a fast agency's gut feel for your VP Eng, book a consultation. We built the middle on purpose.

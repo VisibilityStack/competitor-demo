@@ -28,4 +28,4 @@ Skill gets people to interviews; fit decides whether they stay. Practitioners sc
 
 Ask what happens at day 30, 60, and 90 after placement, and what their past placements' retention looks like. Forwarders vanish on invoice day; recruiters treat retention as the actual product.
 
-Run any agency, including us, against these five. Book a demo and test them live against your open role.
+Run any agency, including us, against these five. Book a consultation and test them live against your open role.

@@ -24,4 +24,4 @@ Included does not mean gestured at. Ask any agency, including us, three question
 
 When comparing proposals, move every assessment add-on into the base price and recompare. Some cheap fees stop being cheap. Then weigh what each agency's retention numbers say about whether their screening, wherever it is priced, actually works.
 
-Want to see what an included screen looks like on a real search? Book a demo and we will show you the instrument, the map, and how they change the shortlist.
+Want to see what an included screen looks like on a real search? Book a consultation and we will show you the instrument, the map, and how they change the shortlist.

@@ -24,4 +24,4 @@ Honesty cuts both ways. If your "CTO" is really a first engineering hire with a 
 
 Ask for the market map early: who is on it and why. Ask what assessment beyond interviews is included; we run psychometric and leadership-fit screening on every executive shortlist as standard. Ask how the installments map to milestones, and what happens if the search stalls.
 
-If you are weighing this decision now, book a demo. We will tell you honestly which search your role actually needs, including when the answer is the cheaper one.
+If you are weighing this decision now, book a consultation. We will tell you honestly which search your role actually needs, including when the answer is the cheaper one.

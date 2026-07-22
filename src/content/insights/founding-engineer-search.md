@@ -28,4 +28,4 @@ People willing to take founding risk decide fast and expect you to do the same. 
 
 Working-style fit with the founders matters more here than in any other hire; you will share a codebase, a roadmap, and probably a room. We screen founding-engineer shortlists for exactly that pairing before the first interview.
 
-If this is the hire in front of you, book a demo. We will help you scope what "founding" means for your company before the search starts.
+If this is the hire in front of you, book a consultation. We will help you scope what "founding" means for your company before the search starts.

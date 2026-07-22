@@ -30,4 +30,4 @@ The best candidates are gone in weeks. Every idle day between rounds is a day a 
 
 Interviews reward people who interview well. Pairing structured panels with psychometric screening and a culture map catches what conversation cannot: working style, pace, and how someone handles ambiguity. That is the difference between a hire who stays and a search you rerun in six months.
 
-A hiring process is a product. Instrument it, cut what adds no signal, and ship offers faster. If you want a search run this way end to end, book a demo and we will walk you through it on your open role.
+A hiring process is a product. Instrument it, cut what adds no signal, and ship offers faster. If you want a search run this way end to end, book a consultation and we will walk you through it on your open role.

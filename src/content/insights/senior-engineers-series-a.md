@@ -24,4 +24,4 @@ Series A candidates are nearly always fielding multiple processes, and your one 
 
 The honest case for using a search partner at this stage is capacity and reach: mapped candidates you cannot see, outreach that gets answered, screening run as a system, while founders stay on product. It is the difference between hiring being something you do and something that happens on schedule. Our stats on time-to-hire and retention exist because Series A searches are the job we built for.
 
-If your post-A hiring plan is staring at you, book a demo. Bring the three hardest roles.
+If your post-A hiring plan is staring at you, book a consultation. Bring the three hardest roles.

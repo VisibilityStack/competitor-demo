@@ -24,4 +24,4 @@ Ask what scaffolding existed in their best role: who set priorities, who reviewe
 
 Founders love hiring ahead, bringing in the Series C engineer at seed "for later." Later has a way of arriving after the mis-hire does.
 
-If your last strong-resume hire mysteriously did not work, stage fit is the first place to look. Book a demo and we will show you how we screen for it.
+If your last strong-resume hire mysteriously did not work, stage fit is the first place to look. Book a consultation and we will show you how we screen for it.

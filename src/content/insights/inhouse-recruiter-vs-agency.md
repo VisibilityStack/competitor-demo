@@ -26,4 +26,4 @@ Keep a search partner for the roles where the cost of error dominates the fee: s
 
 ## Decide by role portfolio, not headcount
 
-List next year's expected hires and split them by scarcity and seniority. The volume half tells you whether an internal recruiter is justified. The scarce half is agency work regardless. If you want a second pair of eyes on that split, book a demo and bring the hiring plan.
+List next year's expected hires and split them by scarcity and seniority. The volume half tells you whether an internal recruiter is justified. The scarce half is agency work regardless. If you want a second pair of eyes on that split, book a consultation and bring the hiring plan.

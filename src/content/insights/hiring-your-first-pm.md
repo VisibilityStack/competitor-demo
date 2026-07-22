@@ -24,4 +24,4 @@ Strong first PMs rarely apply cold, and they are rarely between jobs. They are s
 
 The candidates you want will have safer offers. What wins is the honest version of the trajectory: real scope from day one, a seat in decisions, and the chance to build the product org around them. Put that in writing in the offer conversation.
 
-The first PM search is also where structured screening earns its keep, because the failure mode is fit, not skill. If you are staring at this hire now, book a demo and we will scope the role with you before anyone starts interviewing.
+The first PM search is also where structured screening earns its keep, because the failure mode is fit, not skill. If you are staring at this hire now, book a consultation and we will scope the role with you before anyone starts interviewing.

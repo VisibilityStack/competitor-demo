@@ -24,4 +24,4 @@ Ask what the next eighteen months demand. Mostly deepening what exists, keeping 
 
 A VP search is where measured fit assessment earns its fee; we screen leadership shortlists psychometrically and against your actual founder working style, because that pairing is what fails when these hires fail.
 
-Facing this fork now? Book a demo. We will help you run the diagnosis before you run either play.
+Facing this fork now? Book a consultation. We will help you run the diagnosis before you run either play.

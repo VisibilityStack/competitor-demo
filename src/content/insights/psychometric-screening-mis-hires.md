@@ -28,4 +28,4 @@ The results show up in the numbers we track across engagements: retention improv
 
 The pattern is consistent. Companies that treat hiring like product, measured and iterated, out-hire companies that rely on gut feel. Psychometrics are simply the instrumentation.
 
-If you are scoping a technical hire and want the screen included from day one, book a demo and we will walk you through how it works on a real search.
+If you are scoping a technical hire and want the screen included from day one, book a consultation and we will walk you through how it works on a real search.

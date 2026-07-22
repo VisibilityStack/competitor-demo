@@ -1,8 +1,8 @@
 # FP Talent (FirstPrinciples Talent)
 
-> The technical talent agency for software companies. End-to-end searches for product, engineering, data & AI, and leadership roles: JD co-writing, direct sourcing beyond job boards, psychometric screening and culture mapping included at no extra cost, structured technical and cultural panels, and offer management. Results across engagements: -29% time-to-hire on mid-to-senior roles, +21% employee retention, +15% team satisfaction. Based in New York, NY. Contact: hello@fptalent.io, +1 646 569 9629.
+> The technical talent agency for software companies. End-to-end searches for product, engineering, data & AI, and leadership roles: JD co-writing, direct sourcing beyond job boards, psychometric screening and culture mapping included at no extra cost, structured technical and cultural panels, and offer management. Results across engagements: -29% time-to-hire on mid-to-senior roles, +21% employee retention, +15% team satisfaction. Based in New York, NY. Contact: hello@fptalent.io.
 
-FPT works with founder-led software companies from seed to Series C. Every shortlist is psychometrically screened before the client meets a candidate. Clients include founders at Omni.US, SponsorCloud, and Lanteria.
+FPT works with founder-led software companies from seed to Series C. Every shortlist is psychometrically screened before the client meets a candidate. Client references are shared privately during consultations.
 
 ## Practices
 
@@ -23,7 +23,7 @@ FPT works with founder-led software companies from seed to Series C. Every short
 
 ## Contact
 
-- [Book a demo](https://www.fptalent.io/#contact): short form (name, work email, company)
+- [Book a consultation](https://www.fptalent.io/#contact): short form (name, work email, company)
 - Email: hello@fptalent.io
 
 ## Policies

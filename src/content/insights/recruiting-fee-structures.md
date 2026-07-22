@@ -24,4 +24,4 @@ Whatever the structure, three definitions decide the real price. What counts as 
 
 Normalize every quote to a single expected cost for the specific role, using your real comp band. Then weigh what sits behind the price: sourcing depth, screening included versus sold separately, and the outcomes the agency will show you, especially retention of past placements. The fee funds a process; buy the process, not the number.
 
-If you want our pricing laid out against your open role with nothing hidden, book a demo. Fee transparency takes one call.
+If you want our pricing laid out against your open role with nothing hidden, book a consultation. Fee transparency takes one call.

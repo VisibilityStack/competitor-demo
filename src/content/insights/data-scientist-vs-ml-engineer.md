@@ -24,4 +24,4 @@ Early teams often need fractions of each role and try to hire one person who doe
 
 The search itself follows standard senior-hiring rules: direct sourcing, evidence of shipped work, and fit screening for stage and working style. But none of it saves a mis-scoped role.
 
-Scoping is the first step of every search we run, and it is where data roles most need it. Unsure which job your problem is? Book a demo and we will scope it with you before anyone writes a JD.
+Scoping is the first step of every search we run, and it is where data roles most need it. Unsure which job your problem is? Book a consultation and we will scope it with you before anyone writes a JD.

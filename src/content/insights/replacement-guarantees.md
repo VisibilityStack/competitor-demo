@@ -24,4 +24,4 @@ A replacement search still costs you what no clause refunds: months of lost road
 
 Make agencies state their guarantee trigger rate. Firms that track it will tell you; firms that will not are answering a different way.
 
-Want our terms and our trigger rate on the same page? Book a demo and ask.
+Want our terms and our trigger rate on the same page? Book a consultation and ask.

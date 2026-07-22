@@ -24,4 +24,4 @@ Founder attention is the scarcest resource in the company, and a struggling seni
 
 Whatever multiple of salary you accept for the total, and honest estimates run well past one year of comp, the conclusion is the same: money spent preventing mis-hires has absurd return relative to almost any other spend. Prevention is unglamorous: scoped roles, structured interviews, measured fit screening, honest references, deliberate onboarding. Retention is the metric we optimize for, and this ledger is the reason why.
 
-Run this accounting on your own last failed hire; the number will surprise you. Then book a demo, and we will show you what the prevention system looks like on your next search.
+Run this accounting on your own last failed hire; the number will surprise you. Then book a consultation, and we will show you what the prevention system looks like on your next search.

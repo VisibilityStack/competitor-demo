@@ -24,4 +24,4 @@ A low fee that produces a mis-hire is the most expensive thing you can buy. One 
 
 Ask what percentage, on what comp definition, paid when. Ask what the replacement terms are and how long the guarantee window runs. Ask what is included versus billed separately. An agency with good answers will give them in writing without flinching.
 
-Pricing conversations are also a preview of how an agency communicates. If the fee explanation is evasive, expect the search updates to be too. Want our structure explained on a live call, against your actual open role? Book a demo.
+Pricing conversations are also a preview of how an agency communicates. If the fee explanation is evasive, expect the search updates to be too. Want our structure explained on a live call, against your actual open role? Book a consultation.

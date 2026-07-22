@@ -24,4 +24,4 @@ Cutting rounds you actually need is rushing. Removing dead air between rounds yo
 
 Take your last three senior hires and measure kickoff to signature, then mark where the idle days sat. Most companies discover the market was never the problem. The calendar was.
 
-If your current search has been open for a quarter, the timeline is trying to tell you something about the process. Book a demo and we will find where the days are leaking.
+If your current search has been open for a quarter, the timeline is trying to tell you something about the process. Book a consultation and we will find where the days are leaking.

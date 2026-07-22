@@ -24,4 +24,4 @@ Senior engineers reply to specificity and ignore flattery. A message that names 
 
 This is the honest case for a search partner: years of mapped candidates, warm paths, and reply history in your exact niche, versus starting cold. It is also why our sourcing step reaches out directly to proven people instead of waiting for applications.
 
-If your open role has been sitting on job boards collecting the wrong resumes, book a demo and we will show you the map for your niche.
+If your open role has been sitting on job boards collecting the wrong resumes, book a consultation and we will show you the map for your niche.

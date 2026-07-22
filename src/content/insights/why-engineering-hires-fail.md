@@ -24,4 +24,4 @@ Screen for stage explicitly: ask what resources the candidate had around them in
 
 Retention is decided early. A defined first project, a named onboarding owner, and a written thirty-sixty-ninety plan turn a good hire into a durable one. Across our placements, retention improved when fit was screened before offer and onboarding was planned before day one. That combination is the whole game.
 
-A failed hire costs far more than a careful search. If your last engineering hire did not stick and you want the next one to, book a demo and we will show you where the process leaked.
+A failed hire costs far more than a careful search. If your last engineering hire did not stick and you want the next one to, book a consultation and we will show you where the process leaked.

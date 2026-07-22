@@ -24,4 +24,4 @@ Against a giant's package, your offer must be explained, not just extended. Walk
 
 A hire leaving big-tech comp behind needs durable reasons. This is where measured fit screening earns its place: motivation, autonomy appetite, and stage fit are testable, and we test them on every shortlist so the offer lands on someone built to stay.
 
-The ML hiring market looks impossible until you stop fighting on the wrong axis. Book a demo and we will map the winnable candidates for your role.
+The ML hiring market looks impossible until you stop fighting on the wrong axis. Book a consultation and we will map the winnable candidates for your role.

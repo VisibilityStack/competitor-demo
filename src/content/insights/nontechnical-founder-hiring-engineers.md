@@ -24,4 +24,4 @@ Confidence and jargon correlate weakly with ability, which is exactly the trap f
 
 The most common failure is hiring the candidate who best explains things to you, who may be a great communicator and a middling builder. Pair your read on clarity with borrowed technical depth and let neither veto alone.
 
-This pairing is exactly how we run searches for non-technical founders: structured technical screening plus fit assessment, translated into evidence you can act on. If that missing technical co-judge is what is blocking your hire, book a demo.
+This pairing is exactly how we run searches for non-technical founders: structured technical screening plus fit assessment, translated into evidence you can act on. If that missing technical co-judge is what is blocking your hire, book a consultation.
