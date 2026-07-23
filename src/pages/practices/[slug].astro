@@ -64,7 +64,7 @@ export function getStaticPaths() {
 				},
 				{
 					t: 'Retention built in',
-					c: 'Culture mapping on every candidate. Our +21% retention number exists because fit is the whole system.',
+					c: 'Culture mapping on every candidate. 82% of the people we place are still in seat at 12 months because fit is the whole system.',
 				},
 			],
 			faqs: [
@@ -132,7 +132,7 @@ export function getStaticPaths() {
 			why: [
 				{
 					t: 'The senior layer is our strength',
-					c: 'Our +15% team-satisfaction stat comes from senior searches. Leaders set the bar for everyone under them.',
+					c: 'Senior searches are most of what we run, and the ones we screen hardest. Leaders set the bar for everyone under them.',
 				},
 				{
 					t: 'Confidential by default',
@@ -175,8 +175,8 @@ const steps = [
 
 const stats = [
 	{ count: 29, prefix: '−', suffix: '%', v: '−29%', c: 'time-to-hire on mid to senior roles' },
-	{ count: 21, prefix: '+', suffix: '%', v: '+21%', c: 'employee retention after placement' },
-	{ count: 15, prefix: '+', suffix: '%', v: '+15%', c: 'team satisfaction through senior recruitment' },
+	{ count: 82, suffix: '%', v: '82%', c: 'of placed candidates still in seat at 12 months' },
+	{ count: 9, suffix: ' days', v: '9 days', c: 'median from first call to first founder interview' },
 ];
 
 const faqSchema = {
@@ -212,6 +212,7 @@ const faqSchema = {
 		<SpeedInsights />
 	</head>
 	<body>
+		<a class="dx-skip" href="#main">Skip to content</a>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
@@ -228,6 +229,7 @@ const faqSchema = {
 						<a href="/#practices">Practices</a>
 						<a href="/insights">Insights</a>
 						<a href="/#why">Why FPT</a>
+						<a href="/candidates">For candidates</a>
 					</div>
 			</details>
 			<div class="dx-nav-right">
@@ -237,6 +239,7 @@ const faqSchema = {
 			</div>
 		</nav>
 
+		<main id="main">
 		<header class="dxc-hero dxp-hero">
 			<div class="dx-container">
 				<p class="dxp-kicker" data-dxa>{p.name} practice</p>
@@ -264,10 +267,12 @@ const faqSchema = {
 				<div class="dx-steps five">
 					{
 						steps.map(s => (
-							<div class="dx-step" data-dxa>
-								<div class="no">{s.no}</div>
-								<div class="t">{s.t}</div>
-								<div class="c">{s.c}</div>
+							<div data-dxa>
+								<div class="dx-step">
+									<div class="no">{s.no}</div>
+									<div class="t">{s.t}</div>
+									<div class="c">{s.c}</div>
+								</div>
 							</div>
 						))
 					}
@@ -281,9 +286,11 @@ const faqSchema = {
 				<div class="dx-steps">
 					{
 						p.why.map(w => (
-							<div class="dx-step" data-dxa>
-								<div class="t">{w.t}</div>
-								<div class="c">{w.c}</div>
+							<div data-dxa>
+								<div class="dx-step">
+									<div class="t">{w.t}</div>
+									<div class="c">{w.c}</div>
+								</div>
 							</div>
 						))
 					}
@@ -291,7 +298,7 @@ const faqSchema = {
 			</div>
 		</section>
 
-		<section class="dx-numbers">
+		<section class="dx-numbers" aria-label="Results across searches">
 			<div class="dx-container">
 				<div class="dx-tiles">
 					{
@@ -338,6 +345,8 @@ const faqSchema = {
 				</div>
 			</div>
 		</section>
+
+		</main>
 
 		<footer class="dx-subfooter">
 			<div class="dx-container dx-legal">

@@ -18,7 +18,7 @@ Almost never in sourcing. The graveyard is the middle: interview scheduling that
 
 ## Fast is not the same as rushed
 
-Cutting rounds you actually need is rushing. Removing dead air between rounds you do need is speed. The distinction matters because thoroughness and pace are not in tension: a compressed calendar with structured rounds and real screening beats a leisurely one on both quality and close rate. Our searches average markedly faster than typical timelines, and the mechanism is boring: pre-scoped roles, pre-booked panels, same-day debriefs.
+Cutting rounds you actually need is rushing. Removing dead air between rounds you do need is speed. The distinction matters because thoroughness and pace are not in tension: a compressed calendar with structured rounds and real screening beats a leisurely one on both quality and close rate. Our searches run about 29% faster than these benchmarks, and the mechanism is boring: pre-scoped roles, pre-booked panels, same-day debriefs.
 
 ## Benchmark yourself honestly
 

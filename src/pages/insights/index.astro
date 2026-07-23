@@ -43,6 +43,7 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 		<SpeedInsights />
 	</head>
 	<body>
+		<a class="dx-skip" href="#main">Skip to content</a>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
@@ -59,6 +60,7 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 						<a href="/#practices">Practices</a>
 						<a href="/insights">Insights</a>
 						<a href="/#why">Why FPT</a>
+						<a href="/candidates">For candidates</a>
 					</div>
 			</details>
 			<div class="dx-nav-right">
@@ -68,6 +70,7 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 			</div>
 		</nav>
 
+		<main id="main">
 		<header class="dx-hub-hero">
 			<div class="dx-container">
 				<h1 data-dxa>Hiring insights, <span class="accent">straight answers.</span></h1>
@@ -96,18 +99,16 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 				<div class="dx-hub-grid" id="insight-list">
 					{
 						posts.map(post => (
-							<a
-								class="dx-article"
-								href={`/insights/${post.slug}`}
-								data-category={post.data.category}
-							>
-								<span class="cat">{post.data.category}</span>
-								<span class="t">{post.data.title}</span>
-								<span class="desc">{post.data.description}</span>
-								<span class="d">
-									{fmtDate(post.data.date)} · {post.data.readingTime}
-								</span>
-							</a>
+							<div data-dxa data-category={post.data.category}>
+								<a class="dx-article" href={`/insights/${post.slug}`}>
+									<span class="cat">{post.data.category}</span>
+									<span class="t">{post.data.title}</span>
+									<span class="desc">{post.data.description}</span>
+									<span class="d">
+										{fmtDate(post.data.date)} · {post.data.readingTime}
+									</span>
+								</a>
+							</div>
 						))
 					}
 				</div>
@@ -128,6 +129,8 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 			</div>
 		</section>
 
+		</main>
+
 		<footer class="dx-subfooter">
 			<div class="dx-container dx-legal">
 				<span>© 2026 FP Talent. All rights reserved.</span>
@@ -144,7 +147,7 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 			const filterButtons = Array.from(
 				document.querySelectorAll<HTMLButtonElement>('.dx-cat[data-cat]')
 			);
-			const rows = Array.from(document.querySelectorAll<HTMLElement>('.dx-article[data-category]'));
+			const rows = Array.from(document.querySelectorAll<HTMLElement>('#insight-list > [data-category]'));
 			const pagination = document.getElementById('pagination');
 			let currentCat = 'all';
 			let currentPage = 1;
@@ -158,6 +161,9 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 				const start = (currentPage - 1) * PER_PAGE;
 				const slice = visible.slice(start, start + PER_PAGE);
 				rows.forEach(r => (r.style.display = slice.includes(r) ? '' : 'none'));
+				// fresh stagger on every filter/page change; hidden rows lose .dxa-in
+				// while display:none, so re-showing replays the entrance
+				slice.forEach((r, i) => (r.style.transitionDelay = `${Math.min(i, 6) * 90}ms`));
 
 				if (pagination) {
 					pagination.innerHTML = '';

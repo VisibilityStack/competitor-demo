@@ -9,6 +9,11 @@
 	els.forEach(el => {
 		const parent = el.parentElement;
 		if (!parent) return;
+		// data-dxa-delay opts an element out of sibling stagger with its own delay
+		if (el.dataset.dxaDelay) {
+			el.style.transitionDelay = el.dataset.dxaDelay;
+			return;
+		}
 		const sibs = Array.from(parent.children).filter(c => c.hasAttribute('data-dxa'));
 		const i = sibs.indexOf(el);
 		if (i > 0) el.style.transitionDelay = `${Math.min(i, 6) * 90}ms`;
@@ -83,6 +88,7 @@
 	if (avatars.length && !noMotion) {
 		let p = 0;
 		setInterval(() => {
+			if (document.hidden) return;
 			const el = avatars[p % avatars.length];
 			p++;
 			el.classList.add('ping');
@@ -90,83 +96,146 @@
 		}, 4200);
 	}
 
-	// reviews carousel (any page with #dx-car-track): auto-advance + dots
+	// reviews carousel (any page with #dx-car-track): auto-advance + dots,
+	// paused on hover/focus, in hidden tabs, and for reduced motion
 	const track = document.getElementById('dx-car-track');
 	const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('#dx-dots button'));
 	if (track && dots.length) {
 		let slide = 0;
+		let timer = 0;
 		const show = (i: number) => {
 			slide = (i + dots.length) % dots.length;
 			track.style.transform = `translateX(-${slide * 100}%)`;
 			dots.forEach((d, j) => d.classList.toggle('on', j === slide));
 		};
-		let timer = setInterval(() => show(slide + 1), 5500);
+		const stop = () => clearInterval(timer);
+		const play = () => {
+			stop();
+			if (!noMotion && !document.hidden) timer = window.setInterval(() => show(slide + 1), 5500);
+		};
+		play();
+		document.addEventListener('visibilitychange', play);
+		const box = track.closest('.dx-carousel');
+		box?.addEventListener('pointerenter', stop);
+		box?.addEventListener('pointerleave', play);
+		box?.addEventListener('focusin', stop);
+		box?.addEventListener('focusout', play);
 		dots.forEach(d =>
 			d.addEventListener('click', () => {
-				clearInterval(timer);
 				show(Number(d.dataset.i));
-				timer = setInterval(() => show(slide + 1), 5500);
+				play();
 			})
 		);
 	}
 
-	// layout mode (?layout): drag notifications to place them, positions shown
-	// and saved to localStorage so the final spots can be read and hard-coded
+	// mobile menu: close on link tap, outside tap, or Escape
+	const mobs = Array.from(document.querySelectorAll<HTMLElement>('.dx-nav-mob'));
+	mobs.forEach(d => {
+		d.querySelectorAll('a').forEach(a => a.addEventListener('click', () => d.removeAttribute('open')));
+	});
+	document.addEventListener('click', e => {
+		mobs.forEach(d => {
+			if (d.hasAttribute('open') && !d.contains(e.target as Node)) d.removeAttribute('open');
+		});
+	});
+	document.addEventListener('keydown', e => {
+		if (e.key === 'Escape') mobs.forEach(d => d.removeAttribute('open'));
+	});
+
+	// layout mode (?layout): drag hero elements to place them, positions shown
+	// and saved to localStorage so the final spots can be read and hard-coded.
+	// Toasts save top/right % of the hero, bubbles top/left % of the collage,
+	// chips top/left px within their own bubble.
 	if (new URLSearchParams(location.search).has('layout')) {
 		document.body.classList.add('dx-layout');
 		const tag = document.createElement('div');
 		tag.className = 'dx-pos-tag';
-		tag.textContent = 'Layout mode: drag a notification to place it';
+		tag.textContent = 'Layout mode: drag a notification, photo, or chip to place it';
 		document.body.appendChild(tag);
-		const store: Record<string, { top: string; right: string }> = JSON.parse(
-			localStorage.getItem('fpt_toast_pos') || '{}'
-		);
-		Object.entries(store).forEach(([k, v]) => {
-			const el = document.querySelector<HTMLElement>('.dx-toast.' + k);
-			if (el) {
-				el.style.top = v.top + '%';
-				el.style.right = v.right + '%';
+
+		type Pos = Record<string, Record<string, string>>;
+		const toastKey = 'fpt_toast_pos';
+		const heroKey = 'fpt_hero_pos_' + location.pathname;
+		const toastStore: Pos = JSON.parse(localStorage.getItem(toastKey) || '{}');
+		const heroStore: Pos = JSON.parse(localStorage.getItem(heroKey) || '{}');
+
+		// older saves stored bare numbers meaning %
+		const unit = (s: string) => (/(%|px)$/.test(s) ? s : s + '%');
+		const applyPos = (el: HTMLElement, v: Record<string, string>) => {
+			el.style.top = unit(v.top);
+			if (v.right) {
+				el.style.right = unit(v.right);
 				el.style.left = 'auto';
-				el.style.bottom = 'auto';
+			} else {
+				el.style.left = unit(v.left);
+				el.style.right = 'auto';
 			}
+			el.style.bottom = 'auto';
+		};
+
+		Object.entries(toastStore).forEach(([k, v]) => {
+			const el = document.querySelector<HTMLElement>('.dx-toast.' + k);
+			if (el) applyPos(el, v);
 		});
-		document.querySelectorAll<HTMLElement>('.dx-toast').forEach(t => {
-			const hero = t.parentElement as HTMLElement;
-			let sx = 0, sy = 0, ox = 0, oy = 0, moved = false;
-			t.addEventListener('pointerdown', e => {
+		Object.entries(heroStore).forEach(([k, v]) => {
+			const el = document.querySelector<HTMLElement>('.dx-bubble.' + k + ', .dx-float.' + k);
+			if (el) applyPos(el, v);
+		});
+
+		const wire = (el: HTMLElement, mode: 'toast' | 'pct' | 'px', store: Pos, storeName: string) => {
+			let active = false;
+			let moved = false;
+			let sx = 0, sy = 0, ox = 0, oy = 0, bw = 0, bh = 0;
+			el.addEventListener('pointerdown', e => {
+				e.stopPropagation();
+				e.preventDefault();
+				const box = el.parentElement as HTMLElement;
+				const r = el.getBoundingClientRect();
+				const br = box.getBoundingClientRect();
 				sx = e.clientX;
 				sy = e.clientY;
-				const r = t.getBoundingClientRect();
-				const hr = hero.getBoundingClientRect();
-				ox = r.left - hr.left;
-				oy = r.top - hr.top;
+				ox = r.left - br.left;
+				oy = r.top - br.top;
+				bw = br.width;
+				bh = br.height;
 				moved = false;
-				t.setPointerCapture(e.pointerId);
-				const move = (ev: PointerEvent) => {
-					const dx = ev.clientX - sx;
-					const dy = ev.clientY - sy;
-					if (Math.abs(dx) + Math.abs(dy) > 6) moved = true;
-					t.style.animation = 'none';
-					t.style.left = ox + dx + 'px';
-					t.style.top = oy + dy + 'px';
-					t.style.right = 'auto';
-					t.style.bottom = 'auto';
-					const hr2 = hero.getBoundingClientRect();
-					const topPct = (((oy + dy) / hr2.height) * 100).toFixed(1);
-					const rightPct = (((hr2.width - (ox + dx) - t.offsetWidth) / hr2.width) * 100).toFixed(1);
-					const key = t.classList[1];
-					tag.textContent = `${key} → top ${topPct}% · right ${rightPct}%`;
-					store[key] = { top: topPct, right: rightPct };
-					localStorage.setItem('fpt_toast_pos', JSON.stringify(store));
-				};
-				const up = () => {
-					t.removeEventListener('pointermove', move);
-					t.removeEventListener('pointerup', up);
-				};
-				t.addEventListener('pointermove', move);
-				t.addEventListener('pointerup', up);
+				active = true;
+				el.setPointerCapture(e.pointerId);
 			});
-			t.addEventListener(
+			el.addEventListener('pointermove', ev => {
+				// only a held-down drag on this element may move it
+				if (!active || ev.buttons === 0) return;
+				const nx = ox + ev.clientX - sx;
+				const ny = oy + ev.clientY - sy;
+				if (Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) > 6) moved = true;
+				el.style.animation = 'none';
+				const key = el.classList[1];
+				let v: Record<string, string>;
+				if (mode === 'toast') {
+					v = {
+						top: ((ny / bh) * 100).toFixed(1) + '%',
+						right: (((bw - nx - el.offsetWidth) / bw) * 100).toFixed(1) + '%',
+					};
+				} else if (mode === 'pct') {
+					v = {
+						top: ((ny / bh) * 100).toFixed(1) + '%',
+						left: ((nx / bw) * 100).toFixed(1) + '%',
+					};
+				} else {
+					v = { top: Math.round(ny) + 'px', left: Math.round(nx) + 'px' };
+				}
+				applyPos(el, v);
+				store[key] = v;
+				localStorage.setItem(storeName, JSON.stringify(store));
+				tag.textContent = `${key} → top ${v.top} · ${v.right ? 'right ' + v.right : 'left ' + v.left}`;
+			});
+			const end = () => {
+				active = false;
+			};
+			el.addEventListener('pointerup', end);
+			el.addEventListener('pointercancel', end);
+			// a real drag must not fire the element's click actions (toast dismiss)
+			el.addEventListener(
 				'click',
 				e => {
 					if (moved) {
@@ -176,7 +245,11 @@
 				},
 				true
 			);
-		});
+		};
+
+		document.querySelectorAll<HTMLElement>('.dx-toast').forEach(t => wire(t, 'toast', toastStore, toastKey));
+		document.querySelectorAll<HTMLElement>('.dx-bubble').forEach(b => wire(b, 'pct', heroStore, heroKey));
+		document.querySelectorAll<HTMLElement>('.dx-bubble .dx-float').forEach(c => wire(c, 'px', heroStore, heroKey));
 	}
 
 	// notification toasts dismiss on click or keyboard

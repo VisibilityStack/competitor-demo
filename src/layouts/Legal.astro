@@ -3,6 +3,7 @@ import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/fpt-dice.css';
 import ChatWidget from '../components/ChatWidget.astro';
+import DxMotion from '../components/DxMotion.astro';
 
 const { title, updated = 'July 2026' } = Astro.props;
 ---
@@ -27,6 +28,7 @@ const { title, updated = 'July 2026' } = Astro.props;
 		<SpeedInsights />
 	</head>
 	<body>
+		<a class="dx-skip" href="#main">Skip to content</a>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
@@ -43,6 +45,7 @@ const { title, updated = 'July 2026' } = Astro.props;
 						<a href="/#practices">Practices</a>
 						<a href="/insights">Insights</a>
 						<a href="/#why">Why FPT</a>
+						<a href="/candidates">For candidates</a>
 					</div>
 			</details>
 			<div class="dx-nav-right">
@@ -52,24 +55,24 @@ const { title, updated = 'July 2026' } = Astro.props;
 			</div>
 		</nav>
 
-		<main class="dx-article-page">
+		<main class="dx-article-page" id="main">
 			<div class="dx-container dx-article-layout">
 				<article class="dx-article-main">
-					<p class="dx-legal-updated">Last updated: {updated}</p>
-					<h1>{title}</h1>
+					<p class="dx-legal-updated" data-dxa>Last updated: {updated}</p>
+					<h1 data-dxa>{title}</h1>
 					<div class="dx-prose">
 						<slot />
 					</div>
 				</article>
 
 				<aside class="dx-side">
-					<div class="dx-side-card">
+					<div class="dx-side-card" data-dxa>
 						<h3>Legal</h3>
 						<a class="dx-side-item" href="/terms"><span class="t">Terms of Use</span></a>
 						<a class="dx-side-item" href="/privacy"><span class="t">Privacy Policy</span></a>
 						<a class="dx-side-all" href="/">Back to the site →</a>
 					</div>
-					<div class="dx-side-cta slim">
+					<div class="dx-side-cta slim" data-dxa>
 						<h3>Questions?</h3>
 						<a class="dx-btn teal" href="mailto:mark@fptalent.io?subject=Question%20about%20your%20terms">Email us</a>
 					</div>
@@ -86,6 +89,7 @@ const { title, updated = 'July 2026' } = Astro.props;
 				</span>
 			</div>
 		</footer>
+		<DxMotion />
 		<ChatWidget />
 	</body>
 </html>

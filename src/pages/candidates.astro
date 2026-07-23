@@ -13,6 +13,8 @@ const searches = [
 		comp: '$200–235k + equity',
 		status: 'Interviewing now',
 		hot: true,
+		practice: 'Engineering',
+		stage: 'Series A–B',
 	},
 	{
 		role: 'Founding Product Manager',
@@ -21,6 +23,8 @@ const searches = [
 		comp: '$170–200k + equity',
 		status: 'Taking intros',
 		hot: false,
+		practice: 'Product',
+		stage: 'Seed',
 	},
 	{
 		role: 'Staff ML Engineer',
@@ -29,6 +33,8 @@ const searches = [
 		comp: '$235–270k + equity',
 		status: 'Shortlist forming',
 		hot: false,
+		practice: 'Data & AI',
+		stage: 'Series A–B',
 	},
 	{
 		role: 'VP of Engineering',
@@ -37,6 +43,8 @@ const searches = [
 		comp: '$260–300k + equity',
 		status: 'Taking intros',
 		hot: false,
+		practice: 'Leadership',
+		stage: 'Series A–B',
 	},
 	{
 		role: 'Analytics Engineer',
@@ -45,6 +53,8 @@ const searches = [
 		comp: '$150–175k + equity',
 		status: 'Interviewing now',
 		hot: true,
+		practice: 'Data & AI',
+		stage: 'Series A–B',
 	},
 ];
 
@@ -138,6 +148,7 @@ const mailRole = (s: { role: string; meta: string }) =>
 		<SpeedInsights />
 	</head>
 	<body>
+		<a class="dx-skip" href="#main">Skip to content</a>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
@@ -162,6 +173,7 @@ const mailRole = (s: { role: string; meta: string }) =>
 			</div>
 		</nav>
 
+		<main id="main">
 		<header class="dxc-hero">
 			<div class="dx-container dxc-hero-grid">
 				<div>
@@ -188,21 +200,21 @@ const mailRole = (s: { role: string; meta: string }) =>
 				</div>
 			</div>
 
-			<div class="dx-toast tst1" role="button" tabindex="0" aria-label="Dismiss notification">
+			<div class="dx-toast tst1" role="button" tabindex="0" aria-label="Dismiss notification: Offer signed, Head of Data">
 				<span class="tdot green"></span>
 				<div>
 					<strong>Offer signed</strong>
-					<span>Staff Backend Engineer · last week</span>
+					<span>Head of Data · last week</span>
 				</div>
 			</div>
-			<div class="dx-toast tst2" role="button" tabindex="0" aria-label="Dismiss notification">
+			<div class="dx-toast tst2" role="button" tabindex="0" aria-label="Dismiss notification: New search opened, Series B healthtech">
 				<span class="tdot teal"></span>
 				<div>
 					<strong>New search opened</strong>
 					<span>Series B healthtech · today</span>
 				</div>
 			</div>
-			<div class="dx-toast tst3" role="button" tabindex="0" aria-label="Dismiss notification">
+			<div class="dx-toast tst3" role="button" tabindex="0" aria-label="Dismiss notification: Interview booked, Founding Product Manager">
 				<span class="tdot amber"></span>
 				<div>
 					<strong>Interview booked</strong>
@@ -215,21 +227,23 @@ const mailRole = (s: { role: string; meta: string }) =>
 			<div class="dx-container">
 				<h2 class="dx-sec-head" data-dxa>Open searches</h2>
 				<p class="dx-sec-sub wide" data-dxa>
-					Click a role to email Mark. Nothing fit? <a class="dx-inline-link" href={mailIntro}>Send your profile anyway.</a>
+					Click a role to email us. Nothing fit? <a class="dx-inline-link" href={mailIntro}>Send your profile anyway.</a>
 				</p>
 				<div class="dx-search-list">
 					{
 						searches.map(s => (
-							<a class="dx-search-card stacked" href={mailRole(s)} data-dxa>
-								<span class="rolewrap">
-									<span class="role">{s.role}</span>
-									<span class="meta">
-										{s.meta} · {s.loc}
+							<div data-dxa data-practice={s.practice} data-stage={s.stage}>
+								<a class="dx-search-card stacked" href={mailRole(s)}>
+									<span class="rolewrap">
+										<span class="role">{s.role}</span>
+										<span class="meta">
+											{s.meta} · {s.loc}
+										</span>
 									</span>
-								</span>
-								<span class="comp">{s.comp}</span>
-								<span class={`dx-pill ${s.hot ? 'hot' : 'cool'}`}>{s.status}</span>
-							</a>
+									<span class="comp">{s.comp}</span>
+									<span class={`dx-pill ${s.hot ? 'hot' : 'cool'}`}>{s.status}</span>
+								</a>
+							</div>
 						))
 					}
 				</div>
@@ -262,10 +276,12 @@ const mailRole = (s: { role: string; meta: string }) =>
 				<div class="dx-steps">
 					{
 						steps.map(s => (
-							<div class="dx-step" data-dxa>
-								<div class="no">{s.no}</div>
-								<div class="t">{s.title}</div>
-								<div class="c">{s.copy}</div>
+							<div data-dxa>
+								<div class="dx-step">
+									<div class="no">{s.no}</div>
+									<div class="t">{s.title}</div>
+									<div class="c">{s.copy}</div>
+								</div>
 							</div>
 						))
 					}
@@ -273,7 +289,7 @@ const mailRole = (s: { role: string; meta: string }) =>
 			</div>
 		</section>
 
-		<section class="dx-quote-wrap" style="background:#fff">
+		<section class="dx-quote-wrap white">
 			<div class="dx-container" data-dxa>
 				<div class="dx-carousel" id="dx-carousel">
 					<div class="dx-car-track" id="dx-car-track">
@@ -306,9 +322,11 @@ const mailRole = (s: { role: string; meta: string }) =>
 				<div class="dx-steps two">
 					{
 						answers.map(x => (
-							<div class="dx-step" data-dxa>
-								<div class="t">{x.q}</div>
-								<div class="c">{x.a}</div>
+							<div data-dxa>
+								<div class="dx-step">
+									<div class="t">{x.q}</div>
+									<div class="c">{x.a}</div>
+								</div>
 							</div>
 						))
 					}
@@ -328,6 +346,8 @@ const mailRole = (s: { role: string; meta: string }) =>
 			</div>
 		</section>
 
+		</main>
+
 		<footer class="dx-subfooter">
 			<div class="dx-container dx-legal">
 				<span>© 2026 FP Talent. All rights reserved.</span>
@@ -337,6 +357,38 @@ const mailRole = (s: { role: string; meta: string }) =>
 				</span>
 			</div>
 		</footer>
+
+		<script>
+			// hero module deep link: /candidates?practice=…&stage=… filters the list
+			const params = new URLSearchParams(location.search);
+			const practice = params.get('practice') || '';
+			const stage = params.get('stage') || '';
+			if (practice || stage) {
+				const rows = Array.from(
+					document.querySelectorAll<HTMLElement>('.dx-search-list > [data-practice]')
+				);
+				let shown = 0;
+				rows.forEach(r => {
+					const ok =
+						(!practice || r.dataset.practice === practice) &&
+						(!stage || r.dataset.stage === stage);
+					r.style.display = ok ? '' : 'none';
+					if (ok) shown++;
+				});
+				const sub = document.querySelector('#searches .dx-sec-sub');
+				if (sub) {
+					const bits = [practice, stage].filter(Boolean).join(' · ');
+					const note = document.createElement('p');
+					note.className = 'dx-filter-note';
+					note.innerHTML =
+						shown > 0
+							? `Showing ${shown} ${bits} ${shown === 1 ? 'search' : 'searches'}. <a href="/candidates#searches">See all roles</a>`
+							: `Nothing open for ${bits} right now. <a href="/candidates#searches">See all roles</a> or <a href="mailto:mark@fptalent.io?subject=Candidate%20intro">send your profile</a>.`;
+					sub.after(note);
+				}
+				document.getElementById('searches')?.scrollIntoView();
+			}
+		</script>
 
 		<DxMotion />
 		<ChatWidget />

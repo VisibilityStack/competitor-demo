@@ -62,6 +62,7 @@ const articleSchema = {
 		<SpeedInsights />
 	</head>
 	<body>
+		<a class="dx-skip" href="#main">Skip to content</a>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
@@ -78,6 +79,7 @@ const articleSchema = {
 						<a href="/#practices">Practices</a>
 						<a href="/insights">Insights</a>
 						<a href="/#why">Why FPT</a>
+						<a href="/candidates">For candidates</a>
 					</div>
 			</details>
 			<div class="dx-nav-right">
@@ -87,21 +89,21 @@ const articleSchema = {
 			</div>
 		</nav>
 
-		<main class="dx-article-page">
+		<main class="dx-article-page" id="main">
 			<div class="dx-container dx-article-layout">
 				<article class="dx-article-main">
-					<p class="dx-article-meta">
+					<p class="dx-article-meta" data-dxa>
 						<a class="crumb" href="/insights">Insights</a> · {post.data.category} ·
 						{fmtDate(post.data.date)} · {post.data.readingTime}
 					</p>
-					<h1>{post.data.title}</h1>
+					<h1 data-dxa>{post.data.title}</h1>
 					<div class="dx-prose">
 						<Content />
 					</div>
 				</article>
 
 				<aside class="dx-side">
-					<div class="dx-side-card">
+					<div class="dx-side-card" data-dxa>
 						<h3>More from Insights</h3>
 						{
 							related.map(r => (
@@ -113,7 +115,7 @@ const articleSchema = {
 						}
 						<a class="dx-side-all" href="/insights">All articles →</a>
 					</div>
-					<div class="dx-side-cta">
+					<div class="dx-side-cta" data-dxa>
 						<h3>Let's build your team.</h3>
 						<p>A short call is enough to scope the search.</p>
 						<a class="dx-btn teal" href="/#contact">Book a consultation</a>

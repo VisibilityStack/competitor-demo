@@ -34,17 +34,17 @@ const fmtDate = (d: Date) =>
 const categories = [
 	{ emoji: '💼', label: 'Hiring playbooks' },
 	{ emoji: '🧪', label: 'Hiring science' },
-	{ emoji: '⚖️', label: 'Comparisons' },
+	{ emoji: '⚖️', label: 'Comparisons & alternatives' },
 	{ emoji: '🤝', label: 'Choosing a partner' },
 	{ emoji: '🎯', label: 'Leadership hiring' },
 	{ emoji: '💵', label: 'Pricing & fees' },
 ];
 
 const practices = [
-	{ t: 'Product', s: 'PMs, senior PMs, founding PMs', slug: 'product' },
-	{ t: 'Engineering', s: 'Full-stack, backend, frontend', slug: 'engineering' },
+	{ t: 'Product', s: 'PMs, Senior PMs, Founding PMs', slug: 'product' },
+	{ t: 'Engineering', s: 'Full-stack, Backend, Frontend', slug: 'engineering' },
 	{ t: 'Data & AI', s: 'Data scientists, ML engineers', slug: 'data-ai' },
-	{ t: 'Leadership', s: 'CTOs, VPs, heads of data', slug: 'leadership' },
+	{ t: 'Leadership', s: 'CTOs, VPs, Heads of Data', slug: 'leadership' },
 ];
 
 const minis = [
@@ -137,6 +137,7 @@ const orgSchema = {
 		<SpeedInsights />
 	</head>
 	<body>
+		<a class="dx-skip" href="#main">Skip to content</a>
 		<nav class="dx-nav">
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
@@ -162,33 +163,34 @@ const orgSchema = {
 			</div>
 		</nav>
 
+		<main id="main">
 		<header class="dx-hero">
 			<div class="dx-container dx-hero-grid">
 				<div>
 					<h1 data-dxa>Serious roles.<br /><span class="accent">Proper searches.</span></h1>
 					<p class="dx-hero-sub" data-dxa>
-						We run retained searches for founder-led software companies, seed to
+						We run end-to-end searches for founder-led software companies, seed to
 						Series B. Screened people, real comp, one company at a time.
 					</p>
-					<div class="dx-module" data-dxa>
+					<form class="dx-module" data-dxa method="get" action="/candidates">
 						<p class="dx-module-title">Find your <span class="accent">next role</span></p>
 						<div class="dx-module-row">
-							<select aria-label="Practice">
-								<option>All practices</option>
+							<select name="practice" aria-label="Practice">
+								<option value="">All practices</option>
 								<option>Product</option>
 								<option>Engineering</option>
 								<option>Data &amp; AI</option>
 								<option>Leadership</option>
 							</select>
-							<select aria-label="Stage">
-								<option>Any stage</option>
+							<select name="stage" aria-label="Stage">
+								<option value="">Any stage</option>
 								<option>Seed</option>
 								<option>Series A–B</option>
 								<option>Later</option>
 							</select>
-							<a class="dx-btn teal" href="/candidates#searches">See searches</a>
+							<button type="submit" class="dx-btn teal">See searches</button>
 						</div>
-					</div>
+					</form>
 				</div>
 				<div class="dx-collage">
 					<div class="dx-bubble bb1">
@@ -216,7 +218,7 @@ const orgSchema = {
 
 		<section class="dx-logos">
 			<div class="dx-container">
-				<p class="dx-logos-label" data-dxa>The talent partner behind teams like</p>
+				<p class="dx-logos-label" data-dxa>Placements at teams like</p>
 				<div class="dx-logos-row" data-dxa>
 					{
 						partnerBrands.map(b => (
@@ -271,15 +273,19 @@ const orgSchema = {
 					</div>
 					<div class="dx-minis dx-overlap">
 						{
-							minis.map(m => (
-								<a class="dx-search-card stacked" href="/candidates#searches" data-dxa>
-									<span class="rolewrap">
-										<span class="role">{m.role}</span>
-										<span class="meta">{m.meta}</span>
+							minis.map((m, i) => (
+								<div class="dx-mini-drop" data-dxa data-dxa-delay={`${250 + i * 300}ms`}>
+									<span class="dx-mini-float" style={`animation-delay:${-i * 2.6}s`}>
+										<a class="dx-search-card stacked" href="/candidates#searches">
+											<span class="rolewrap">
+												<span class="role">{m.role}</span>
+												<span class="meta">{m.meta}</span>
+											</span>
+											<span class="comp">{m.comp}</span>
+											<span class={`dx-pill ${m.hot ? 'hot' : 'cool'}`}>{m.status}</span>
+										</a>
 									</span>
-									<span class="comp">{m.comp}</span>
-									<span class={`dx-pill ${m.hot ? 'hot' : 'cool'}`}>{m.status}</span>
-								</a>
+								</div>
 							))
 						}
 					</div>
@@ -304,22 +310,26 @@ const orgSchema = {
 					}
 				</div>
 				<div class="dx-res-grid">
-					<a class="dx-feature" href={`/insights/${featured.slug}`} data-dxa>
-						<div>
-							<p class="tag">{featured.data.category}</p>
-							<p class="t">{featured.data.title}</p>
-						</div>
-						<span class="read">Read now →</span>
-					</a>
+					<div data-dxa>
+						<a class="dx-feature" href={`/insights/${featured.slug}`}>
+							<div>
+								<p class="tag">{featured.data.category}</p>
+								<p class="t">{featured.data.title}</p>
+							</div>
+							<span class="read">Read now →</span>
+						</a>
+					</div>
 					{
 						latest.map(p => (
-							<a class="dx-article" href={`/insights/${p.slug}`} data-dxa>
-								<span class="cat">{p.data.category}</span>
-								<span class="t">{p.data.title}</span>
-								<span class="d">
-									{fmtDate(p.data.date)} · {p.data.readingTime}
-								</span>
-							</a>
+							<div data-dxa>
+								<a class="dx-article" href={`/insights/${p.slug}`}>
+									<span class="cat">{p.data.category}</span>
+									<span class="t">{p.data.title}</span>
+									<span class="d">
+										{fmtDate(p.data.date)} · {p.data.readingTime}
+									</span>
+								</a>
+							</div>
 						))
 					}
 				</div>
@@ -388,6 +398,8 @@ const orgSchema = {
 			</div>
 		</section>
 
+		</main>
+
 		<footer class="dx-footer" id="contact">
 			<div class="dx-container">
 				<div class="dx-footer-grid">
@@ -395,17 +407,19 @@ const orgSchema = {
 						<h2>Let's build your team.</h2>
 						<form id="dx-form" novalidate>
 							<div class="dx-form-grid">
-								<input type="text" name="firstName" placeholder="First name" autocomplete="given-name" required />
-								<input type="text" name="lastName" placeholder="Last name" autocomplete="family-name" required />
-								<input type="email" name="email" placeholder="Work email" autocomplete="email" required />
-								<input type="text" name="company" placeholder="Company" autocomplete="organization" required />
+								<label class="sr-only" for="dx-f-first">First name</label>
+								<input id="dx-f-first" type="text" name="firstName" placeholder="First name" autocomplete="given-name" required />
+								<label class="sr-only" for="dx-f-last">Last name</label>
+								<input id="dx-f-last" type="text" name="lastName" placeholder="Last name" autocomplete="family-name" required />
+								<label class="sr-only" for="dx-f-email">Work email</label>
+								<input id="dx-f-email" type="email" name="email" placeholder="Work email" autocomplete="email" required />
+								<label class="sr-only" for="dx-f-company">Company</label>
+								<input id="dx-f-company" type="text" name="company" placeholder="Company" autocomplete="organization" required />
 							</div>
 							<button type="submit" class="dx-btn teal">Book a consultation</button>
 							<p class="dx-form-error" id="dx-form-error" role="alert"></p>
 						</form>
-						<p class="dx-thanks" id="dx-thanks" hidden aria-live="polite">
-							Thank you. Talk soon.
-						</p>
+						<p class="dx-thanks" id="dx-thanks" aria-live="polite"></p>
 					</div>
 					<div class="dx-foot-cols">
 						<div>
@@ -447,17 +461,38 @@ const orgSchema = {
 				e.preventDefault();
 				const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
 				const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email || '');
-				if (!data.firstName?.trim() || !data.lastName?.trim() || !emailOk || !data.company?.trim()) {
-					if (errEl) errEl.textContent = 'Please fill in every field with a valid work email.';
+				const labels: Record<string, string> = {
+					firstName: 'first name',
+					lastName: 'last name',
+					email: 'work email',
+					company: 'company',
+				};
+				const bad = [
+					!data.firstName?.trim() && 'firstName',
+					!data.lastName?.trim() && 'lastName',
+					!emailOk && 'email',
+					!data.company?.trim() && 'company',
+				].filter(Boolean) as string[];
+				form.querySelectorAll('input').forEach(i => {
+					if (bad.includes(i.name)) i.setAttribute('aria-invalid', 'true');
+					else i.removeAttribute('aria-invalid');
+				});
+				if (bad.length) {
+					if (errEl)
+						errEl.textContent =
+							bad.length > 1
+								? 'Please fill in every field and check the email address.'
+								: `Please check the ${labels[bad[0]]} field.`;
 					return;
 				}
+				if (errEl) errEl.textContent = '';
 				try {
 					const leads = JSON.parse(localStorage.getItem('fpt_demo_leads') || '[]');
 					leads.push({ ...data, at: new Date().toISOString() });
 					localStorage.setItem('fpt_demo_leads', JSON.stringify(leads));
 				} catch {}
 				form.hidden = true;
-				if (thanks) thanks.hidden = false;
+				if (thanks) thanks.textContent = 'Thank you. Talk soon.';
 			});
 
 		</script>
