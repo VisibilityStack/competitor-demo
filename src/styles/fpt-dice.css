@@ -823,6 +823,7 @@ a {
 	}
 
 	.dx-hero-grid,
+	.dxc-hero-grid,
 	.dx-split-grid,
 	.dx-footer-grid {
 		grid-template-columns: 1fr;
@@ -852,7 +853,7 @@ a {
 		grid-template-columns: 1fr;
 	}
 
-	/* nav: keep one CTA, compact */
+	/* nav: keep one CTA, compact, never wrapping */
 	.dx-nav-right .dx-btn.ghost {
 		display: none;
 	}
@@ -860,29 +861,46 @@ a {
 	.dx-nav .dx-btn {
 		padding: 10px 14px;
 		font-size: 14px;
+		white-space: nowrap;
 	}
 
-	/* hero collage: same locked positions, phone-sized photos */
+	.dx-nav-inner {
+		gap: 12px;
+	}
+
+	/* iOS zooms (and stays zoomed) on sub-16px controls */
+	.dx-module select,
+	.dx-footer input {
+		font-size: 16px;
+	}
+
+	/* footer links: one calm column instead of three slivers */
+	.dx-foot-cols {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+
+	/* homepage collage: dedicated phone composition */
 	.dx-avatar.a1 {
-		width: 150px;
-		height: 150px;
-		font-size: 30px;
-	}
-
-	.dx-avatar.a2 {
-		width: 120px;
-		height: 120px;
+		width: 128px;
+		height: 128px;
 		font-size: 26px;
 	}
 
+	.dx-avatar.a2 {
+		width: 104px;
+		height: 104px;
+		font-size: 22px;
+	}
+
 	.dx-avatar.a3 {
-		width: 135px;
-		height: 135px;
-		font-size: 28px;
+		width: 116px;
+		height: 116px;
+		font-size: 24px;
 	}
 
 	.dx-collage {
-		min-height: 360px;
+		min-height: 340px;
 	}
 }
 
@@ -1359,9 +1377,17 @@ a {
 @media (max-width: 640px) {
 	.dx-bubble .dx-float {
 		top: auto !important;
-		left: -8px !important;
+		left: -6px !important;
 		right: auto !important;
-		bottom: -14px !important;
+		bottom: -12px !important;
+		z-index: 2;
+	}
+
+	/* right-side bubbles hang their chip to the right so it stays on screen */
+	.dx-bubble.bb2 .dx-float,
+	.dx-bubble.cb1 .dx-float {
+		left: auto !important;
+		right: -6px !important;
 	}
 }
 
@@ -1494,6 +1520,7 @@ button.dx-cat {
 
 .dx-pagination {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	gap: 8px;
 	margin-top: 30px;
@@ -2778,4 +2805,143 @@ button.dx-cat {
 
 .dx-filter-note a:hover {
 	text-decoration: underline;
+}
+
+/* ---------- mobile hero compositions ----------
+   MUST stay at the end of this file: the locked desktop bubble positions
+   and the dxc collage rules are declared mid-file and win on order. */
+
+@media (max-width: 960px) {
+	.dxc-hero-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.dxc-collage {
+		min-height: 320px;
+	}
+
+	/* stacked band: mid-size photos, everything on the canvas */
+	.dx-collage {
+		min-height: 380px;
+	}
+
+	.dx-avatar.a1 {
+		width: 170px;
+		height: 170px;
+		font-size: 32px;
+	}
+
+	.dx-avatar.a2 {
+		width: 140px;
+		height: 140px;
+		font-size: 28px;
+	}
+
+	.dx-avatar.a3 {
+		width: 155px;
+		height: 155px;
+		font-size: 30px;
+	}
+
+	.dx-bubble.bb3 {
+		left: 30%;
+		top: auto;
+		bottom: 2%;
+	}
+
+	.dx-bubble.bb2 {
+		left: auto;
+		right: 6%;
+	}
+
+	.dx-bubble.bb2 .dx-float {
+		left: auto;
+		right: -2px;
+		top: auto;
+		bottom: -12px;
+	}
+
+	.dx-bubble.cb1 .dx-float {
+		right: auto;
+		left: -6px;
+		top: auto;
+		bottom: -12px;
+	}
+
+	.dx-collage::after,
+	.dxc-collage::after {
+		width: min(280px, 88%);
+	}
+}
+
+@media (max-width: 640px) {
+	.dx-float {
+		font-size: 12.5px;
+	}
+
+	/* phone sizes re-declared here so they outrank the tablet block above */
+	.dx-collage {
+		min-height: 340px;
+	}
+
+	.dx-avatar.a1 {
+		width: 128px;
+		height: 128px;
+		font-size: 26px;
+	}
+
+	.dx-avatar.a2 {
+		width: 104px;
+		height: 104px;
+		font-size: 22px;
+	}
+
+	.dx-avatar.a3 {
+		width: 116px;
+		height: 116px;
+		font-size: 24px;
+	}
+
+	/* homepage collage: dedicated phone composition */
+	.dx-bubble.bb1 {
+		left: 4%;
+		top: 2%;
+	}
+
+	.dx-bubble.bb2 {
+		left: auto;
+		right: 3%;
+		top: 24%;
+	}
+
+	.dx-bubble.bb3 {
+		left: 26%;
+		top: 60%;
+		bottom: auto;
+	}
+
+	/* candidates collage: same treatment */
+	.dxc-collage {
+		min-height: 300px;
+	}
+
+	.dxc-collage .dx-avatar.b1 {
+		width: 140px;
+		height: 140px;
+	}
+
+	.dxc-collage .dx-avatar.b2 {
+		width: 112px;
+		height: 112px;
+	}
+
+	.dx-bubble.cb1 {
+		right: 5%;
+		top: 4%;
+	}
+
+	.dx-bubble.cb2 {
+		left: 5%;
+		bottom: 6%;
+	}
 }
