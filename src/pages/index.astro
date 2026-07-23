@@ -90,7 +90,7 @@ const roleIcons: Record<string, string> = {
 
 const orgSchema = {
 	'@context': 'https://schema.org',
-	'@type': 'Organization',
+	'@type': 'EmploymentAgency',
 	name: 'FP Talent',
 	alternateName: 'FPT',
 	url: 'https://www.fptalent.io',
@@ -116,7 +116,7 @@ const orgSchema = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>FP Talent</title>
+		<title>Technical Recruiting Agency for Startups · FP Talent</title>
 		<meta
 			name="description"
 			content="The technical talent agency for founder-led software companies. Product, engineering, data & AI, and leadership hiring, done properly."
@@ -127,16 +127,19 @@ const orgSchema = {
 		<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=2" />
 		<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png?v=2" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
-		/>
+		<link rel="canonical" href="https://www.fptalent.io/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="FP Talent" />
+		<meta property="og:title" content="Technical Recruiting Agency for Startups · FP Talent" />
+		<meta property="og:description" content="The technical talent agency for founder-led software companies. Product, engineering, data & AI, and leadership hiring, done properly." />
+		<meta property="og:url" content="https://www.fptalent.io/" />
+		<meta property="og:image" content="https://www.fptalent.io/social.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="sitemap" href="/sitemap.xml" />
 		<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
-		<Analytics />
-		<SpeedInsights />
 	</head>
 	<body>
 		<a class="dx-skip" href="#main">Skip to content</a>
@@ -196,15 +199,15 @@ const orgSchema = {
 				</div>
 				<div class="dx-collage">
 					<div class="dx-bubble bb1">
-						<div class="dx-avatar a1"><img src="/img/p-se.jpg" alt="Software engineer" /></div>
+						<div class="dx-avatar a1"><img src="/img/p-se.jpg" alt="Portrait of a software engineer" width="700" height="1050" decoding="async" /></div>
 						<div class="dx-float f1"><span class="ic t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>Match with screened talent</div>
 					</div>
 					<div class="dx-bubble bb2">
-						<div class="dx-avatar a2"><img src="/img/p-pm.jpg" alt="Product manager" /></div>
+						<div class="dx-avatar a2"><img src="/img/p-pm.jpg" alt="Portrait of a product manager" width="700" height="1050" decoding="async" /></div>
 						<div class="dx-float f2"><span class="ic t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Connect directly with founders</div>
 					</div>
 					<div class="dx-bubble bb3">
-						<div class="dx-avatar a3"><img src="/img/p-ml.jpg" alt="ML engineer" /></div>
+						<div class="dx-avatar a3"><img src="/img/p-ml.jpg" alt="Portrait of a machine learning engineer" width="700" height="1050" decoding="async" /></div>
 						<div class="dx-float f3"><span class="ic t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>First interview in 9 days</div>
 					</div>
 				</div>
@@ -271,7 +274,7 @@ const orgSchema = {
 				</div>
 				<div data-dxa>
 					<div class="dx-photo">
-						<img src="/img/team-candidates.jpg" alt="Engineers working around a table" loading="lazy" />
+						<img src="/img/team-candidates.jpg" alt="Engineers pairing around a table at a startup" width="700" height="467" loading="lazy" decoding="async" />
 					</div>
 					<div class="dx-minis dx-overlap">
 						{
@@ -356,7 +359,7 @@ const orgSchema = {
 					</div>
 					<div data-dxa>
 						<div class="dx-photo">
-							<img src="/img/team-founders.jpg" alt="Founders celebrating a signed offer" loading="lazy" />
+							<img src="/img/team-founders.jpg" alt="Two founders reviewing a shortlist together" width="700" height="467" loading="lazy" decoding="async" />
 						</div>
 						<div class="dx-practices dx-overlap">
 							{
@@ -501,5 +504,7 @@ const orgSchema = {
 
 		<DxMotion />
 		<ChatWidget />
+		<Analytics />
+		<SpeedInsights />
 	</body>
 </html>

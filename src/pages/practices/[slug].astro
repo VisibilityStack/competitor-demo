@@ -9,6 +9,7 @@ export function getStaticPaths() {
 	const practices = [
 		{
 			slug: 'product',
+			metaDescription: 'Hire product managers who ship. First-PM to product-org searches for startups, with psychometric screening included and comp scoped before sourcing starts.',
 			name: 'Product',
 			metaTitle: 'Hire Product Managers',
 			intent: 'Hire product managers who ship.',
@@ -47,6 +48,7 @@ export function getStaticPaths() {
 		},
 		{
 			slug: 'engineering',
+			metaDescription: 'Hire engineers who ship. Full-stack, backend, and frontend searches for startups, with psychometric screening included and a shortlist in days, not months.',
 			name: 'Engineering',
 			metaTitle: 'Hire Software Engineers',
 			intent: 'Hire engineers who ship.',
@@ -85,6 +87,7 @@ export function getStaticPaths() {
 		},
 		{
 			slug: 'data-ai',
+			metaDescription: 'Hire data scientists and ML engineers who ship to production. Screened searches for founder-led startups, seed to Series B, run end to end by FP Talent.',
 			name: 'Data & AI',
 			metaTitle: 'Hire Data Scientists & AI Engineers',
 			intent: 'Hire data and AI people who ship.',
@@ -123,6 +126,7 @@ export function getStaticPaths() {
 		},
 		{
 			slug: 'leadership',
+			metaDescription: 'CTO, CPO, VP Engineering, and Head of Data searches for founder-led startups. Confidential by default, references verified, success fee on placement only.',
 			name: 'Leadership',
 			metaTitle: 'CTO, CPO & Engineering Leadership Search',
 			intent: 'Hire leaders who raise the bar.',
@@ -188,6 +192,15 @@ const faqSchema = {
 		acceptedAnswer: { '@type': 'Answer', text: f.a },
 	})),
 };
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.fptalent.io/' },
+		{ '@type': 'ListItem', position: 2, name: `${p.name} practice` },
+	],
+};
+
 ---
 
 <html lang="en">
@@ -195,23 +208,26 @@ const faqSchema = {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{p.metaTitle} · FP Talent</title>
-		<meta name="description" content={`${p.intent} ${p.intro}`} />
+		<meta name="description" content={p.metaDescription} />
 		<link rel="icon" href="/favicon.ico?v=2" sizes="32x32" />
 		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg?v=2" />
 		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=2" />
 		<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=2" />
 		<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png?v=2" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
-		<link rel="canonical" href={`https://www.fptalent.io/practices/${p.slug}`} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
-		/>
+		<link rel="canonical" href={`https://www.fptalent.io/practices/${p.slug}/`} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="FP Talent" />
+		<meta property="og:title" content={`${p.metaTitle} · FP Talent`} />
+		<meta property="og:description" content={p.metaDescription} />
+		<meta property="og:url" content={`https://www.fptalent.io/practices/${p.slug}/`} />
+		<meta property="og:image" content="https://www.fptalent.io/social.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
 		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-		<Analytics />
-		<SpeedInsights />
+		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 	</head>
 	<body>
 		<a class="dx-skip" href="#main">Skip to content</a>
@@ -362,5 +378,7 @@ const faqSchema = {
 
 		<DxMotion />
 		<ChatWidget />
+		<Analytics />
+		<SpeedInsights />
 	</body>
 </html>

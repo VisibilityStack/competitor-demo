@@ -2945,3 +2945,13 @@ button.dx-cat {
 		bottom: 6%;
 	}
 }
+
+/* ---------- self-hosted IBM Plex Sans (variable, latin) ---------- */
+
+@font-face {
+	font-family: 'IBM Plex Sans';
+	font-style: normal;
+	font-weight: 400 700;
+	font-display: swap;
+	src: url('/assets/fonts/ibm-plex-sans-latin-var.woff2') format('woff2');
+}
