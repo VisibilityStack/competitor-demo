@@ -1,5 +1,5 @@
 ---
-title: The anatomy of an engineering hiring process that actually closes
+title: An engineering hiring process that actually closes
 category: Hiring playbooks
 description: A good process is not more rounds. It is fewer, sharper steps that respect the candidate and end in a signed offer.
 readingTime: 5 min read

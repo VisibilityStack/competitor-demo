@@ -1,5 +1,5 @@
 ---
-title: Where senior engineers actually get found (it isn't job boards)
+title: Where senior engineers get found (not job boards)
 category: Comparisons & alternatives
 description: LinkedIn Recruiter and job boards sample the searching minority. The senior market lives elsewhere. A map of where searches really close.
 readingTime: 4 min read

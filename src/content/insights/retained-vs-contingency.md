@@ -1,5 +1,5 @@
 ---
-title: "Retained vs contingency recruiting for engineering: which model fits"
+title: Retained vs contingency recruiting for engineering
 category: Comparisons & alternatives
 description: The two classic agency models pull in different directions. Match the model to the role's seniority and scarcity, not to habit.
 readingTime: 4 min read

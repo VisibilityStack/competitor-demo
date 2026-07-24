@@ -175,7 +175,25 @@ const jobSchema = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Open Startup Engineering, Product & Data Roles · FP Talent</title>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-XN05QF08LJ');
+			addEventListener(
+				'load',
+				() => {
+					const s = document.createElement('script');
+					s.async = true;
+					s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XN05QF08LJ';
+					document.head.appendChild(s);
+				},
+				{ once: true }
+			);
+		</script>
+		<title>Candidates: Startup Roles with Comp Listed · FP Talent</title>
 		<meta
 			name="description"
 			content="Open searches with comp on every card. Engineering, product, and data roles at founder-led startups, seed to Series B. Free for candidates. Email Mark directly."
@@ -189,7 +207,7 @@ const jobSchema = {
 		<link rel="canonical" href="https://www.fptalent.io/candidates/" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="FP Talent" />
-		<meta property="og:title" content="Open Startup Engineering, Product & Data Roles · FP Talent" />
+		<meta property="og:title" content="Candidates: Startup Roles with Comp Listed · FP Talent" />
 		<meta property="og:description" content="Open searches with comp on every card. Engineering, product, and data roles at founder-led startups, seed to Series B. Free for candidates." />
 		<meta property="og:url" content="https://www.fptalent.io/candidates/" />
 		<meta property="og:image" content="https://www.fptalent.io/social.png" />
@@ -207,7 +225,7 @@ const jobSchema = {
 				<div class="dx-nav-links">
 					<a href="#searches">Open searches</a>
 					<a href="/#practices">Practices</a>
-					<a href="/insights">Insights</a>
+					<a href="/insights/">Insights</a>
 					<a href="/#why">Why FPT</a>
 				</div>
 				<details class="dx-nav-mob">
@@ -215,7 +233,7 @@ const jobSchema = {
 				<div class="dx-nav-mob-panel">
 						<a href="#searches">Open searches</a>
 						<a href="/#practices">Practices</a>
-						<a href="/insights">Insights</a>
+						<a href="/insights/">Insights</a>
 						<a href="/#why">Why FPT</a>
 					</div>
 			</details>
@@ -404,8 +422,8 @@ const jobSchema = {
 			<div class="dx-container dx-legal">
 				<span>© 2026 FP Talent. All rights reserved.</span>
 				<span>
-					<a href="/terms">Terms</a>
-					<a href="/privacy">Privacy policy</a>
+					<a href="/terms/">Terms</a>
+					<a href="/privacy/">Privacy policy</a>
 				</span>
 			</div>
 		</footer>
@@ -434,8 +452,8 @@ const jobSchema = {
 					note.className = 'dx-filter-note';
 					note.innerHTML =
 						shown > 0
-							? `Showing ${shown} ${bits} ${shown === 1 ? 'search' : 'searches'}. <a href="/candidates#searches">See all roles</a>`
-							: `Nothing open for ${bits} right now. <a href="/candidates#searches">See all roles</a> or <a href="mailto:mark@fptalent.io?subject=Candidate%20intro">send your profile</a>.`;
+							? `Showing ${shown} ${bits} ${shown === 1 ? 'search' : 'searches'}. <a href="/candidates/#searches">See all roles</a>`
+							: `Nothing open for ${bits} right now. <a href="/candidates/#searches">See all roles</a> or <a href="mailto:mark@fptalent.io?subject=Candidate%20intro">send your profile</a>.`;
 					sub.after(note);
 				}
 				document.getElementById('searches')?.scrollIntoView();

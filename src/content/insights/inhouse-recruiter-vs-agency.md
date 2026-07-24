@@ -1,5 +1,5 @@
 ---
-title: "In-house recruiter or agency: the real math for scaling teams"
+title: "In-house recruiter or agency: the math for scaling"
 category: Comparisons & alternatives
 description: The break-even is not where most founders think. How to compare a recruiting hire against a search partner honestly.
 readingTime: 4 min read

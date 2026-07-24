@@ -1,5 +1,5 @@
 ---
-title: How to shortlist a technical recruiting agency for your startup
+title: How to shortlist a technical recruiting agency
 category: Choosing a partner
 description: Every agency pitch sounds identical. Here is the diligence that separates search partners from resume vendors.
 readingTime: 4 min read

@@ -1,5 +1,5 @@
 ---
-title: "Hiring your first PM: the search that defines your product org"
+title: "Hiring your first PM: a search that defines the org"
 category: Hiring playbooks
 description: The first product manager sets the pattern for every product hire after them. How to scope, source, and close the role.
 readingTime: 5 min read

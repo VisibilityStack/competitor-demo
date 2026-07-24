@@ -1,5 +1,5 @@
 ---
-title: "Stage fit: why a great Series B engineer can sink a seed startup"
+title: "Stage fit: why a Series B engineer can sink a seed startup"
 category: Hiring science
 description: Excellent engineers fail in the wrong stage constantly. What stage fit actually consists of, and how to screen for it.
 readingTime: 4 min read

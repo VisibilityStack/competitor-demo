@@ -1,5 +1,5 @@
 ---
-title: "Beyond talent marketplaces: hiring full-time engineers who stay"
+title: "Beyond marketplaces: full-time engineers who stay"
 category: Comparisons & alternatives
 description: Marketplaces like Toptal solve for speed and flexibility. Building a permanent team is a different problem with different tools.
 readingTime: 4 min read

@@ -1,5 +1,5 @@
 ---
-title: "Structured vs unstructured interviews: what the evidence says"
+title: "Structured vs unstructured interviews: the evidence"
 category: Hiring science
 description: Decades of selection research point one direction. Why unstructured interviews persist anyway, and how to add structure without losing warmth.
 readingTime: 4 min read

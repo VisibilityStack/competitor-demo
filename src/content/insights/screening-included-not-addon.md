@@ -1,5 +1,5 @@
 ---
-title: Why screening should be included in a search, not sold as an add-on
+title: Why screening should be included, not sold as an add-on
 category: Choosing a partner
 description: When an agency prices assessment separately, it is telling you what it thinks the product is. Fit screening belongs inside the fee.
 readingTime: 3 min read

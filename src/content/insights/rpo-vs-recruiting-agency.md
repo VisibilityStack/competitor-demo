@@ -1,5 +1,5 @@
 ---
-title: "RPO vs recruiting agency: what a 30-person startup actually needs"
+title: "RPO vs recruiting agency: what a 30-person startup needs"
 category: Comparisons & alternatives
 description: RPO embeds a hiring function; an agency runs searches. Buying the wrong one wastes a year. Here is the honest dividing line.
 readingTime: 4 min read

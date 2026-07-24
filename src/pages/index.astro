@@ -116,6 +116,24 @@ const orgSchema = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-XN05QF08LJ');
+			addEventListener(
+				'load',
+				() => {
+					const s = document.createElement('script');
+					s.async = true;
+					s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XN05QF08LJ';
+					document.head.appendChild(s);
+				},
+				{ once: true }
+			);
+		</script>
 		<title>Technical Recruiting Agency for Startups · FP Talent</title>
 		<meta
 			name="description"
@@ -147,22 +165,22 @@ const orgSchema = {
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
 				<div class="dx-nav-links">
-					<a href="/candidates#searches">Open searches</a>
+					<a href="/candidates/#searches">Open searches</a>
 					<a href="#practices">Practices</a>
-					<a href="/insights">Insights</a>
+					<a href="/insights/">Insights</a>
 					<a href="#why">Why FPT</a>
 				</div>
 				<details class="dx-nav-mob">
 				<summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
 				<div class="dx-nav-mob-panel">
 						<a href="#practices">Practices</a>
-						<a href="/insights">Insights</a>
+						<a href="/insights/">Insights</a>
 						<a href="#why">Why FPT</a>
-						<a href="/candidates">For candidates</a>
+						<a href="/candidates/">For candidates</a>
 					</div>
 			</details>
 			<div class="dx-nav-right">
-					<a class="dx-btn ghost" href="/candidates">For candidates</a>
+					<a class="dx-btn ghost" href="/candidates/">For candidates</a>
 					<a class="dx-btn teal" href="#contact">Book a consultation</a>
 				</div>
 			</div>
@@ -177,7 +195,7 @@ const orgSchema = {
 						We run end-to-end searches for founder-led software companies, seed to
 						Series B. Screened people, real comp, one company at a time.
 					</p>
-					<form class="dx-module" data-dxa method="get" action="/candidates">
+					<form class="dx-module" data-dxa method="get" action="/candidates/">
 						<p class="dx-module-title">Find your <span class="accent">next role</span></p>
 						<div class="dx-module-row">
 							<select name="practice" aria-label="Practice">
@@ -268,7 +286,7 @@ const orgSchema = {
 						company pays. Never you.
 					</p>
 					<div class="dx-cta-row">
-						<a class="dx-btn teal" href="/candidates">See open searches</a>
+						<a class="dx-btn teal" href="/candidates/">See open searches</a>
 						<a class="dx-btn outline" href="mailto:mark@fptalent.io?subject=Candidate%20intro">Send your profile</a>
 					</div>
 				</div>
@@ -281,7 +299,7 @@ const orgSchema = {
 							minis.map((m, i) => (
 								<div class="dx-mini-drop" data-dxa data-dxa-delay={`${250 + i * 300}ms`}>
 									<span class="dx-mini-float" style={`animation-delay:${-i * 2.6}s`}>
-										<a class="dx-search-card stacked" href="/candidates#searches">
+										<a class="dx-search-card stacked" href="/candidates/#searches">
 											<span class="rolewrap">
 												<span class="role">{m.role}</span>
 												<span class="meta">{m.meta}</span>
@@ -308,7 +326,7 @@ const orgSchema = {
 				<div class="dx-cats" data-dxa>
 					{
 						categories.map(c => (
-							<a class="dx-cat" href="/insights">
+							<a class="dx-cat" href="/insights/">
 								{c.emoji} {c.label}
 							</a>
 						))
@@ -316,7 +334,7 @@ const orgSchema = {
 				</div>
 				<div class="dx-res-grid">
 					<div data-dxa>
-						<a class="dx-feature" href={`/insights/${featured.slug}`}>
+						<a class="dx-feature" href={`/insights/${featured.slug}/`}>
 							<div>
 								<p class="tag">{featured.data.category}</p>
 								<p class="t">{featured.data.title}</p>
@@ -327,7 +345,7 @@ const orgSchema = {
 					{
 						latest.map(p => (
 							<div data-dxa>
-								<a class="dx-article" href={`/insights/${p.slug}`}>
+								<a class="dx-article" href={`/insights/${p.slug}/`}>
 									<span class="cat">{p.data.category}</span>
 									<span class="t">{p.data.title}</span>
 									<span class="d">
@@ -354,7 +372,7 @@ const orgSchema = {
 						</p>
 						<div class="dx-cta-row">
 							<a class="dx-btn teal" href="#contact">Book a consultation</a>
-							<a class="dx-btn outline" href="/practices/engineering">See practices</a>
+							<a class="dx-btn outline" href="/practices/engineering/">See practices</a>
 						</div>
 					</div>
 					<div data-dxa>
@@ -364,7 +382,7 @@ const orgSchema = {
 						<div class="dx-practices dx-overlap">
 							{
 								practices.map(p => (
-									<a class="dx-practice" href={`/practices/${p.slug}`}>
+									<a class="dx-practice" href={`/practices/${p.slug}/`}>
 										<div class="t">{p.t}</div>
 										<div class="s">{p.s}</div>
 									</a>
@@ -429,20 +447,20 @@ const orgSchema = {
 					<div class="dx-foot-cols">
 						<div>
 							<h3>Practices</h3>
-							<a href="/practices/product">Product</a>
-							<a href="/practices/engineering">Engineering</a>
-							<a href="/practices/data-ai">Data &amp; AI</a>
-							<a href="/practices/leadership">Leadership</a>
+							<a href="/practices/product/">Product</a>
+							<a href="/practices/engineering/">Engineering</a>
+							<a href="/practices/data-ai/">Data &amp; AI</a>
+							<a href="/practices/leadership/">Leadership</a>
 						</div>
 						<div>
 							<h3>Company</h3>
 							<a href="#why">Why FPT</a>
-							<a href="/insights">Insights</a>
+							<a href="/insights/">Insights</a>
 							<a href="mailto:mark@fptalent.io?subject=Hello%20FPT">Contact us</a>
 						</div>
 						<div>
 							<h3>Candidates</h3>
-							<a href="/candidates">Open searches</a>
+							<a href="/candidates/">Open searches</a>
 							<a href="mailto:mark@fptalent.io?subject=Candidate%20intro">Send your profile</a>
 						</div>
 					</div>
@@ -450,8 +468,8 @@ const orgSchema = {
 				<div class="dx-legal">
 					<span>© 2026 FP Talent. All rights reserved.</span>
 					<span>
-						<a href="/terms">Terms</a>
-						<a href="/privacy">Privacy policy</a>
+						<a href="/terms/">Terms</a>
+						<a href="/privacy/">Privacy policy</a>
 					</span>
 				</div>
 			</div>

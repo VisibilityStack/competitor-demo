@@ -1,5 +1,5 @@
 ---
-title: Data scientist or ML engineer? Scope the role before the search
+title: "Data scientist or ML engineer? Scope the role first"
 category: Hiring playbooks
 description: Half of failed data hires were mis-scoped, not mis-hired. How to tell which role your problem actually needs.
 readingTime: 4 min read

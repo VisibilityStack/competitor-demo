@@ -25,6 +25,9 @@ const others = all.filter(
 );
 const related = [...sameCat, ...others].slice(0, 4);
 
+const pageTitle =
+	post.data.title.length <= 48 ? `${post.data.title} · FP Talent` : post.data.title;
+
 const fmtDate = (d: Date) =>
 	d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
@@ -61,7 +64,25 @@ const breadcrumbSchema = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{post.data.title} · FP Talent</title>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-XN05QF08LJ');
+			addEventListener(
+				'load',
+				() => {
+					const s = document.createElement('script');
+					s.async = true;
+					s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XN05QF08LJ';
+					document.head.appendChild(s);
+				},
+				{ once: true }
+			);
+		</script>
+		<title>{pageTitle}</title>
 		<meta name="description" content={post.data.description} />
 		<link rel="icon" href="/favicon.ico?v=2" sizes="32x32" />
 		<link rel="icon" type="image/svg+xml" href="/favicon-fpt.svg?v=2" />
@@ -72,7 +93,7 @@ const breadcrumbSchema = {
 		<link rel="canonical" href={`https://www.fptalent.io/insights/${post.slug}/`} />
 		<meta property="og:type" content="article" />
 		<meta property="og:site_name" content="FP Talent" />
-		<meta property="og:title" content={`${post.data.title} · FP Talent`} />
+		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={post.data.description} />
 		<meta property="og:url" content={`https://www.fptalent.io/insights/${post.slug}/`} />
 		<meta property="og:image" content="https://www.fptalent.io/social.png" />
@@ -90,23 +111,23 @@ const breadcrumbSchema = {
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
 				<div class="dx-nav-links">
-					<a href="/candidates#searches">Open searches</a>
+					<a href="/candidates/#searches">Open searches</a>
 					<a href="/#practices">Practices</a>
-					<a href="/insights">Insights</a>
+					<a href="/insights/">Insights</a>
 					<a href="/#why">Why FPT</a>
 				</div>
 				<details class="dx-nav-mob">
 				<summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
 				<div class="dx-nav-mob-panel">
-						<a href="/candidates#searches">Open searches</a>
+						<a href="/candidates/#searches">Open searches</a>
 						<a href="/#practices">Practices</a>
-						<a href="/insights">Insights</a>
+						<a href="/insights/">Insights</a>
 						<a href="/#why">Why FPT</a>
-						<a href="/candidates">For candidates</a>
+						<a href="/candidates/">For candidates</a>
 					</div>
 			</details>
 			<div class="dx-nav-right">
-					<a class="dx-btn ghost" href="/candidates">For candidates</a>
+					<a class="dx-btn ghost" href="/candidates/">For candidates</a>
 					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
 				</div>
 			</div>
@@ -116,7 +137,7 @@ const breadcrumbSchema = {
 			<div class="dx-container dx-article-layout">
 				<article class="dx-article-main">
 					<p class="dx-article-meta" data-dxa>
-						<a class="crumb" href="/insights">Insights</a> · {post.data.category} ·
+						<a class="crumb" href="/insights/">Insights</a> · {post.data.category} ·
 						{fmtDate(post.data.date)} · {post.data.readingTime}
 					</p>
 					<h1 data-dxa>{post.data.title}</h1>
@@ -127,19 +148,19 @@ const breadcrumbSchema = {
 
 				<aside class="dx-side">
 					<div class="dx-side-card" data-dxa>
-						<h3>More from Insights</h3>
+						<h2>More from Insights</h2>
 						{
 							related.map(r => (
-								<a class="dx-side-item" href={`/insights/${r.slug}`}>
+								<a class="dx-side-item" href={`/insights/${r.slug}/`}>
 									<span class="cat">{r.data.category}</span>
 									<span class="t">{r.data.title}</span>
 								</a>
 							))
 						}
-						<a class="dx-side-all" href="/insights">All articles →</a>
+						<a class="dx-side-all" href="/insights/">All articles →</a>
 					</div>
 					<div class="dx-side-cta" data-dxa>
-						<h3>Let's build your team.</h3>
+						<h2>Let's build your team.</h2>
 						<p>A short call is enough to scope the search.</p>
 						<a class="dx-btn teal" href="/#contact">Book a consultation</a>
 					</div>
@@ -151,8 +172,8 @@ const breadcrumbSchema = {
 			<div class="dx-container dx-legal">
 				<span>© 2026 FP Talent. All rights reserved.</span>
 				<span>
-					<a href="/terms">Terms</a>
-					<a href="/privacy">Privacy policy</a>
+					<a href="/terms/">Terms</a>
+					<a href="/privacy/">Privacy policy</a>
 				</span>
 			</div>
 		</footer>

@@ -1760,6 +1760,7 @@ button.dx-cat {
 	padding: 20px;
 }
 
+.dx-side-card h2,
 .dx-side-card h3 {
 	font-size: 15px;
 	font-weight: 700;
@@ -1815,6 +1816,7 @@ button.dx-cat {
 	padding: 22px;
 }
 
+.dx-side-cta h2,
 .dx-side-cta h3 {
 	font-size: 19px;
 	font-weight: 700;
@@ -2485,6 +2487,7 @@ button.dx-cat {
 	padding: 15px 18px;
 }
 
+.dx-side-cta.slim h2,
 .dx-side-cta.slim h3 {
 	margin: 0;
 	font-size: 16.5px;

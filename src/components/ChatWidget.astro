@@ -393,7 +393,7 @@
 
 	function askEmail() {
 		if (lead.email) {
-			botSay('Already got your email. Mark will be in touch.');
+			botSay(`You're set. Mark will reach you at ${lead.email}.`, followUps);
 			return;
 		}
 		botSay('Fastest next step is a short consultation. Where should we reach you?', () => {
@@ -402,10 +402,25 @@
 		});
 	}
 
+	function changeEmail() {
+		botSay('Sure. What address should Mark use instead?', () => {
+			if (composer) composer.hidden = false;
+			if (emailInput) emailInput.value = '';
+			emailInput?.focus();
+		});
+	}
+
+	let savedLeadIndex: number | null = null;
 	function saveLead() {
 		try {
 			const leads = JSON.parse(localStorage.getItem('fpt_demo_leads') || '[]');
-			leads.push({ ...lead, source: 'chat', at: new Date().toISOString() });
+			const rec = { ...lead, source: 'chat', at: new Date().toISOString() };
+			if (savedLeadIndex === null) {
+				leads.push(rec);
+				savedLeadIndex = leads.length - 1;
+			} else {
+				leads[savedLeadIndex] = rec;
+			}
 			localStorage.setItem('fpt_demo_leads', JSON.stringify(leads));
 		} catch {}
 	}
@@ -460,6 +475,7 @@
 		if (!asked.has('how')) chips.push({ label: 'How you work', onPick: how });
 		if (!asked.has('cost')) chips.push({ label: "What's it cost", onPick: pricing });
 		if (!lead.email) chips.push({ label: 'Book a consultation', onPick: askEmail });
+		if (lead.email) chips.push({ label: 'Change email', onPick: changeEmail });
 		chips.push({ label: "That's all", onPick: () => botSay('Talk soon.') });
 		addChips(chips);
 	}
@@ -474,22 +490,80 @@
 		botSay('The whole search, end to end. We find the people, screen them, and stay on it until the offer is signed.', followUps);
 	}
 
-	let emailNagged = false;
+	const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+	const DOMAIN_FIXES: Record<string, string> = {
+		'gmial.com': 'gmail.com',
+		'gamil.com': 'gmail.com',
+		'gmal.com': 'gmail.com',
+		'gnail.com': 'gmail.com',
+		'gmaill.com': 'gmail.com',
+		'gmail.co': 'gmail.com',
+		'gmail.con': 'gmail.com',
+		'hotmial.com': 'hotmail.com',
+		'hotmal.com': 'hotmail.com',
+		'hotmail.con': 'hotmail.com',
+		'yaho.com': 'yahoo.com',
+		'yahooo.com': 'yahoo.com',
+		'yahoo.con': 'yahoo.com',
+		'outlok.com': 'outlook.com',
+		'outlook.con': 'outlook.com',
+		'iclod.com': 'icloud.com',
+		'icloud.con': 'icloud.com',
+	};
+
+	function cleanEmail(raw: string): string {
+		let v = raw.trim().toLowerCase().replace(/^mailto:/, '').replace(/[.,;:]+$/, '');
+		const m = v.match(/[^\s@]+@[^\s@]+\.[a-z]{2,}/i);
+		return m ? m[0] : v;
+	}
+
+	function emailProblem(v: string): string | null {
+		if (!v) return 'Looks empty. Type the email you want Mark to use.';
+		if (!v.includes('@')) return "That's missing an @. Something like you@company.com.";
+		if (/@.*@/.test(v)) return 'Two @ signs in there. Mind checking it?';
+		const domain = v.split('@')[1] || '';
+		if (!domain.includes('.')) return `The part after the @ needs a dot, like ${domain || 'company'}.com.`;
+		if (!EMAIL_RE.test(v)) return "That email doesn't look right. Mind checking it?";
+		return null;
+	}
+
+	function acceptEmail(v: string) {
+		lead.email = v;
+		if (composer) composer.hidden = true;
+		if (emailInput) emailInput.value = '';
+		saveLead();
+		botSay(`Got it. Mark will reach you at ${v}.`, followUps);
+	}
+
+	let emailAttempts = 0;
 	function submitEmail() {
-		const val = emailInput?.value.trim() || '';
-		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-			if (!emailNagged) {
-				emailNagged = true;
-				botSay("That email doesn't look right. Mind checking it?");
-			}
+		const v = cleanEmail(emailInput?.value || '');
+		const problem = emailProblem(v);
+		if (problem) {
+			emailAttempts++;
+			botSay(
+				emailAttempts >= 3
+					? 'No stress. You can also email Mark directly at mark@fptalent.io.'
+					: problem
+			);
 			emailInput?.focus();
 			return;
 		}
-		lead.email = val;
-		addMsg('user', val);
+		const domain = v.split('@')[1];
+		const fix = DOMAIN_FIXES[domain];
+		addMsg('user', v);
 		if (composer) composer.hidden = true;
-		saveLead();
-		botSay('Got it, thanks. Mark will be in touch.', followUps);
+		if (fix) {
+			const fixed = v.split('@')[0] + '@' + fix;
+			botSay(`Quick check: did you mean ${fixed}?`, () =>
+				addChips([
+					{ label: `Yes, use ${fix}`, onPick: () => acceptEmail(fixed) },
+					{ label: `No, keep ${domain}`, onPick: () => acceptEmail(v) },
+				])
+			);
+			return;
+		}
+		acceptEmail(v);
 	}
 
 	launch?.addEventListener('click', () => {

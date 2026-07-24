@@ -17,12 +17,95 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 	name: cat,
 	count: posts.filter(p => p.data.category === cat).length,
 }));
+
+const faqs = [
+	{
+		q: 'What does a search cost?',
+		a: 'A success fee when we place someone. No retainers, no add-ons.',
+		href: '/insights/recruiting-fee-structures/',
+		linkLabel: 'How agencies price searches.',
+	},
+	{
+		q: 'How fast is a typical search?',
+		a: '9 days median from first call to first founder interview, about 29% faster than the public benchmarks.',
+		href: '/insights/time-to-hire-benchmarks/',
+		linkLabel: 'The benchmarks.',
+	},
+	{
+		q: 'Do the placements stick?',
+		a: '82% of the people we place are still in seat at 12 months. Psychometric screening does the heavy lifting.',
+		href: '/insights/psychometric-screening-mis-hires/',
+		linkLabel: 'Why screening works.',
+	},
+];
+
+const hubSchema = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Blog',
+			'@id': 'https://www.fptalent.io/insights/#blog',
+			name: 'FP Talent Insights',
+			description:
+				'Hiring insights from FP Talent: technical recruiting, psychometric screening, and building software teams that last.',
+			url: 'https://www.fptalent.io/insights/',
+			publisher: {
+				'@type': 'Organization',
+				name: 'FP Talent',
+				url: 'https://www.fptalent.io',
+				logo: { '@type': 'ImageObject', url: 'https://www.fptalent.io/favicon-512.png' },
+			},
+		},
+		{
+			'@type': 'ItemList',
+			itemListElement: posts.map((p, i) => ({
+				'@type': 'ListItem',
+				position: i + 1,
+				name: p.data.title,
+				url: `https://www.fptalent.io/insights/${p.slug}/`,
+			})),
+		},
+		{
+			'@type': 'BreadcrumbList',
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.fptalent.io/' },
+				{ '@type': 'ListItem', position: 2, name: 'Insights' },
+			],
+		},
+		{
+			'@type': 'FAQPage',
+			mainEntity: faqs.map(f => ({
+				'@type': 'Question',
+				name: f.q,
+				acceptedAnswer: { '@type': 'Answer', text: f.a },
+			})),
+		},
+	],
+};
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-XN05QF08LJ');
+			addEventListener(
+				'load',
+				() => {
+					const s = document.createElement('script');
+					s.async = true;
+					s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XN05QF08LJ';
+					document.head.appendChild(s);
+				},
+				{ once: true }
+			);
+		</script>
 		<title>Technical Hiring & Recruiting Insights · FP Talent</title>
 		<meta
 			name="description"
@@ -44,6 +127,7 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
+		<script type="application/ld+json" set:html={JSON.stringify(hubSchema)} />
 		<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
 	</head>
 	<body>
@@ -52,23 +136,23 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 			<div class="dx-container dx-nav-inner">
 				<a class="dx-logo badge" href="/">FPT</a>
 				<div class="dx-nav-links">
-					<a href="/candidates#searches">Open searches</a>
+					<a href="/candidates/#searches">Open searches</a>
 					<a href="/#practices">Practices</a>
-					<a href="/insights">Insights</a>
+					<a href="/insights/">Insights</a>
 					<a href="/#why">Why FPT</a>
 				</div>
 				<details class="dx-nav-mob">
 				<summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
 				<div class="dx-nav-mob-panel">
-						<a href="/candidates#searches">Open searches</a>
+						<a href="/candidates/#searches">Open searches</a>
 						<a href="/#practices">Practices</a>
-						<a href="/insights">Insights</a>
+						<a href="/insights/">Insights</a>
 						<a href="/#why">Why FPT</a>
-						<a href="/candidates">For candidates</a>
+						<a href="/candidates/">For candidates</a>
 					</div>
 			</details>
 			<div class="dx-nav-right">
-					<a class="dx-btn ghost" href="/candidates">For candidates</a>
+					<a class="dx-btn ghost" href="/candidates/">For candidates</a>
 					<a class="dx-btn teal" href="/#contact">Book a consultation</a>
 				</div>
 			</div>
@@ -85,8 +169,12 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 			</div>
 		</header>
 
-		<section class="dx-sec" style="padding-top: 34px">
+		<section class="dx-sec tight">
 			<div class="dx-container">
+				<h2 class="dx-sec-head" data-dxa>Browse the library</h2>
+				<p class="dx-sec-sub" data-dxa>
+					{posts.length} articles across {categories.length} categories. Filter by what you're hiring for.
+				</p>
 				<div class="dx-cats" aria-label="Filter by category" data-dxa>
 					<button class="dx-cat active" data-cat="all">
 						All <span class="dx-cat-count">{posts.length}</span>
@@ -104,7 +192,7 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 					{
 						posts.map(post => (
 							<div data-dxa data-category={post.data.category}>
-								<a class="dx-article" href={`/insights/${post.slug}`}>
+								<a class="dx-article" href={`/insights/${post.slug}/`}>
 									<span class="cat">{post.data.category}</span>
 									<span class="t">{post.data.title}</span>
 									<span class="desc">{post.data.description}</span>
@@ -121,7 +209,28 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 			</div>
 		</section>
 
-		<section class="dx-sec" style="padding-top: 0">
+		<section class="dx-sec flush">
+			<div class="dx-container dx-faq-grid">
+				<div class="dx-faq-intro" data-dxa>
+					<h2 class="dx-sec-head">Quick answers</h2>
+					<p class="dx-sec-sub">The three numbers founders ask about first.</p>
+				</div>
+				<div class="dx-faq">
+					{
+						faqs.map((f, i) => (
+							<details class="dx-faq-item" data-dxa open={i === 0}>
+								<summary>{f.q}</summary>
+								<p>
+									{f.a} <a class="dx-inline-link" href={f.href}>{f.linkLabel}</a>
+								</p>
+							</details>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="dx-sec flush">
 			<div class="dx-container">
 				<div class="dx-cta-card slim" data-dxa>
 					<div>
@@ -139,8 +248,8 @@ const categories = [...new Set(posts.map(p => p.data.category))].map(cat => ({
 			<div class="dx-container dx-legal">
 				<span>© 2026 FP Talent. All rights reserved.</span>
 				<span>
-					<a href="/terms">Terms</a>
-					<a href="/privacy">Privacy policy</a>
+					<a href="/terms/">Terms</a>
+					<a href="/privacy/">Privacy policy</a>
 				</span>
 			</div>
 		</footer>

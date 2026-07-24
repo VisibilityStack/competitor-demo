@@ -1,5 +1,5 @@
 ---
-title: Is retained search worth it for a CTO hire? A cost breakdown
+title: "Is retained search worth it for a CTO hire? A cost breakdown"
 category: Pricing & fees
 description: The retained fee is the visible cost. The invisible costs sit on the other side of the ledger. How to run the math like an operator.
 readingTime: 4 min read
